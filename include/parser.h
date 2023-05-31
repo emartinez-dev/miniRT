@@ -27,10 +27,18 @@ void		read_scene(t_scene *scene);
 void		*parse_line(char *line);
 int			extract_objects(t_scene *scene);
 t_list		*parse_all_lights(t_scene *scene);
+t_list		*parse_all_objects(t_scene *scene);
 
 /* ambient_lights.c */
 t_object	*parse_obj_ambient_light(char *line);
 int			errors_ambient_light(t_amb_light *light, t_object *obj);
+
+/* camera.c */
+t_object	*parse_obj_camera(char *line);
+int			errors_camera(t_camera *camera, t_object *obj);
+
+/* coordnates.c */
+void		get_xyz(char *str, t_point *point, t_object *obj);
 
 /* colors.c */
 void		get_color(char *str, t_color *color);
@@ -44,5 +52,8 @@ void		free_matrix(char **str);
 /* parser_frees.c */
 void		free_objects(void *content);
 void		free_scene(t_scene *scene);
+
+/* pruebas.c */
+void		print_todo(t_scene *scene);
 
 #endif

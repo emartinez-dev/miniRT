@@ -71,9 +71,9 @@ typedef struct s_amb_light
 
 typedef struct s_camera
 {
-	t_point			p;
-	t_point			norm;
-	unsigned char	fov;
+	t_point	p;
+	t_point	norm;
+	int		fov;
 }	t_camera;
 
 typedef struct s_light
