@@ -14,6 +14,8 @@ typedef struct s_scene
 {
 	int		fd;
 	char	**scene_str;
+	t_list	*objects;
+	t_list	*lights;
 }	t_scene;
 
 int		params_error(int argc, char **argv, t_scene *scene);
