@@ -40,3 +40,23 @@ double	decimal_part(char *str)
 		decimal = decimal / 10;
 	return (decimal);
 }
+
+int	matrix_len(char **str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		;
+	return (i);
+}
+
+void	free_matrix(char **str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		free(str[i]);
+	free(str);
+}
