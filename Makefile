@@ -20,6 +20,7 @@ _SRC 		=	main.c\
 				parser/ambient_lights.c\
 				parser/camera.c\
 				parser/parser_frees.c\
+				parser/pruebas.c\
 				parser/scene_reading.c
 
 SRC_FOLDERS = obj/parser
