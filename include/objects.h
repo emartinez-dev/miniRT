@@ -7,6 +7,9 @@
 - t_point norm -> 3D normalized orientation vector
 */
 
+# define ERR_RANGE "[ERROR]\nValues out of range\n"
+# define ERR_MISSING_PARAMS "[ERROR]\nInsufficient parameters\n"
+
 enum e_objects {
 	OBJ_AMBIENT_LIGHT,
 	OBJ_CAMERA,

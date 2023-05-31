@@ -30,6 +30,7 @@ t_list		*parse_all_lights(t_scene *scene);
 
 /* ambient_lights.c */
 t_object	*parse_obj_ambient_light(char *line);
+int			errors_ambient_light(t_amb_light *light, t_object *obj);
 
 /* colors.c */
 void		get_color(char *str, t_color *color);
