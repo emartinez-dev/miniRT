@@ -25,14 +25,15 @@ typedef struct s_point
 
 typedef struct s_color
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
+	int	r;
+	int	g;
+	int	b;
 }	t_color;
 
 typedef struct s_object
 {
 	int		type;
+	int		error;
 	void	*ptr;
 }	t_object;
 
@@ -76,7 +77,7 @@ typedef struct s_light
 {
 	t_point	p;
 	double	brightness;
-	t_point	c;
-}	t_camera;
+	t_color	c;
+}	t_light;
 
 #endif
