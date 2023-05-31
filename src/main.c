@@ -15,6 +15,7 @@ int	main(int argc, char **argv)
 		return (1);
 	read_scene(&scene);
 	extract_objects(&scene);
+	print_todo(&scene);
 	free_scene(&scene);
 	return (0);
 }
