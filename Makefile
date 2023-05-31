@@ -13,7 +13,8 @@ SRC_DIR 	= src/
 OBJ_DIR		= obj/
 
 _SRC 		=	main.c\
-				parser/parsing_errors.c
+				parser/parsing_errors.c\
+				parser/scene_reading.c
 
 SRC_FOLDERS = parser
 
