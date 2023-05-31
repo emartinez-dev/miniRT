@@ -12,7 +12,10 @@ SRC_DIR 	= src/
 
 OBJ_DIR		= obj/
 
-_SRC 		=	main.c
+_SRC 		=	main.c\
+				parser/parsing_errors.c
+
+SRC_FOLDERS = parser
 
 SRC 		= ${addprefix ${SRC_DIR}, ${_SRC}}
 OBJ			= ${patsubst ${SRC_DIR}%.c, ${OBJ_DIR}%.o, ${SRC}}
@@ -42,6 +45,7 @@ ${NAME}:	 ${OBJ}
 ${OBJ_DIR}%.o: ${SRC_DIR}%.c
 			@git submodule update --init
 			@mkdir -p ${OBJ_DIR}
+			@mkdir -p ${SRC_FOLDERS}
 			@${CC} ${FLAGS} ${INCLUDES} -c $^ -o $@
 
 all:		${NAME} ${LIBFT} ${MLX}
