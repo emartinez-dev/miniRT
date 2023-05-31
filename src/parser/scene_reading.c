@@ -21,15 +21,63 @@ void	read_scene(t_scene *scene)
 	free(buffer);
 }
 
-void	free_scene(t_scene *scene)
+void	*parse_line(char *line)
 {
-	int	i;
+	void	*ptr;
+
+	ptr = NULL;
+	if (ft_strnstr(line, "A ", 2))
+		ptr = (void *)parse_obj_ambient_light(line);
+	/*
+	else if (ft_strnstr(line, "C ", 2))
+		ptr = (void *)parse_obj_camera(line);
+	else if (ft_strnstr(line, "L", 2))
+		ptr = (void *)parse_obj_light(line);
+	else if (ft_strnstr(line, "sp", 3))
+		ptr = (void *)parse_obj_sphere(line);
+	else if (ft_strnstr(line, "pl", 3))
+		ptr = (void *)parse_obj_plane(line);
+	else if (ft_strnstr(line, "cy", 3))
+		ptr = (void *)parse_obj_cylinder(line);
+	*/
+	return (ptr);
+}
+
+//t_list	*parse_all_objects(t_scene *scene);
+
+int	extract_objects(t_scene *scene)
+{
+	scene->lights = NULL;
+	scene->objects = NULL;
+	scene->lights = parse_all_lights(scene);
+	//scene->objects = parse_all_objects(scene);
+	return (0);
+}
+
+t_list	*parse_all_lights(t_scene *scene)
+{
+	t_list	*new;
+	void	*obj_ptr;
+	int		i;
 
 	i = -1;
 	while (scene->scene_str[++i])
 	{
-		ft_printf("%s\n", scene->scene_str[i]);
-		free(scene->scene_str[i]);
+		obj_ptr = parse_line(scene->scene_str[i]);
+		new = ft_lstnew(obj_ptr);
+		if (obj_ptr && (((t_object *)obj_ptr)->type == OBJ_AMBIENT_LIGHT || \
+			((t_object *)obj_ptr)->type == OBJ_LIGHT))
+		{
+			if (!scene->lights)
+				scene->lights = new;
+			else
+				ft_lstadd_back(&scene->lights, new);
+		}
+		else
+		{
+			free(new->content);
+			free(new);
+		}
 	}
-	free(scene->scene_str);
+	return (scene->lights);
 }
