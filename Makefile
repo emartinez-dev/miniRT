@@ -16,7 +16,9 @@ _SRC 		=	main.c\
 				parser/parsing_errors.c\
 				parser/parser_utils.c\
 				parser/colors.c\
+				parser/coordinates.c\
 				parser/ambient_lights.c\
+				parser/camera.c\
 				parser/parser_frees.c\
 				parser/scene_reading.c
 
