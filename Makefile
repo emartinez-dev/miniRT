@@ -1,6 +1,6 @@
 NAME 		= miniRT
 
-CC			= gcc
+CC			= gcc -g
 FLAGS 		= -Wall -Wextra -Werror
 RM			= rm -rf
 
@@ -14,9 +14,13 @@ OBJ_DIR		= obj/
 
 _SRC 		=	main.c\
 				parser/parsing_errors.c\
+				parser/parser_utils.c\
+				parser/colors.c\
+				parser/ambient_lights.c\
+				parser/parser_frees.c\
 				parser/scene_reading.c
 
-SRC_FOLDERS = parser
+SRC_FOLDERS = obj/parser
 
 SRC 		= ${addprefix ${SRC_DIR}, ${_SRC}}
 OBJ			= ${patsubst ${SRC_DIR}%.c, ${OBJ_DIR}%.o, ${SRC}}
