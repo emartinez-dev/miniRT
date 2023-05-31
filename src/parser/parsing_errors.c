@@ -12,7 +12,8 @@ int	params_error(int argc, char **argv, t_scene *scene)
 		ft_putstr_fd(ERROR_ARGC, STDERR_FILENO);
 		return (1);
 	}
-	if (ft_strlen(ft_strnstr(argv[1], ".rt", ft_strlen(argv[1]))) != 3)
+	if (!ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])) || \
+		ft_strlen(ft_strnstr(argv[1], ".rt", ft_strlen(argv[1]))) != 3)
 	{
 		ft_putstr_fd(ERROR_ARGC, STDERR_FILENO);
 		return (1);
