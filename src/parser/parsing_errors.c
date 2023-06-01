@@ -30,8 +30,14 @@ int	params_error(int argc, char **argv, t_scene *scene)
 
 int	errors_normalized_vector(t_point *norm)
 {
-	if (norm->x > 1.0 || norm->y > 1.0 || norm->z > 1.0 || norm->x < -1.0 || \
-		norm->y < -1.0 || norm->z < -1.0)
+	t_point	p;
+
+	p = *norm;
+	p.x = round(norm->x);
+	p.y = round(norm->y);
+	p.z = round(norm->z);
+	if (p.x > 1.0 || p.y > 1.0 || p.z > 1.0 || p.x < -1.0 || \
+		p.y < -1.0 || p.z < -1.0)
 		return (1);
 	return (0);
 }
