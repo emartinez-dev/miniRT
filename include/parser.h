@@ -16,6 +16,7 @@ typedef struct s_scene
 {
 	int		fd;
 	char	**scene_str;
+	int		errors;
 	t_list	*objects;
 	t_list	*lights;
 }	t_scene;
@@ -24,6 +25,7 @@ typedef struct s_scene
 int			params_error(int argc, char **argv, t_scene *scene);
 int			errors_normalized_vector(t_point *norm);
 int			errors_colors(t_color *color);
+int			errors_in_objects(t_scene *scene);
 
 /* scene_reading.c */
 void		read_scene(t_scene *scene);

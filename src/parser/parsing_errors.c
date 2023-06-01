@@ -49,3 +49,31 @@ int	errors_colors(t_color *color)
 		return (1);
 	return (0);
 }
+
+int	errors_in_objects(t_scene *scene)
+{
+	t_object	*obj;
+	t_list		*tmp;
+	int			cameras;
+
+	tmp = scene->objects;
+	cameras = 0;
+	while (tmp && tmp->content)
+	{
+		obj = tmp->content;
+		if (obj->type == OBJ_CAMERA)
+			cameras++;
+		if (obj->error)
+			return (1);
+		tmp = tmp->next;
+	}
+	tmp = scene->lights;
+	while (tmp && tmp->content)
+	{
+		obj = tmp->content;
+		if (obj->error)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (cameras - 1);
+}
