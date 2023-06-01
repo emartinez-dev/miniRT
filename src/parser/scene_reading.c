@@ -43,11 +43,14 @@ void	*parse_line(char *line)
 
 int	extract_objects(t_scene *scene)
 {
+	scene->errors = 0;
 	scene->lights = NULL;
 	scene->objects = NULL;
 	scene->lights = parse_all_lights(scene);
 	scene->objects = parse_all_objects(scene);
-	return (0);
+	if (errors_in_objects(scene))
+		scene->errors = 1;
+	return (scene->errors);
 }
 
 t_list	*parse_all_lights(t_scene *scene)
