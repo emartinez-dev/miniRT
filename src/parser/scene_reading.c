@@ -50,6 +50,12 @@ int	extract_objects(t_scene *scene)
 	scene->objects = parse_all_objects(scene);
 	if (errors_in_objects(scene))
 		scene->errors = 1;
+	scene->camera = get_camera(scene->objects);
+	if (scene->camera == NULL)
+	{
+		ft_printf("%s%s%s", ERROR_CAMERA, ERROR_PARTIAL, "No camera found\n");
+		scene->errors = 1;
+	}
 	return (scene->errors);
 }
 

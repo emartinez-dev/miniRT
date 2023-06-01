@@ -46,3 +46,19 @@ int	errors_camera(t_camera *camera, t_object *obj)
 	}
 	return (error);
 }
+
+t_camera	*get_camera(t_list *obj)
+{
+	t_object	*object;
+	t_list		*tmp;
+
+	tmp = obj;
+	while (tmp)
+	{
+		object = tmp->content;
+		if (object->type == OBJ_CAMERA)
+			return (object->ptr);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}

@@ -14,11 +14,12 @@
 
 typedef struct s_scene
 {
-	int		fd;
-	char	**scene_str;
-	int		errors;
-	t_list	*objects;
-	t_list	*lights;
+	int			fd;
+	char		**scene_str;
+	int			errors;
+	t_list		*objects;
+	t_list		*lights;
+	t_camera	*camera;
 }	t_scene;
 
 /* parsing_errors.c */
@@ -41,6 +42,7 @@ int			errors_ambient_light(t_amb_light *light, t_object *obj);
 /* camera.c */
 t_object	*parse_obj_camera(char *line);
 int			errors_camera(t_camera *camera, t_object *obj);
+t_camera	*get_camera(t_list *obj);
 
 /* cylinder.c */
 t_object	*parse_obj_cylinder(char *line);
