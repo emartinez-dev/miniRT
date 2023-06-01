@@ -37,7 +37,7 @@ int	errors_plane(t_plane *plane, t_object *obj)
 			ERR_MISSING_PARAMS);
 		return (1);
 	}
-	if (errors_colors(&plane->c) || errors_normalized_vector(&plane->p))
+	if (errors_colors(&plane->c) || errors_normalized_vector(&plane->norm))
 	{
 		ft_printf("%s%s%s", ERROR_PLANE, ERROR_PARTIAL, \
 			ERR_RANGE);
