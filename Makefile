@@ -13,19 +13,19 @@ SRC_DIR 	= src/
 OBJ_DIR		= obj/
 
 _SRC 		=	main.c\
-				parser/parsing_errors.c\
-				parser/parser_utils.c\
 				parser/colors.c\
 				parser/coordinates.c\
-				parser/ambient_lights.c\
-				parser/camera.c\
-				parser/cylinder.c\
-				parser/sphere.c\
-				parser/plane.c\
-				parser/light.c\
+				parser/o_ambient_lights.c\
+				parser/o_camera.c\
+				parser/o_cylinder.c\
+				parser/o_sphere.c\
+				parser/o_plane.c\
+				parser/o_light.c\
+				parser/parser_errors.c\
+				parser/parser_utils.c\
 				parser/parser_frees.c\
-				parser/pruebas.c\
-				parser/scene_reading.c
+				parser/parser_scene.c\
+				parser/pruebas.c
 
 SRC_FOLDERS = obj/parser
 
