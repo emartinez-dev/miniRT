@@ -30,17 +30,17 @@ int	errors_camera(t_camera *camera, t_object *obj)
 {
 	int	error;
 
+	error = 0;
 	if (obj->error == 1)
 	{
 		ft_putstr_fd(ERR_MISSING_PARAMS, STDERR_FILENO);
 		return (1);
 	}
-	error = 0;
-	if (camera->norm.x > 1.0 || camera->norm.y > 1.0 || camera->norm.z > 1.0 \
-		|| camera->norm.x < -1.0 || camera->norm.y < -1.0 || \
-		camera->norm.z < -1.0 || camera->fov < 0 || camera->fov > 180)
-		error = 2;
-	if (error == 2)
+	if (errors_normalized_vector(camera->norm) || camera->fov < 0 || \
+		camera->fov > 180)
+	{
 		ft_putstr_fd(ERR_RANGE, STDERR_FILENO);
+		error = 2;
+	}
 	return (error);
 }

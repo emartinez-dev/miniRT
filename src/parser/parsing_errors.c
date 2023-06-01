@@ -27,3 +27,19 @@ int	params_error(int argc, char **argv, t_scene *scene)
 	scene->fd = fd;
 	return (0);
 }
+
+int	errors_normalized_vector(t_point *norm)
+{
+	if (norm->x > 1.0 || norm->y > 1.0 || norm->z > 1.0 || norm->x < -1.0 || \
+		norm->y < -1.0 || norm->z < -1.0)
+		return (1);
+	return (0);
+}
+
+int	errors_colors(t_color *color)
+{
+	if (color->r > 255 || color->g > 255 || color->b > 255 || \
+			color->r < 0 || color->g < 0 || color->b < 0)
+		return (1);
+	return (0);
+}
