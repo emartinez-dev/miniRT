@@ -20,4 +20,3 @@ void	get_xyz(char *str, t_point *point, t_object *obj)
 	}
 	free_matrix(split);
 }
-

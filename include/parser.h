@@ -6,6 +6,7 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include "objects.h"
+# include <math.h>
 
 # define ERROR_ARGC "[ERROR] invalid input.\n\tUsage: ./miniRT [filename].rt\n"
 # define ERROR_EXT "[ERROR] invalid scene. File format must be .rt\n"
@@ -38,6 +39,22 @@ int			errors_ambient_light(t_amb_light *light, t_object *obj);
 /* camera.c */
 t_object	*parse_obj_camera(char *line);
 int			errors_camera(t_camera *camera, t_object *obj);
+
+/* cylinder.c */
+t_object	*parse_obj_cylinder(char *line);
+int			errors_cylinder(t_cylinder *cylinder, t_object *obj);
+
+/* light.c */
+t_object	*parse_obj_light(char *line);
+int			errors_light(t_light *light, t_object *obj);
+
+/* plane.c */
+t_object	*parse_obj_plane(char *line);
+int			errors_plane(t_plane *plane, t_object *obj);
+
+/* sphere.c */
+t_object	*parse_obj_sphere(char *line);
+int			errors_sphere(t_sphere *sphere, t_object *obj);
 
 /* coordnates.c */
 void		get_xyz(char *str, t_point *point, t_object *obj);

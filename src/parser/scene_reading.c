@@ -30,7 +30,6 @@ void	*parse_line(char *line)
 		ptr = (void *)parse_obj_ambient_light(line);
 	else if (ft_strnstr(line, "C ", 2))
 		ptr = (void *)parse_obj_camera(line);
-	/*
 	else if (ft_strnstr(line, "L", 2))
 		ptr = (void *)parse_obj_light(line);
 	else if (ft_strnstr(line, "sp", 3))
@@ -39,7 +38,6 @@ void	*parse_line(char *line)
 		ptr = (void *)parse_obj_plane(line);
 	else if (ft_strnstr(line, "cy", 3))
 		ptr = (void *)parse_obj_cylinder(line);
-	*/
 	return (ptr);
 }
 

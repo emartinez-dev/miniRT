@@ -19,6 +19,10 @@ _SRC 		=	main.c\
 				parser/coordinates.c\
 				parser/ambient_lights.c\
 				parser/camera.c\
+				parser/cylinder.c\
+				parser/sphere.c\
+				parser/plane.c\
+				parser/light.c\
 				parser/parser_frees.c\
 				parser/pruebas.c\
 				parser/scene_reading.c
