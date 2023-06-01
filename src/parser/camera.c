@@ -33,13 +33,15 @@ int	errors_camera(t_camera *camera, t_object *obj)
 	error = 0;
 	if (obj->error == 1)
 	{
-		ft_putstr_fd(ERR_MISSING_PARAMS, STDERR_FILENO);
+		ft_printf("%s%s%s", ERROR_CAMERA, ERROR_PARTIAL, \
+			ERR_MISSING_PARAMS);
 		return (1);
 	}
 	if (errors_normalized_vector(&camera->norm) || camera->fov < 0 || \
 		camera->fov > 180)
 	{
-		ft_putstr_fd(ERR_RANGE, STDERR_FILENO);
+		ft_printf("%s%s%s", ERROR_CAMERA, ERROR_PARTIAL, \
+			ERR_RANGE);
 		error = 2;
 	}
 	return (error);

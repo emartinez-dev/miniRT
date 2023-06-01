@@ -35,12 +35,14 @@ int	errors_ambient_light(t_amb_light *light, t_object *obj)
 	error = 0;
 	if (obj->error == 1)
 	{
-		ft_putstr_fd(ERR_MISSING_PARAMS, STDERR_FILENO);
+		ft_printf("%s%s%s", ERROR_AMBIENT_L, ERROR_PARTIAL, \
+			ERR_MISSING_PARAMS);
 		return (1);
 	}
 	if (errors_colors(&light->c) || light->ratio > 1.0 || light->ratio < 0.0)
 	{
-		ft_putstr_fd(ERR_RANGE, STDERR_FILENO);
+		ft_printf("%s%s%s", ERROR_AMBIENT_L, ERROR_PARTIAL, \
+			ERR_RANGE);
 		error = 2;
 	}
 	return (error);

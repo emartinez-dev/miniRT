@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
 		return (1);
 	read_scene(&scene);
 	if (extract_objects(&scene) != 0)
-		ft_printf("Scene is not correct\n");
+		ft_printf("\nThe provided scene: %s is bad formed\n\n", argv[1]);
 	else
 		print_todo(&scene);
 	free_scene(&scene);
