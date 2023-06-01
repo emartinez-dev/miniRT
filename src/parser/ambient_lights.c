@@ -38,7 +38,7 @@ int	errors_ambient_light(t_amb_light *light, t_object *obj)
 		ft_putstr_fd(ERR_MISSING_PARAMS, STDERR_FILENO);
 		return (1);
 	}
-	if (errors_colors(light->c) || light->ratio > 1.0 || light->ratio < 0.0)
+	if (errors_colors(&light->c) || light->ratio > 1.0 || light->ratio < 0.0)
 	{
 		ft_putstr_fd(ERR_RANGE, STDERR_FILENO);
 		error = 2;
