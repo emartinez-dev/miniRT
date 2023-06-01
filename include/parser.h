@@ -22,45 +22,28 @@ typedef struct s_scene
 	t_camera	*camera;
 }	t_scene;
 
-/* parsing_errors.c */
-int			params_error(int argc, char **argv, t_scene *scene);
-int			errors_normalized_vector(t_point *norm);
-int			errors_colors(t_color *color);
-int			errors_in_objects(t_scene *scene);
+/* OBJECTS */
 
-/* scene_reading.c */
-void		read_scene(t_scene *scene);
-void		*parse_line(char *line);
-int			extract_objects(t_scene *scene);
-t_list		*parse_all_lights(t_scene *scene);
-t_list		*parse_all_objects(t_scene *scene);
-
-/* ambient_lights.c */
 t_object	*parse_obj_ambient_light(char *line);
 int			errors_ambient_light(t_amb_light *light, t_object *obj);
 
-/* camera.c */
 t_object	*parse_obj_camera(char *line);
 int			errors_camera(t_camera *camera, t_object *obj);
 t_camera	*get_camera(t_list *obj);
 
-/* cylinder.c */
 t_object	*parse_obj_cylinder(char *line);
 int			errors_cylinder(t_cylinder *cylinder, t_object *obj);
 
-/* light.c */
 t_object	*parse_obj_light(char *line);
 int			errors_light(t_light *light, t_object *obj);
 
-/* plane.c */
 t_object	*parse_obj_plane(char *line);
 int			errors_plane(t_plane *plane, t_object *obj);
 
-/* sphere.c */
 t_object	*parse_obj_sphere(char *line);
 int			errors_sphere(t_sphere *sphere, t_object *obj);
 
-/* coordnates.c */
+/* coordinates.c */
 void		get_xyz(char *str, t_point *point, t_object *obj);
 
 /* colors.c */
@@ -75,6 +58,19 @@ void		free_matrix(char **str);
 /* parser_frees.c */
 void		free_objects(void *content);
 void		free_scene(t_scene *scene);
+
+/* parser_errors.c */
+int			params_error(int argc, char **argv, t_scene *scene);
+int			errors_normalized_vector(t_point *norm);
+int			errors_colors(t_color *color);
+int			errors_in_objects(t_scene *scene);
+
+/* parser_scene.c */
+void		read_scene(t_scene *scene);
+void		*parse_line(char *line);
+int			extract_objects(t_scene *scene);
+t_list		*parse_all_lights(t_scene *scene);
+t_list		*parse_all_objects(t_scene *scene);
 
 /* pruebas.c */
 void		print_todo(t_scene *scene);
