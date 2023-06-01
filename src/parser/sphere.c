@@ -33,12 +33,14 @@ int	errors_sphere(t_sphere *sphere, t_object *obj)
 	error = 0;
 	if (obj->error == 1)
 	{
-		ft_putstr_fd(ERR_MISSING_PARAMS, STDERR_FILENO);
+		ft_printf("%s%s%s", ERROR_SPHERE, ERROR_PARTIAL, \
+			ERR_MISSING_PARAMS);
 		return (1);
 	}
 	if (errors_colors(&sphere->c))
 	{
-		ft_putstr_fd(ERR_RANGE, STDERR_FILENO);
+		ft_printf("%s%s%s", ERROR_SPHERE, ERROR_PARTIAL, \
+			ERR_RANGE);
 		error = 2;
 	}
 	return (error);

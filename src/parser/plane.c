@@ -33,12 +33,14 @@ int	errors_plane(t_plane *plane, t_object *obj)
 	error = 0;
 	if (obj->error == 1)
 	{
-		ft_putstr_fd(ERR_MISSING_PARAMS, STDERR_FILENO);
+		ft_printf("%s%s%s", ERROR_PLANE, ERROR_PARTIAL, \
+			ERR_MISSING_PARAMS);
 		return (1);
 	}
 	if (errors_colors(&plane->c) || errors_normalized_vector(&plane->p))
 	{
-		ft_putstr_fd(ERR_RANGE, STDERR_FILENO);
+		ft_printf("%s%s%s", ERROR_PLANE, ERROR_PARTIAL, \
+			ERR_RANGE);
 		error = 2;
 	}
 	return (error);
