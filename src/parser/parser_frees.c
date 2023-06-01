@@ -5,7 +5,8 @@ void	free_objects(void *content)
 	t_object	*obj;
 
 	obj = content;
-	free(obj->ptr);
+	if (obj && obj->ptr)
+		free(obj->ptr);
 	free(obj);
 }
 
