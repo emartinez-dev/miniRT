@@ -21,6 +21,8 @@ typedef struct s_scene
 
 /* parsing_errors.c */
 int			params_error(int argc, char **argv, t_scene *scene);
+int			errors_normalized_vector(t_point *norm);
+int			errors_colors(t_color *color);
 
 /* scene_reading.c */
 void		read_scene(t_scene *scene);
