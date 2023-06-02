@@ -47,6 +47,28 @@ int	errors_camera(t_camera *camera, t_object *obj)
 	return (error);
 }
 
+t_list	*remove_camera_from_list(t_list *head)
+{
+	t_list	*prev;
+	t_list	*tmp;
+
+	prev = NULL;
+	tmp = head;
+	while (tmp)
+	{
+		if (((t_object *)tmp->content)->type == OBJ_CAMERA)
+		{
+			if (prev == NULL)
+				return (tmp->next);
+			prev->next = tmp->next;
+			return (head);
+		}
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	return (head);
+}
+
 t_camera	*get_camera(t_list *obj)
 {
 	t_object	*object;

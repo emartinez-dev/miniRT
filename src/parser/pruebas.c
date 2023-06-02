@@ -26,6 +26,9 @@ void	print_camera(void *ptr)
 	t_camera	*cam;
 
 	cam = ptr;
+	printf("-------------------------------\n");
+	printf("---------   Camera   ----------\n");
+	printf("-------------------------------\n");
 	printf("fov: %d\n", cam->fov);
 	print_point(cam->p);
 	print_point(cam->norm);
@@ -93,8 +96,6 @@ void	print_todo(t_scene *scene)
 		printf("-------------------------------\n");
 		if (obj->type == OBJ_PLANE)
 			print_plane(obj->ptr);
-		if (obj->type == OBJ_CAMERA)
-			print_camera(obj->ptr);
 		if (obj->type == OBJ_SPHERE)
 			print_sphere(obj->ptr);
 		if (obj->type == OBJ_CYLINDER)
@@ -116,4 +117,6 @@ void	print_todo(t_scene *scene)
 		printf("\n\n");
 		head = head->next;
 	}
+	if (scene->camera)
+		print_camera(scene->camera);
 }
