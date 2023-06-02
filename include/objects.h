@@ -27,12 +27,12 @@ enum e_objects {
 	OBJ_CYLINDER
 };
 
-typedef struct s_point
+typedef struct s_v3
 {
 	double	x;
 	double	y;
 	double	z;
-}	t_point;
+}	t_v3;
 
 typedef struct s_color
 {
@@ -50,8 +50,8 @@ typedef struct s_object
 
 typedef struct s_cylinder
 {
-	t_point	p;
-	t_point	norm;
+	t_v3	p;
+	t_v3	norm;
 	t_color	c;
 	double	diameter;
 	double	height;
@@ -59,15 +59,15 @@ typedef struct s_cylinder
 
 typedef struct s_sphere
 {
-	t_point	p;
+	t_v3	p;
 	t_color	c;
 	double	diameter;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	t_point	p;
-	t_point	norm;
+	t_v3	p;
+	t_v3	norm;
 	t_color	c;
 }	t_plane;
 
@@ -79,14 +79,14 @@ typedef struct s_amb_light
 
 typedef struct s_camera
 {
-	t_point	p;
-	t_point	norm;
+	t_v3	p;
+	t_v3	norm;
 	int		fov;
 }	t_camera;
 
 typedef struct s_light
 {
-	t_point	p;
+	t_v3	p;
 	double	brightness;
 	t_color	c;
 }	t_light;

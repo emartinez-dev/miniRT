@@ -6,7 +6,7 @@ void	print_color(t_color color)
 	printf("r:%d g:%d b:%d\n", color.r, color.g, color.b);
 }
 
-void	print_point(t_point p)
+void	print_point(t_v3 p)
 {
 	printf("x:%f y:%f z:%f\n", p.x, p.y, p.z);
 }

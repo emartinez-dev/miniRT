@@ -1,6 +1,6 @@
 #include "parser.h"
 
-void	get_xyz(char *str, t_point *point, t_object *obj)
+void	get_xyz(char *str, t_v3 *point, t_object *obj)
 {
 	char	**split;
 
