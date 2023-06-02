@@ -75,5 +75,6 @@ t_list		*parse_all_objects(t_scene *scene);
 
 /* pruebas.c */
 void		print_todo(t_scene *scene);
+void		print_vector(t_v3 v);
 
 #endif
