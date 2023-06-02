@@ -30,6 +30,7 @@ int			errors_ambient_light(t_amb_light *light, t_object *obj);
 t_object	*parse_obj_camera(char *line);
 int			errors_camera(t_camera *camera, t_object *obj);
 t_camera	*get_camera(t_list *obj);
+t_list		*remove_camera_from_list(t_list *head);
 
 t_object	*parse_obj_cylinder(char *line);
 int			errors_cylinder(t_cylinder *cylinder, t_object *obj);
