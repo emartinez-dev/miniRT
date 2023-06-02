@@ -13,6 +13,11 @@ SRC_DIR 	= src/
 OBJ_DIR		= obj/
 
 _SRC 		=	main.c\
+				vec3/div.c\
+				vec3/mult.c\
+				vec3/sub.c\
+				vec3/sum.c\
+				vec3/utils.c\
 				parser/colors.c\
 				parser/coordinates.c\
 				parser/o_ambient_lights.c\
@@ -27,7 +32,10 @@ _SRC 		=	main.c\
 				parser/parser_scene.c\
 				parser/pruebas.c
 
-SRC_FOLDERS = obj/parser
+SRC_FOLDERS =	obj/parser\
+				obj/engine\
+				obj/vec3
+
 
 SRC 		= ${addprefix ${SRC_DIR}, ${_SRC}}
 OBJ			= ${patsubst ${SRC_DIR}%.c, ${OBJ_DIR}%.o, ${SRC}}
