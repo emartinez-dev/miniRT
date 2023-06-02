@@ -45,7 +45,7 @@ t_object	*parse_obj_sphere(char *line);
 int			errors_sphere(t_sphere *sphere, t_object *obj);
 
 /* coordinates.c */
-void		get_xyz(char *str, t_point *point, t_object *obj);
+void		get_xyz(char *str, t_v3 *point, t_object *obj);
 
 /* colors.c */
 void		get_color(char *str, t_color *color);
@@ -62,7 +62,7 @@ void		free_scene(t_scene *scene);
 
 /* parser_errors.c */
 int			params_error(int argc, char **argv, t_scene *scene);
-int			errors_normalized_vector(t_point *norm);
+int			errors_normalized_vector(t_v3 *norm);
 int			errors_colors(t_color *color);
 int			errors_in_objects(t_scene *scene);
 

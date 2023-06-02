@@ -28,9 +28,9 @@ int	params_error(int argc, char **argv, t_scene *scene)
 	return (0);
 }
 
-int	errors_normalized_vector(t_point *norm)
+int	errors_normalized_vector(t_v3 *norm)
 {
-	t_point	p;
+	t_v3	p;
 
 	p = *norm;
 	p.x = round(norm->x);
