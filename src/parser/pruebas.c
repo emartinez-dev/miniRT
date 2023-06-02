@@ -120,3 +120,8 @@ void	print_todo(t_scene *scene)
 	if (scene->camera)
 		print_camera(scene->camera);
 }
+
+void	print_vector(t_v3 v)
+{
+	printf("x:%f y:%f z:%f\n", v.x, v.y, v.z);
+}
