@@ -59,7 +59,14 @@ t_list	*remove_camera_from_list(t_list *head)
 		if (((t_object *)tmp->content)->type == OBJ_CAMERA)
 		{
 			if (prev == NULL)
-				return (tmp->next);
+			{
+				prev = tmp->next;
+				free(tmp);
+				free(tmp->content);
+				return (prev);
+			}
+			free(tmp);
+			free(tmp->content);
 			prev->next = tmp->next;
 			return (head);
 		}
