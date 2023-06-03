@@ -18,6 +18,7 @@ _SRC 		=	main.c\
 				vec3/sub.c\
 				vec3/sum.c\
 				vec3/utils.c\
+				engine/camera_geometry.c\
 				engine/colors.c\
 				parser/colors.c\
 				parser/coordinates.c\

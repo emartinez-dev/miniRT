@@ -29,9 +29,21 @@ void	print_camera(void *ptr)
 	printf("-------------------------------\n");
 	printf("---------   Camera   ----------\n");
 	printf("-------------------------------\n");
-	printf("fov: %d\n", cam->fov);
+	printf("h_fov: %d\n", cam->h_fov);
+	printf("camera origin:\n");
 	print_point(cam->p);
+	printf("camera orientation:\n");
 	print_point(cam->norm);
+	printf("aspect_ratio: %f\n", cam->aspect_ratio);
+	printf("viewport_height: %f\n", cam->viewport_height);
+	printf("viewport_width: %f\n", cam->viewport_width);
+	printf("camera horizontal:\n");
+	print_point(cam->horizontal);
+	printf("camera vertical:\n");
+	print_point(cam->vertical);
+	printf("camera lower_left_corner:\n");
+	print_point(cam->lower_left_corner);
+	printf("-------------------------------\n");
 }
 
 void	print_sphere(void *ptr)
