@@ -81,7 +81,13 @@ typedef struct s_camera
 {
 	t_v3	p;
 	t_v3	norm;
-	int		fov;
+	int		h_fov;
+	double	aspect_ratio;
+	double	viewport_height;
+	double	viewport_width;
+	t_v3	horizontal;
+	t_v3	vertical;
+	t_v3	lower_left_corner;
 }	t_camera;
 
 typedef struct s_light

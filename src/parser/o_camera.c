@@ -17,7 +17,7 @@ t_object	*parse_obj_camera(char *line)
 	{
 		get_xyz(split[1], &camera->p, obj);
 		get_xyz(split[2], &camera->norm, obj);
-		camera->fov = ft_atoi(split[3]);
+		camera->h_fov = ft_atoi(split[3]);
 	}
 	else
 		obj->error = 1;
@@ -37,8 +37,8 @@ int	errors_camera(t_camera *camera, t_object *obj)
 			ERR_MISSING_PARAMS);
 		return (1);
 	}
-	if (errors_normalized_vector(&camera->norm) || camera->fov < 0 || \
-		camera->fov > 180)
+	if (errors_normalized_vector(&camera->norm) || camera->h_fov < 0 || \
+		camera->h_fov > 180)
 	{
 		ft_printf("%s%s%s", ERROR_CAMERA, ERROR_PARTIAL, \
 			ERR_RANGE);
