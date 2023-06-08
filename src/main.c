@@ -1,5 +1,6 @@
 #include "parser.h"
 #include "engine.h"
+#include "objects.h"
 #include "MLX42.h"
 #include <stdio.h>
 #include <limits.h>
@@ -11,7 +12,7 @@
 }
  */
 
-void	render(mlx_t *mlx, mlx_image_t *img, t_camera *cam)
+void	render(mlx_t *mlx, mlx_image_t *img, t_camera *cam, t_scene *scene)
 {
 	double		u;
 	double		v;
@@ -27,7 +28,7 @@ void	render(mlx_t *mlx, mlx_image_t *img, t_camera *cam)
 		{
 			u = (double)w / (img->width - 1);
 			v = 1 - (double)h / (img->height - 1);
-			ray = raycast(cam->p, cam, u, v);
+			ray = raycast(cam->p, u, v, scene);
 			mlx_put_pixel(img, w, h, rgb_to_hex(ray.color));
 		}
 	}
@@ -54,7 +55,7 @@ int	main(int argc, char **argv)
 	{
 		calculate_camera(scene.camera);
 		print_todo(&scene);
-		render(mlx, img, scene.camera);
+		render(mlx, img, scene.camera, &scene);
 	}
 	mlx_loop(mlx);
 	free_scene(&scene);
