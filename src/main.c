@@ -5,19 +5,32 @@
 #include <limits.h>
 #include "vec3.h"
 
-void	ft_leaks(void)
+/* void	ft_leaks(void)
 {
 	system("leaks -q miniRT");
 }
+ */
 
-void render(mlx_t *mlx, mlx_image_t *img, t_camera *cam)
+void	render(mlx_t *mlx, mlx_image_t *img, t_camera *cam)
 {
-	(void) cam;
-	for (uint32_t h = 0; h < img->height; h++)
-		for (uint32_t w = 0; w < img->width; w++)
-			mlx_put_pixel(img, w, h, rgb_to_hex((t_color){\
-				h / (double)img->height * 255.99,\
-				w / (double)img->width * 255.99, 0}));
+	double		u;
+	double		v;
+	t_ray		ray;
+	uint32_t	h;
+	uint32_t	w;
+
+	h = -1;
+	while (++h < img->height)
+	{
+		w = -1;
+		while (++w < img->width)
+		{
+			u = (double)w / (img->width - 1);
+			v = 1 - (double)h / (img->height - 1);
+			ray = raycast(cam->p, cam, u, v);
+			mlx_put_pixel(img, w, h, rgb_to_hex(ray.color));
+		}
+	}
 	mlx_image_to_window(mlx, img, 0, 0);
 }
 
@@ -27,7 +40,7 @@ int	main(int argc, char **argv)
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
 	if (!mlx)
 		return (1);
