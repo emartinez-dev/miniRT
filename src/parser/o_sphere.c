@@ -1,5 +1,7 @@
 #include "parser.h"
+#include "engine.h"
 #include "objects.h"
+#include "vec3.h"
 
 t_object	*parse_obj_sphere(char *line)
 {
@@ -44,4 +46,22 @@ int	errors_sphere(t_sphere *sphere, t_object *obj)
 		error = 2;
 	}
 	return (error);
+}
+
+int	hit_sphere(t_sphere *sp, t_ray ray)
+{
+	t_v3	oc;
+	double	a;
+	double	b;
+	double	c;
+	double	discriminant;
+
+	oc = vec3_sub(ray.origin, sp->p);
+	a = vec3_dot(ray.direction, ray.direction);
+	b = 2.0 * vec3_dot(oc, ray.direction);
+	c = vec3_dot(oc, oc) - sp->diameter * sp->diameter;
+	discriminant = b * b - 4 * a * c;
+	if (discriminant < 0)
+		return (0);
+	return (1);
 }

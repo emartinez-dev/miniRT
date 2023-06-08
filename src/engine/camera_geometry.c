@@ -1,5 +1,5 @@
-#include "engine.h"
 #include "vec3.h"
+#include "engine.h"
 #include <stdio.h>
 
 double	radians(double degrees)

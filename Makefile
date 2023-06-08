@@ -18,9 +18,9 @@ _SRC 		=	main.c\
 				vec3/sub.c\
 				vec3/sum.c\
 				vec3/utils.c\
+				engine/rays.c\
 				engine/camera_geometry.c\
 				engine/colors.c\
-				engine/rays.c\
 				parser/colors.c\
 				parser/coordinates.c\
 				parser/o_ambient_lights.c\
