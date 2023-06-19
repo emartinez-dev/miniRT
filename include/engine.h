@@ -6,6 +6,7 @@
 
 # include "objects.h"
 # include "parser.h"
+# include <stdio.h>
 
 typedef struct s_ray {
 	t_v3	origin;
@@ -22,8 +23,10 @@ void			calculate_camera(t_camera *c);
 /* rays.c */
 t_ray			raycast(t_v3 origin, double u, double v, t_scene *scene);
 t_color			raycolor(t_ray ray, t_scene *scene);
+t_v3			ray_at(t_ray *ray, double t);
 
-int				hit_sphere(t_sphere *sp, t_ray ray);
+double			hit_sphere(t_sphere *sp, t_ray ray);
+t_color			color_sphere(t_sphere *sp, t_ray *ray, double t);
 
 
 #endif

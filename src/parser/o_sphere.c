@@ -48,20 +48,32 @@ int	errors_sphere(t_sphere *sphere, t_object *obj)
 	return (error);
 }
 
-int	hit_sphere(t_sphere *sp, t_ray ray)
+double	hit_sphere(t_sphere *sp, t_ray ray)
 {
 	t_v3	oc;
 	double	a;
-	double	b;
+	double	half_b;
 	double	c;
 	double	discriminant;
 
 	oc = vec3_sub(ray.origin, sp->p);
-	a = vec3_dot(ray.direction, ray.direction);
-	b = 2.0 * vec3_dot(oc, ray.direction);
-	c = vec3_dot(oc, oc) - sp->diameter * sp->diameter;
-	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
-		return (0);
-	return (1);
+	a = vec3_sqlen(ray.direction);
+	half_b = vec3_dot(oc, ray.direction);
+	c = vec3_sqlen(oc) - sp->diameter * sp->diameter;
+	discriminant = half_b * half_b - a * c;
+	if (discriminant < 0.0)
+		return (-1.0);
+	return ((-half_b - sqrt(discriminant)) /  a);
+}
+
+t_color	color_sphere(t_sphere *sp, t_ray *ray, double t)
+{
+	t_v3	N;
+	t_v3	color;
+
+	N = vec3_unit(vec3_sub(ray_at(ray, t), sp->p));
+	color = (t_v3){N.x + 1, N.y + 1, N.z + 1};
+	color = vec3_multk(color, 255);
+	color = vec3_multk(color, 0.5);
+	return ((t_color){color.x, color.y, color.z});
 }
