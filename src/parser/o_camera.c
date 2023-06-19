@@ -61,12 +61,12 @@ t_list	*remove_camera_from_list(t_list *head)
 			if (prev == NULL)
 			{
 				prev = tmp->next;
-				free(tmp);
 				free(tmp->content);
+				free(tmp);
 				return (prev);
 			}
-			free(tmp);
 			free(tmp->content);
+			free(tmp);
 			prev->next = tmp->next;
 			return (head);
 		}
