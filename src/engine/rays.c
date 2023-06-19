@@ -31,8 +31,12 @@ t_color	raycolor(t_ray ray, t_scene *scene)
 	while (objects)
 	{
 		o = (t_object *)objects->content;
-		if (o->type == OBJ_SPHERE && hit_sphere((t_sphere *)o->ptr, ray))
-			return (((t_sphere *)o->ptr)->c);
+		if (o->type == OBJ_SPHERE)
+		{
+			t = hit_sphere((t_sphere *)o->ptr, ray);
+			if (t > 0.0)
+				return (color_sphere((t_sphere *)o->ptr, &ray, t));
+		}
 		objects = objects->next;
 	}
 	unit_direction = vec3_unit(ray.direction);
@@ -41,4 +45,12 @@ t_color	raycolor(t_ray ray, t_scene *scene)
 		vec3_multk((t_v3){0.5, 0.7, 1.0}, t));
 	color = (t_color){c.x * 255.999, c.y * 255.999, c.z * 255.999};
 	return (color);
+}
+
+t_v3	ray_at(t_ray *ray, double t)
+{
+	t_v3	r;
+
+	r = vec3_sum(ray->origin, vec3_multk(ray->direction, t));
+	return (r);
 }
