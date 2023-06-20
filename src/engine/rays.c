@@ -49,7 +49,7 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 	if (hit->object && hit->object->type == OBJ_SPHERE)
 	{
 		if (hit->t > 0.0)
-			return (color_sphere((t_sphere *)hit->object->ptr, &ray, hit->t));
+			return (color_sphere((t_sphere *)hit->object->ptr, &ray, hit, hit->t));
 	}
 	unit_direction = vec3_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
