@@ -67,20 +67,19 @@ void	hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj)
 	{
 		hit->t = (-half_b - sqrt(discriminant)) / a;
 		hit->dist = vec3_distance(ray.origin, sp->p);
-		// para calcular las luces, después de golpear todos los objetos nos
-		// tenemos que quedar con la posición en la que golpea
+		hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
+		hit->normal = vec3_divk(vec3_sub(hit->point, sp->p), sp->diameter);
 		hit->object = obj;
 	}
 }
 
-t_color	color_sphere(t_sphere *sp, t_ray *ray, double t)
+t_color	color_sphere(t_sphere *sp, t_ray *ray, t_hit *hit, double t)
 {
-	t_v3	N;
-	t_v3	color;
+	double	camHit;
 
-	N = vec3_unit(vec3_sub(ray_at(ray, t), sp->p));
-	color = (t_v3){N.x + 1, N.y + 1, N.z + 1};
-	color = vec3_multk(color, 255);
-	color = vec3_multk(color, 0.5);
-	return ((t_color){color.x, color.y, color.z});
+	(void) t;
+	camHit = vec3_dot(ray->direction, vec3_negative(hit->normal));
+	if (camHit > 1.0)
+		camHit = 1.0;
+	return ((t_color){sp->c.r * camHit, sp->c.g * camHit, sp->c.b * camHit});
 }
