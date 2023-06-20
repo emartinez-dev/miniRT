@@ -3,10 +3,12 @@
 #include "objects.h"
 #include "parser.h"
 #include <stdio.h>
+#include <float.h>
 
 t_ray	raycast(t_v3 origin, double u, double v, t_scene *scene)
 {
 	t_ray		ray;
+	t_hit		hit;
 	t_camera	*cam;
 
 	cam = scene->camera;
@@ -14,30 +16,40 @@ t_ray	raycast(t_v3 origin, double u, double v, t_scene *scene)
 	ray.direction = vec3_sum(cam->lower_left_corner, vec3_sum(\
 		vec3_multk(cam->horizontal, u), vec3_multk(cam->vertical, v)));
 	ray.direction = vec3_sub(ray.direction, ray.origin);
-	ray.color = raycolor(ray, scene);
+	hit.dist = DBL_MAX;
+	hit.object = NULL;
+	hit_objects(ray, &hit, scene);
+	ray.color = raycolor(ray, &hit, scene);
 	return (ray);
 }
 
-t_color	raycolor(t_ray ray, t_scene *scene)
+void	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
 {
-	t_v3		unit_direction;
-	t_v3		c;
-	t_color		color;
 	t_list		*objects;
 	t_object	*o;
-	double		t;
 
 	objects = scene->objects;
 	while (objects)
 	{
 		o = (t_object *)objects->content;
 		if (o->type == OBJ_SPHERE)
-		{
-			t = hit_sphere((t_sphere *)o->ptr, ray);
-			if (t > 0.0)
-				return (color_sphere((t_sphere *)o->ptr, &ray, t));
-		}
+			hit_sphere((t_sphere *)o->ptr, ray, hit, o);
 		objects = objects->next;
+	}
+}
+
+t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
+{
+	t_v3		unit_direction;
+	t_v3		c;
+	t_color		color;
+	double		t;
+
+	(void) scene;
+	if (hit->object && hit->object->type == OBJ_SPHERE)
+	{
+		if (hit->t > 0.0)
+			return (color_sphere((t_sphere *)hit->object->ptr, &ray, hit->t));
 	}
 	unit_direction = vec3_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
