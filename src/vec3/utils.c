@@ -35,3 +35,13 @@ t_v3	vec3_unit(t_v3 v)
 	result = vec3_divk(v, len);
 	return (result);
 }
+
+double	vec3_distance(t_v3 v1, t_v3 v2)
+{
+	t_v3	result;
+	double	dist;
+
+	result = vec3_sub(v1, v2);
+	dist = vec3_len(result);
+	return (dist);
+}

@@ -48,7 +48,7 @@ int	errors_sphere(t_sphere *sphere, t_object *obj)
 	return (error);
 }
 
-double	hit_sphere(t_sphere *sp, t_ray ray)
+void	hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj)
 {
 	t_v3	oc;
 	double	a;
@@ -56,14 +56,19 @@ double	hit_sphere(t_sphere *sp, t_ray ray)
 	double	c;
 	double	discriminant;
 
+	if (vec3_distance(ray.origin, sp->p) >= hit->dist)
+		return ;
 	oc = vec3_sub(ray.origin, sp->p);
 	a = vec3_sqlen(ray.direction);
 	half_b = vec3_dot(oc, ray.direction);
 	c = vec3_sqlen(oc) - sp->diameter * sp->diameter;
 	discriminant = half_b * half_b - a * c;
-	if (discriminant < 0.0)
-		return (-1.0);
-	return ((-half_b - sqrt(discriminant)) /  a);
+	if (discriminant > 0.0)
+	{
+		hit->t = (-half_b - sqrt(discriminant)) / a;
+		hit->dist = discriminant;
+		hit->object = obj;
+	}
 }
 
 t_color	color_sphere(t_sphere *sp, t_ray *ray, double t)
