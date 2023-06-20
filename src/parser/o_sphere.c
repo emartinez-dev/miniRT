@@ -66,7 +66,9 @@ void	hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj)
 	if (discriminant > 0.0)
 	{
 		hit->t = (-half_b - sqrt(discriminant)) / a;
-		hit->dist = discriminant;
+		hit->dist = vec3_distance(ray.origin, sp->p);
+		// para calcular las luces, después de golpear todos los objetos nos
+		// tenemos que quedar con la posición en la que golpea
 		hit->object = obj;
 	}
 }
