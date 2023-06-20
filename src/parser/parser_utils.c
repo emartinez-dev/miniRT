@@ -36,8 +36,8 @@ double	decimal_part(char *str)
 		decimal = decimal * 10 + str[i] - '0';
 		i++;
 	}
-	while (decimal > 1)
-		decimal = decimal / 10;
+	while (decimal >= 1.0)
+		decimal = decimal / 10.0;
 	return (decimal);
 }
 
