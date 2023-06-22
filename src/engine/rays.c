@@ -7,20 +7,21 @@
 
 t_ray	raycast(t_v3 origin, double u, double v, t_scene *scene)
 {
-	t_ray		ray;
-	t_hit		hit;
+	t_ray		cam_ray;
+	t_hit		world_hit;
 	t_camera	*cam;
 
 	cam = scene->camera;
-	ray.origin = origin;
-	ray.direction = vec3_sum(cam->lower_left_corner, vec3_sum(\
+	cam_ray.direction = vec3_sum(cam->lower_left_corner, vec3_sum(\
 		vec3_multk(cam->horizontal, u), vec3_multk(cam->vertical, v)));
-	ray.direction = vec3_sub(ray.direction, ray.origin);
-	hit.dist = DBL_MAX;
-	hit.object = NULL;
-	hit_objects(ray, &hit, scene);
-	ray.color = raycolor(ray, &hit, scene);
-	return (ray);
+	cam_ray.direction = vec3_sub(cam_ray.direction, origin);
+	world_hit.dist = DBL_MAX;
+	world_hit.object = NULL;
+	hit_objects(cam_ray, &world_hit, scene);
+	/* after hit_objects, world_hit.object is the closest object hit by the ray
+	or NULL if no object was hit */
+	cam_ray.color = raycolor(cam_ray, &world_hit, scene);
+	return (cam_ray);
 }
 
 void	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
@@ -38,6 +39,7 @@ void	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
 	}
 }
 
+/* this function returns the color of the object it hit or the "sky" color */
 t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 {
 	t_v3		unit_direction;
@@ -45,12 +47,9 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 	t_color		color;
 	double		t;
 
-	(void) scene;
 	if (hit->object && hit->object->type == OBJ_SPHERE)
-	{
-		if (hit->t > 0.0)
-			return (color_sphere((t_sphere *)hit->object->ptr, scene, &ray, hit));
-	}
+		return (color_sphere((t_sphere *)hit->object->ptr, scene, &ray, hit));
+	// sky color part
 	unit_direction = vec3_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
 	c = vec3_sum(vec3_multk((t_v3){1.0, 1.0, 1.0}, 1.0 - t), \
