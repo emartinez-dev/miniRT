@@ -2,6 +2,7 @@
 #include "engine.h"
 #include "objects.h"
 #include "vec3.h"
+#include <float.h>
 
 t_object	*parse_obj_sphere(char *line)
 {
@@ -76,14 +77,18 @@ void	hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj)
 t_color	color_sphere(t_sphere *sp, t_scene *scene, t_hit *hit)
 {
 	double	lum;
-	double	light_dot;
-	t_v3	light_dir;
 	t_color	color;
+	t_ray	shadow;
+	t_hit	sh_hit;
 
 	lum = scene->ambient_light->ratio;
-	light_dir = vec3_unit(vec3_sub(hit->point, scene->light->p));
-	light_dot = vec3_dot(light_dir, vec3_negative(hit->normal));
-	lum += light_dot * scene->light->brightness;
+	shadow.direction = vec3_unit(vec3_sub(scene->light->p, hit->point));
+	lum += vec3_dot(shadow.direction, hit->normal) * scene->light->brightness;
+	shadow.origin = hit->point;
+	sh_hit.dist = DBL_MAX;
+	sh_hit.object = NULL;
+	if (hit_objects(shadow, &sh_hit, scene) && sh_hit.object != hit->object)
+		lum = scene->ambient_light->ratio;
 	color = (t_color){sp->c.r * lum, sp->c.g * lum, sp->c.b * lum};
 	color = clamp_colors(color);
 	return (color);
