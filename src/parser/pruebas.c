@@ -115,20 +115,10 @@ void	print_todo(t_scene *scene)
 		printf("\n\n");
 		head = head->next;
 	}
-	head = scene->lights;
-	while (head)
-	{
-		obj = head->content;
-		printf("-------------------------------\n");
-		printf("Obj type: %s\n", str[obj->type]);
-		printf("-------------------------------\n");
-		if (obj->type == OBJ_LIGHT)
-			print_light(obj->ptr);
-		if (obj->type == OBJ_AMBIENT_LIGHT)
-			print_amb_light(obj->ptr);
-		printf("\n\n");
-		head = head->next;
-	}
+	print_light(scene->light);
+	printf("\n\n");
+	print_amb_light(scene->ambient_light);
+	printf("\n\n");
 	if (scene->camera)
 		print_camera(scene->camera);
 }

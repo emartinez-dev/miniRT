@@ -46,3 +46,18 @@ int	errors_light(t_light *light, t_object *obj)
 	}
 	return (error);
 }
+
+void	get_lights(t_scene *scene)
+{
+	t_list		*h;
+
+	h = scene->lights;
+	while (h)
+	{
+		if (((t_object *)h->content)->type == OBJ_LIGHT)
+			scene->light = (t_light *)((t_object *)h->content)->ptr;
+		else if (((t_object *)h->content)->type == OBJ_AMBIENT_LIGHT)
+			scene->ambient_light = (t_amb_light *)((t_object *)h->content)->ptr;
+		h = h->next;
+	}
+}

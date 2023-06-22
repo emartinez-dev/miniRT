@@ -19,11 +19,14 @@ typedef struct s_scene
 	int			errors;
 	t_list		*objects;
 	t_list		*lights;
+	t_light		*light;
+	t_amb_light	*ambient_light;
 	t_camera	*camera;
 }	t_scene;
 
 /* OBJECTS */
 
+void		get_lights(t_scene *scene);
 t_object	*parse_obj_ambient_light(char *line);
 int			errors_ambient_light(t_amb_light *light, t_object *obj);
 
