@@ -24,7 +24,7 @@ t_ray	raycast(t_v3 origin, double u, double v, t_scene *scene)
 	return (cam_ray);
 }
 
-void	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
+int	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
 {
 	t_list		*objects;
 	t_object	*o;
@@ -37,6 +37,9 @@ void	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
 			hit_sphere((t_sphere *)o->ptr, ray, hit, o);
 		objects = objects->next;
 	}
+	if (hit->object)
+		return (1);
+	return (0);
 }
 
 /* this function returns the color of the object it hit or the "sky" color */

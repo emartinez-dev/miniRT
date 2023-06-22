@@ -36,7 +36,7 @@ t_ray			raycast(t_v3 origin, double u, double v, t_scene *scene);
 t_color			raycolor(t_ray ray, t_hit *hit, t_scene *scene);
 t_v3			ray_at(t_ray *ray, double t);
 
-void			hit_objects(t_ray ray, t_hit *hit, t_scene *scene);
+int				hit_objects(t_ray ray, t_hit *hit, t_scene *scene);
 void			hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj);
 t_color			color_sphere(t_sphere *sp, t_scene *scene, t_hit *hit);
 
