@@ -12,9 +12,11 @@ t_ray	raycast(t_v3 origin, double u, double v, t_scene *scene)
 	t_camera	*cam;
 
 	cam = scene->camera;
-	cam_ray.direction = vec3_sum(cam->lower_left_corner, vec3_sum(\
-		vec3_multk(cam->horizontal, u), vec3_multk(cam->vertical, v)));
-	cam_ray.direction = vec3_sub(cam_ray.direction, origin);
+	cam_ray.origin = cam->p;
+	cam_ray.direction = vec3_sum(vec3_sum(\
+		cam->lower_left_corner, vec3_multk(cam->horizontal, u)),\
+		vec3_multk(cam->vertical, v));
+	cam_ray.direction = vec3_unit(vec3_sub(origin, cam_ray.direction));
 	world_hit.dist = DBL_MAX;
 	world_hit.object = NULL;
 	hit_objects(cam_ray, &world_hit, scene);
