@@ -52,6 +52,7 @@ int	extract_objects(t_scene *scene)
 		scene->errors = 1;
 	scene->camera = get_camera(scene->objects);
 	scene->objects = remove_camera_from_list(scene->objects);
+	get_lights(scene);
 	if (scene->camera == NULL)
 	{
 		ft_printf("%s%s%s", ERROR_CAMERA, ERROR_PARTIAL, "No camera found\n");
