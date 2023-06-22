@@ -26,7 +26,7 @@ typedef struct s_hit
 
 /* colors.c */
 unsigned int	rgb_to_hex(t_color color);
-t_color			trim_colors(t_color	color);
+t_color			clamp_colors(t_color color);
 
 /* camera_geometry.c */
 void			calculate_camera(t_camera *c);
@@ -38,7 +38,6 @@ t_v3			ray_at(t_ray *ray, double t);
 
 void			hit_objects(t_ray ray, t_hit *hit, t_scene *scene);
 void			hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj);
-t_color			color_sphere(t_sphere *sp, t_scene *scene, t_ray *ray, \
-						t_hit *hit);
+t_color			color_sphere(t_sphere *sp, t_scene *scene, t_hit *hit);
 
 #endif

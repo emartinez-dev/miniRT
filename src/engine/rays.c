@@ -48,7 +48,7 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 	double		t;
 
 	if (hit->object && hit->object->type == OBJ_SPHERE)
-		return (color_sphere((t_sphere *)hit->object->ptr, scene, &ray, hit));
+		return (color_sphere((t_sphere *)hit->object->ptr, scene, hit));
 	// sky color part
 	unit_direction = vec3_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
