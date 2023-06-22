@@ -49,12 +49,13 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 	if (hit->object && hit->object->type == OBJ_SPHERE)
 	{
 		if (hit->t > 0.0)
-			return (color_sphere((t_sphere *)hit->object->ptr, &ray, hit, hit->t));
+			return (color_sphere((t_sphere *)hit->object->ptr, scene, &ray, hit));
 	}
 	unit_direction = vec3_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
 	c = vec3_sum(vec3_multk((t_v3){1.0, 1.0, 1.0}, 1.0 - t), \
 		vec3_multk((t_v3){0.5, 0.7, 1.0}, t));
+	c = vec3_multk(c, scene->ambient_light->ratio);
 	color = (t_color){c.x * 255.999, c.y * 255.999, c.z * 255.999};
 	return (color);
 }

@@ -73,13 +73,17 @@ void	hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj)
 	}
 }
 
-t_color	color_sphere(t_sphere *sp, t_ray *ray, t_hit *hit, double t)
+t_color	color_sphere(t_sphere *sp, t_scene *scene, t_ray *ray, t_hit *hit)
 {
 	double	camHit;
+	double	lum;
+	t_color	color;
 
-	(void) t;
+	lum = 0.0;
 	camHit = vec3_dot(ray->direction, vec3_negative(hit->normal));
 	if (camHit > 1.0)
 		camHit = 1.0;
-	return ((t_color){sp->c.r * camHit, sp->c.g * camHit, sp->c.b * camHit});
+	lum = camHit * scene->ambient_light->ratio;
+	color = (t_color){sp->c.r * lum, sp->c.g * lum, sp->c.b * lum};
+	return (color);
 }
