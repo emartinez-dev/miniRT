@@ -26,6 +26,7 @@ typedef struct s_hit
 
 /* colors.c */
 unsigned int	rgb_to_hex(t_color color);
+t_color			trim_colors(t_color	color);
 
 /* camera_geometry.c */
 void			calculate_camera(t_camera *c);
