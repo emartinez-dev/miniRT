@@ -18,6 +18,8 @@ double	vec3_dot(t_v3 v1, t_v3 v2);
 /* Cross product of two vectors */
 t_v3	vec3_cross(t_v3 v1, t_v3 v2);
 
+t_v3	vec3_mulm(t_v3 v, t_m4 mt);
+
 /* div.c */
 
 /* Divide v1 by v2 */
