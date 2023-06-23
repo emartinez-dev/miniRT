@@ -14,21 +14,18 @@
 
 void	render(mlx_t *mlx, mlx_image_t *img, t_camera *cam, t_scene *scene)
 {
-	double		u;
-	double		v;
-	t_ray		ray;
-	uint32_t	h;
-	uint32_t	w;
+	t_ray	ray;
+	int		h;
+	int		w;
 
 	h = -1;
-	while (++h < img->height)
+	camera_init(cam);
+	while (++h < HEIGHT)
 	{
 		w = -1;
-		while (++w < img->width)
+		while (++w < WIDTH)
 		{
-			u = (double)w / (img->width - 1);
-			v = 1 - (double)h / (img->height - 1);
-			ray = raycast(cam->p, u, v, scene);
+			ray = raycast(w, h, scene);
 			mlx_put_pixel(img, w, h, rgb_to_hex(ray.color));
 		}
 	}
@@ -53,7 +50,7 @@ int	main(int argc, char **argv)
 		ft_printf("\nThe provided scene: %s is bad formed\n\n", argv[1]);
 	else
 	{
-		calculate_camera(scene.camera);
+		camera_init(scene.camera);
 		print_todo(&scene);
 		render(mlx, img, scene.camera, &scene);
 	}

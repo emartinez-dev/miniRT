@@ -34,6 +34,11 @@ typedef struct s_v3
 	double	z;
 }	t_v3;
 
+typedef struct s_m4
+{
+	double	m[4][4];
+}	t_m4;
+
 typedef struct s_color
 {
 	int	r;
@@ -82,14 +87,9 @@ typedef struct s_camera
 	t_v3	p;
 	t_v3	norm;
 	int		h_fov;
+	double	fov;
 	double	aspect_ratio;
-	double	viewport_height;
-	double	viewport_width;
-	t_v3	horizontal;
-	t_v3	vertical;
-	t_v3	horizontal2;
-	t_v3	vertical2;
-	t_v3	lower_left_corner;
+	t_m4	rotation;
 }	t_camera;
 
 typedef struct s_light

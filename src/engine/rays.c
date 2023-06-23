@@ -5,18 +5,14 @@
 #include <stdio.h>
 #include <float.h>
 
-t_ray	raycast(t_v3 origin, double u, double v, t_scene *scene)
+t_ray	raycast(double u, double v, t_scene *scene)
 {
 	t_ray		cam_ray;
 	t_hit		world_hit;
 	t_camera	*cam;
 
 	cam = scene->camera;
-	cam_ray.origin = cam->p;
-	cam_ray.direction = vec3_sum(vec3_sum(\
-		cam->lower_left_corner, vec3_multk(cam->horizontal, u)),\
-		vec3_multk(cam->vertical, v));
-	cam_ray.direction = vec3_unit(vec3_sub(origin, cam_ray.direction));
+	cam_ray = camera_ray(cam, u, v);
 	world_hit.dist = DBL_MAX;
 	world_hit.object = NULL;
 	hit_objects(cam_ray, &world_hit, scene);

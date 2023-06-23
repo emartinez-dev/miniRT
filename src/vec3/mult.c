@@ -37,3 +37,13 @@ t_v3	vec3_cross(t_v3 v1, t_v3 v2)
 	result.z = v1.x * v2.y - v1.y * v2.x;
 	return (result);
 }
+
+t_v3	vec3_mulm(t_v3 v, t_m4 mt)
+{
+	t_v3	r;
+
+	r.x = v.x * mt.m[0][0] + v.y * mt.m[0][1] + v.z * mt.m[0][2] + mt.m[0][3];
+	r.y = v.x * mt.m[1][0] + v.y * mt.m[1][1] + v.z * mt.m[1][2] + mt.m[1][3];
+	r.z = v.x * mt.m[2][0] + v.y * mt.m[2][1] + v.z * mt.m[2][2] + mt.m[2][3];
+	return (r);
+}
