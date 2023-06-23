@@ -71,7 +71,7 @@ int			errors_in_objects(t_scene *scene);
 
 /* parser_scene.c */
 void		read_scene(t_scene *scene);
-void		*parse_line(char *line);
+void		*parse_line(char *line, int lights);
 int			extract_objects(t_scene *scene);
 t_list		*parse_all_lights(t_scene *scene);
 t_list		*parse_all_objects(t_scene *scene);
