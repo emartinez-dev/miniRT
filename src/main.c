@@ -12,14 +12,13 @@
 }
  */
 
-void	render(mlx_t *mlx, mlx_image_t *img, t_camera *cam, t_scene *scene)
+void	render(mlx_t *mlx, mlx_image_t *img, t_scene *scene)
 {
 	t_ray	ray;
 	int		h;
 	int		w;
 
 	h = -1;
-	camera_init(cam);
 	while (++h < HEIGHT)
 	{
 		w = -1;
@@ -52,7 +51,7 @@ int	main(int argc, char **argv)
 	{
 		camera_init(scene.camera);
 		print_todo(&scene);
-		render(mlx, img, scene.camera, &scene);
+		render(mlx, img, &scene);
 	}
 	mlx_loop(mlx);
 	free_scene(&scene);
