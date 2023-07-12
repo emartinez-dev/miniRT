@@ -70,6 +70,7 @@ t_list	*parse_all_lights(t_scene *scene)
 	i = -1;
 	while (scene->scene_str[++i])
 	{
+		scene->scene_str[i] = replace_tabs(scene->scene_str[i]);
 		obj_ptr = parse_line(scene->scene_str[i], 1);
 		new = ft_lstnew(obj_ptr);
 		if (obj_ptr && (((t_object *)obj_ptr)->type == OBJ_AMBIENT_LIGHT || \
@@ -95,6 +96,7 @@ t_list	*parse_all_objects(t_scene *scene)
 	i = -1;
 	while (scene->scene_str[++i])
 	{
+		scene->scene_str[i] = replace_tabs(scene->scene_str[i]);
 		obj_ptr = parse_line(scene->scene_str[i], 0);
 		new = ft_lstnew(obj_ptr);
 		if (obj_ptr && (((t_object *)obj_ptr)->type != OBJ_AMBIENT_LIGHT && \

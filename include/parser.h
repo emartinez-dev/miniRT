@@ -54,6 +54,7 @@ void		get_xyz(char *str, t_v3 *point, t_object *obj);
 void		get_color(char *str, t_color *color);
 
 /* parser_utils.c */
+char		*replace_tabs(char *str);
 double		ft_atod(char *str);
 double		decimal_part(char *str);
 int			matrix_len(char **str);

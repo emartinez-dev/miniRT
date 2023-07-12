@@ -60,6 +60,8 @@ void	hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj)
 	if (vec3_distance(ray.origin, sp->p) >= hit->dist)
 		return ;
 	oc = vec3_sub(ray.origin, sp->p);
+	if (vec3_dot(ray.direction, oc) > 0)
+		return ;
 	a = vec3_sqlen(ray.direction);
 	half_b = vec3_dot(oc, ray.direction);
 	c = vec3_sqlen(oc) - sp->diameter * sp->diameter;
