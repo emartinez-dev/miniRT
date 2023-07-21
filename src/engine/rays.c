@@ -33,6 +33,8 @@ int	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
 		o = (t_object *)objects->content;
 		if (o->type == OBJ_SPHERE)
 			hit_sphere((t_sphere *)o->ptr, ray, hit, o);
+		else if (o->type == OBJ_PLANE)
+			hit_plane((t_plane *)o->ptr, ray, hit, o);
 		objects = objects->next;
 	}
 	if (hit->object)
@@ -50,6 +52,9 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 
 	if (hit->object && hit->object->type == OBJ_SPHERE)
 		return (color_sphere((t_sphere *)hit->object->ptr, scene, hit));
+	if (hit->object && hit->object->type == OBJ_PLANE)
+		return (color_plane((t_plane *) hit->object->ptr, scene, hit));
+
 	// sky color part
 	unit_direction = vec3_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
