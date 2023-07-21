@@ -53,8 +53,9 @@ INCLUDES	= -I ./include -I ./${LIBFT_DIR}/include -I ./${MLX_DIR}/include/MLX42
 SYS	= $(shell uname -s)
 
 ifeq ($(SYS), Darwin)
-	INCLUDES +=	-I /opt/vagrant/embedded/include
-	LIBS	+= -L/opt/vagrant/embedded/lib
+#	INCLUDES +=	-I /opt/vagrant/embedded/include
+#	LIBS	+= -L/opt/vagrant/embedded/lib
+	LIBS	+= -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 endif
 
 ${NAME}:	 ${OBJ}
