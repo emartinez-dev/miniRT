@@ -2,6 +2,7 @@
 #include "objects.h"
 #include "engine.h"
 #include "vec3.h"
+#include <float.h>
 
 t_object	*parse_obj_plane(char *line)
 {
@@ -66,7 +67,7 @@ void hit_plane(t_plane *pl, t_ray ray, t_hit *hit, t_object *obj)
 	hit->t = d_point;
 	hit->dist = vec3_distance(ray.origin, pl->p);
 	hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
-	hit->normal = vec3_sub(hit->point, pl->p);
+	hit->normal = vec3_sub(pl->p, hit->point);
 	hit->object = obj;
 }
 
@@ -76,14 +77,44 @@ t_color color_plane(t_plane *pl, t_scene *scene, t_hit *hit)
 	double	dot_sh;
 	t_ray	shadow;
 	t_color	color;
+	t_hit	sh_hit;
+	t_color	light;
 
-	lum = scene->ambient_light->ratio;
 	shadow.direction = vec3_unit(vec3_sub(scene->light->p, hit->point));
-	dot_sh = vec3_dot(shadow.direction, hit->normal);
-	if (dot_sh < 0)
-		dot_sh *= -1;
-	lum += dot_sh * scene->light->brightness;
-	color = (t_color){pl->c.r * lum, pl->c.g * lum, pl->c.b * lum};
+	shadow.origin = hit->point;
+	sh_hit.dist = DBL_MAX;
+	sh_hit.object = NULL;
+	color = pl->c;
+	//aply light ambiental.
+	lum = scene->ambient_light->ratio;
+	light = scene->ambient_light->c;
+	color = (t_color){(color.r * (1 - lum) + light.r * lum) * lum, (color.g * (1 - lum) + light.g * lum) * lum, (color.b *(1 - lum) + light.b * lum) * lum};
+
+	//aply other light
+	if (!hit_objects(shadow, &sh_hit, scene) || (sh_hit.object == hit->object))
+	{
+		lum = scene->light->brightness;
+		dot_sh = vec3_dot(shadow.direction, hit->normal);
+		if (dot_sh < 0)
+			dot_sh = 0;
+		lum = dot_sh * scene->light->brightness;
+//		if (lum < 0)
+//			lum = 0;
+		light = scene->light->c;
+/*	}
+	else
+		lum = scene->light->brightness / 2;
+*/		color = (t_color){(color.r * lum + light.r * (1 - lum)) * lum, (color.g * (lum) + light.g * (1 - lum)) * lum, (color.b *(lum) + light.b * (1 - lum)) * lum};
+	}
+	else
+//		printf("shadows plane\n");
+	{
+		lum = scene->light->brightness / 2;
+
+		color = (t_color){(color.r * (1 - lum) + light.r * lum) * lum, (color.g * (1 - lum) + light.g * lum) * lum, (color.b *(1 - lum) + light.b * lum) * lum};
+	}
+//	color = (t_color){(pl->c.r * (1 - lum) + light.r * lum) * lum, (pl->c.g * (1 - lum) + light.g * lum) * lum, (pl->c.b *(1 -  lum) + light.b * lum) * lum};
+
 	color = clamp_colors(color);
 	return (color);
 }
