@@ -45,6 +45,8 @@ void			hit_plane(t_plane *pl, t_ray ray, t_hit *hit, t_object *obj);
 t_color			color_sphere(t_sphere *sp, t_scene *scene, t_hit *hit);
 t_color			color_plane(t_plane *pl, t_scene *scene, t_hit *hit);
 
+/*	phong.c	*/
 
+t_color			phong_light(t_color color_obj, t_scene *scene, t_hit *hit);
 
 #endif

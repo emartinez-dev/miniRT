@@ -67,7 +67,9 @@ void hit_plane(t_plane *pl, t_ray ray, t_hit *hit, t_object *obj)
 	hit->t = d_point;
 	hit->dist = vec3_distance(ray.origin, pl->p);
 	hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
-	hit->normal = vec3_sub(pl->p, hit->point);
+	hit->normal = vec3_sub(hit->point, pl->p);
+//	hit->normal = vec3_sum(hit->point, pl->p);
+
 	hit->object = obj;
 }
 
@@ -91,27 +93,35 @@ t_color color_plane(t_plane *pl, t_scene *scene, t_hit *hit)
 	color = (t_color){(color.r * (1 - lum) + light.r * lum) * lum, (color.g * (1 - lum) + light.g * lum) * lum, (color.b *(1 - lum) + light.b * lum) * lum};
 
 	//aply other light
-	if (!hit_objects(shadow, &sh_hit, scene) || (sh_hit.object == hit->object))
+	if (!hit_objects(shadow, &sh_hit, scene) && (sh_hit.object != hit->object))
 	{
 		lum = scene->light->brightness;
 		dot_sh = vec3_dot(shadow.direction, hit->normal);
 		if (dot_sh < 0)
+		{
+//			printf("dot_sh es : %f\n", dot_sh);
 			dot_sh = 0;
+		}
+		else
+			printf("dot_sh es : %f\n", dot_sh);
+
 		lum = dot_sh * scene->light->brightness;
-//		if (lum < 0)
-//			lum = 0;
+		if (lum < 0)
+			lum = 0;
 		light = scene->light->c;
 /*	}
 	else
 		lum = scene->light->brightness / 2;
-*/		color = (t_color){(color.r * lum + light.r * (1 - lum)) * lum, (color.g * (lum) + light.g * (1 - lum)) * lum, (color.b *(lum) + light.b * (1 - lum)) * lum};
+		color = (t_color){(color.r * lum + light.r * (1 - lum)) * lum, (color.g * (lum) + light.g * (1 - lum)) * lum, (color.b *(lum) + light.b * (1 - lum)) * lum};
+*/		color = (t_color){(color.r * (1 - lum) + light.r * lum), (color.g * (1 - lum) + light.g * lum), (color.b *(1 - lum) + light.b * lum)};
+
 	}
 	else
 //		printf("shadows plane\n");
 	{
-		lum = scene->light->brightness / 2;
+		lum = scene->light->brightness;
 
-		color = (t_color){(color.r * (1 - lum) + light.r * lum) * lum, (color.g * (1 - lum) + light.g * lum) * lum, (color.b *(1 - lum) + light.b * lum) * lum};
+		color = (t_color){(color.r * (1 - lum) + light.r * lum) * lum / 2, (color.g * (1 - lum) + light.g * lum) * lum / 2, (color.b *(1 - lum) + light.b * lum) * lum / 2};
 	}
 //	color = (t_color){(pl->c.r * (1 - lum) + light.r * lum) * lum, (pl->c.g * (1 - lum) + light.g * lum) * lum, (pl->c.b *(1 -  lum) + light.b * lum) * lum};
 
