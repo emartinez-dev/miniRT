@@ -56,7 +56,7 @@ SYS	= $(shell uname -s)
 ifeq ($(SYS), Darwin)
 #	INCLUDES +=	-I /opt/vagrant/embedded/include
 #	LIBS	+= -L/opt/vagrant/embedded/lib
-	LIBS	+= -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+	LIBS	+= -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 endif
 
 ${NAME}:	 ${OBJ}
