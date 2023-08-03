@@ -30,8 +30,8 @@ t_color	phong_light(t_color color_obj, t_scene *scene, t_hit *hit)
 	double	dot;
 
 	color = apply_light(color_obj, scene->ambient_light->c, scene->ambient_light->ratio);
-//	if (is_in_shadow(scene, hit, &shadow) || is_at_back(hit, &dot, shadow))
-	if (is_in_shadow(scene, hit, &shadow))
+	if (is_in_shadow(scene, hit, &shadow) || is_at_back(hit, &dot, shadow))
+//	if (is_in_shadow(scene, hit, &shadow))
 	{
 //		color = apply_light(color_obj, scene->ambient_light->c, scene->ambient_light->ratio / 2);
 		return (color);
