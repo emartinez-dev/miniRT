@@ -61,14 +61,16 @@ void hit_plane(t_plane *pl, t_ray ray, t_hit *hit, t_object *obj)
 	norm_ray = vec3_dot(ray.direction, pl->norm);
 	if (norm_ray >= 0)
 		return ;
-	oc = vec3_sub(ray.origin, pl->p);
+	oc = vec3_sub(pl->p, ray.origin);
 	norm_dist = vec3_dot(oc, pl->norm);
-	d_point = norm_dist / norm_ray;	
+	d_point = norm_dist / norm_ray;
+//	if (d_point < 0)
+//		return;
 	hit->t = d_point;
 	hit->dist = vec3_distance(ray.origin, pl->p);
 	hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
-	hit->normal = vec3_sub(hit->point, pl->p);
-//	hit->normal = vec3_sum(hit->point, pl->p);
+//	hit->normal = vec3_sub(hit->point, pl->p);
+	hit->normal = pl->norm;
 
 	hit->object = obj;
 }

@@ -30,15 +30,15 @@ t_color	phong_light(t_color color_obj, t_scene *scene, t_hit *hit)
 	double	dot;
 
 	color = apply_light(color_obj, scene->ambient_light->c, scene->ambient_light->ratio);
-	if (is_in_shadow(scene, hit, &shadow) || is_at_back(hit, &dot, shadow))
-//	if (is_in_shadow(scene, hit, &shadow))
+//	if (is_in_shadow(scene, hit, &shadow) || is_at_back(hit, &dot, shadow))
+	if (is_in_shadow(scene, hit, &shadow))
 	{
 //		color = apply_light(color_obj, scene->ambient_light->c, scene->ambient_light->ratio / 2);
 		return (color);
 	}
-//	dot = vec3_dot(shadow.direction, hit->normal);
+	dot = vec3_dot(shadow.direction, hit->normal);
 
-	color_light = apply_light(color_obj, scene->light->c, scene->light->brightness * dot);
+	color_light = apply_light(color_obj, scene->light->c, (scene->light->brightness * dot / (vec3_len(shadow.direction) * vec3_len(vec3_negative(hit->normal)))));
 	color = color_sum(color, color_light);
 	return (color);
 }
@@ -73,7 +73,7 @@ int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
 int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
 {
 	*dot = vec3_dot(shadow.direction, hit->normal);
-	if (*dot < 0)
+	if (*dot <= 0)
 	{
 		printf("at back\n");
 		return 1;
