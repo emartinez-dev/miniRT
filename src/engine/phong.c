@@ -5,13 +5,13 @@
 #include <float.h>
 
 
-t_color	phong_light(t_color color_obj, t_scene *scene, t_hit *hit);
 t_color	apply_light(t_color color_obj, t_color color_light, double intensity);
 int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow);
 int	is_at_back(t_hit *hit, double *dot, t_ray shadow);
 t_color	color_sum(t_color color1, t_color color2);
 t_color color_norm(t_color color1);
-
+t_color	get_color_light(t_color color_l, double intensity);
+/*
 t_color	phong_plane(t_plane *obj, t_scene *scene, t_hit *hit)
 {
 	return (phong_light(obj->c, scene, hit));
@@ -21,24 +21,30 @@ t_color	phong_sphere(t_sphere *obj, t_scene *scene, t_hit *hit)
 {
 	return (phong_light(obj->c, scene, hit));
 }
-
-t_color	phong_light(t_color color_obj, t_scene *scene, t_hit *hit)
+*/
+t_color	phong_light(t_scene *scene, t_hit *hit)
 {
 	t_color	color;
+//	t_color	color_ambient;
 	t_color	color_light;
 	t_ray	shadow;
 	double	dot;
 
-	color = apply_light(color_obj, scene->ambient_light->c, scene->ambient_light->ratio);
+	color = apply_light(hit->color, scene->ambient_light->c, scene->ambient_light->ratio);
+//	color_ambient = get_color_light(scene->ambient_light->c, scene->ambient_light->ratio);
 	if (is_in_shadow(scene, hit, &shadow) || is_at_back(hit, &dot, shadow))
 //	if (is_in_shadow(scene, hit, &shadow))
 	{
 //		color = apply_light(color_obj, scene->ambient_light->c, scene->ambient_light->ratio / 2);
 		return (color);
 	}
-	dot = vec3_dot(shadow.direction, hit->normal);
+	if (dot > 1)
+		printf("mayor que 1\n");
+//	dot = vec3_dot(shadow.direction, hit->normal);
+	color_light = apply_light(hit->color, scene->light->c, (scene->light->brightness * dot));
 
-	color_light = apply_light(color_obj, scene->light->c, (scene->light->brightness * dot / (vec3_len(shadow.direction) * vec3_len(vec3_negative(hit->normal)))));
+//	color_light = apply_light(color_obj, scene->light->c, (scene->light->brightness * dot / (vec3_len(shadow.direction) * vec3_len(vec3_negative(hit->normal)))));
+//	color_light = get_color_light(scene->light->c, (scene->light->brightness * dot));
 	color = color_sum(color, color_light);
 	return (color);
 }
@@ -54,6 +60,16 @@ t_color	apply_light(t_color color_obj, t_color color_light, double intensity)
 	return (color);
 }
 
+t_color	get_color_light(t_color color_l, double intensity)
+{
+	t_color	color;
+
+	color.r = color_l.r * intensity;
+	color.g = color_l.g * intensity;
+	color.b = color_l.b * intensity;
+	return (color);
+}
+
 int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
 {
 	t_hit	sh_hit;
@@ -63,10 +79,7 @@ int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
 	sh_hit.dist = DBL_MAX;
 	sh_hit.object = NULL;
 	if (hit_objects(*shadow, &sh_hit, scene) && sh_hit.object != hit->object)
-	{
-		printf("in shadows\n");
 		return 1;
-	}
 	return 0;
 }
 
@@ -74,10 +87,7 @@ int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
 {
 	*dot = vec3_dot(shadow.direction, hit->normal);
 	if (*dot <= 0)
-	{
-		printf("at back\n");
 		return 1;
-	}
 	return 0;
 }
 
@@ -102,7 +112,7 @@ t_color color_norm(t_color color1)
 		max = color1.g;
 	else
 		max = color1.b;
-	if (max <= 0 || max <= 255)
+	if (max >= 0 && max <= 255)
 		return (color1);
 	color1.r /= max;
 	color1.g /= max;

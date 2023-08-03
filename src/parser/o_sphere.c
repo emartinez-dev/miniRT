@@ -73,6 +73,7 @@ void	hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj)
 		hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
 		hit->normal = vec3_divk(vec3_sub(hit->point, sp->p), sp->diameter);
 		hit->object = obj;
+		hit->color = sp->c;
 	}
 }
 

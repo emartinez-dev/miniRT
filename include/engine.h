@@ -21,6 +21,7 @@ typedef struct s_hit
 	double		dist;
 	double		t;
 	t_object	*object;
+	t_color		color;
 }	t_hit;
 
 
@@ -47,8 +48,6 @@ t_color			color_plane(t_plane *pl, t_scene *scene, t_hit *hit);
 
 /*	phong.c	*/
 
-t_color			phong_light(t_color color_obj, t_scene *scene, t_hit *hit);
-t_color			phong_plane(t_plane *obj, t_scene *scene, t_hit *hit);
-t_color			phong_sphere(t_sphere *obj, t_scene *scene, t_hit *hit);
+t_color			phong_light(t_scene *scene, t_hit *hit);
 
 #endif

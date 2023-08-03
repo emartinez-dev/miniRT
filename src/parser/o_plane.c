@@ -71,7 +71,7 @@ void hit_plane(t_plane *pl, t_ray ray, t_hit *hit, t_object *obj)
 	hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
 //	hit->normal = vec3_sub(hit->point, pl->p);
 	hit->normal = pl->norm;
-
+	hit->color = pl->c;
 	hit->object = obj;
 }
 

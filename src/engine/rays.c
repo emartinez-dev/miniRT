@@ -54,19 +54,19 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 //		return (color_sphere((t_sphere *)hit->object->ptr, scene, hit));
 //	if (hit->object && hit->object->type == OBJ_PLANE)
 //		return (color_plane((t_plane *) hit->object->ptr, scene, hit));
-
+/*
 	if (hit->object && hit->object->type == OBJ_SPHERE)
 		return (phong_sphere((t_sphere *)hit->object->ptr, scene, hit));
 	if (hit->object && hit->object->type == OBJ_PLANE)
 		return (phong_plane((t_plane *) hit->object->ptr, scene, hit));
 
-	// Try same function for all objects
-/*	if (hit->object)
+*/	// Try same function for all objects
+	if (hit->object)
 	{
-		cyl = (t_cylinder *) hit->object->ptr;
-		return (phong_light(cyl->c, scene, hit));
+//		cyl = (t_cylinder *) hit->object->ptr;
+		return (phong_light(scene, hit));
 	}		
-*/	// sky color part
+	// sky color part
 	unit_direction = vec3_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
 	c = vec3_sum(vec3_multk((t_v3){1.0, 1.0, 1.0}, 1.0 - t), \
