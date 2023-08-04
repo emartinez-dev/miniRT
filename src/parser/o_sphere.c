@@ -19,7 +19,7 @@ t_object	*parse_obj_sphere(char *line)
 	if (matrix_len(split) == 4)
 	{
 		get_xyz(split[1], &sphere->p, obj);
-		sphere->diameter = ft_atod(split[2]);
+		sphere->diameter = ft_atof(split[2]);
 		get_color(split[3], &sphere->c);
 	}
 	else

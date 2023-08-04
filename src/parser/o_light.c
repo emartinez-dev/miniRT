@@ -16,7 +16,7 @@ t_object	*parse_obj_light(char *line)
 	if (matrix_len(split) == 4)
 	{
 		get_xyz(split[1], &light->p, obj);
-		light->brightness = ft_atod(split[2]);
+		light->brightness = ft_atof(split[2]);
 		get_color(split[3], &light->c);
 	}
 	else
