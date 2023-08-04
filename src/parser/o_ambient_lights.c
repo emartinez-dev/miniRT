@@ -15,7 +15,7 @@ t_object	*parse_obj_ambient_light(char *line)
 	obj->ptr = light;
 	if (matrix_len(split) == 3)
 	{
-		light->ratio = ft_atod(split[1]);
+		light->ratio = ft_atof(split[1]);
 		get_color(split[2], &light->c);
 	}
 	else

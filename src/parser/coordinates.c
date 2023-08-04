@@ -7,9 +7,9 @@ void	get_xyz(char *str, t_v3 *point, t_object *obj)
 	split = ft_split(str, ',');
 	if (matrix_len(split) == 3)
 	{
-		point->x = ft_atod(split[0]);
-		point->y = ft_atod(split[1]);
-		point->z = ft_atod(split[2]);
+		point->x = ft_atof(split[0]);
+		point->y = ft_atof(split[1]);
+		point->z = ft_atof(split[2]);
 	}
 	else
 	{

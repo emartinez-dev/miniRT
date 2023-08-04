@@ -4,6 +4,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include "get_next_line.h"
+# include "fractol_utils.h"
 # include "ft_printf.h"
 # include "objects.h"
 # include <math.h>
@@ -55,8 +56,6 @@ void		get_color(char *str, t_color *color);
 
 /* parser_utils.c */
 char		*replace_tabs(char *str);
-double		ft_atod(char *str);
-double		decimal_part(char *str);
 int			matrix_len(char **str);
 void		free_matrix(char **str);
 

@@ -17,8 +17,8 @@ t_object	*parse_obj_cylinder(char *line)
 	{
 		get_xyz(split[1], &cylinder->p, obj);
 		get_xyz(split[2], &cylinder->norm, obj);
-		cylinder->diameter = ft_atod(split[3]);
-		cylinder->height = ft_atod(split[4]);
+		cylinder->diameter = ft_atof(split[3]);
+		cylinder->height = ft_atof(split[4]);
 		get_color(split[5], &cylinder->c);
 	}
 	else
@@ -48,3 +48,12 @@ int	errors_cylinder(t_cylinder *cylinder, t_object *obj)
 	}
 	return (error);
 }
+/*
+void	hit_cylinder(t_cylinde *cyl, t_ray ray, t_object *obj)
+{
+	t_v3	oc;
+	double	a;
+	double	b;
+	double	c;
+	double	discriminant;
+}*/
