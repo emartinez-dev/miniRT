@@ -11,41 +11,25 @@ int	is_at_back(t_hit *hit, double *dot, t_ray shadow);
 t_color	color_sum(t_color color1, t_color color2);
 t_color color_norm(t_color color1);
 t_color	get_color_light(t_color color_l, double intensity);
-/*
-t_color	phong_plane(t_plane *obj, t_scene *scene, t_hit *hit)
-{
-	return (phong_light(obj->c, scene, hit));
-}
 
-t_color	phong_sphere(t_sphere *obj, t_scene *scene, t_hit *hit)
-{
-	return (phong_light(obj->c, scene, hit));
-}
-*/
 t_color	phong_light(t_scene *scene, t_hit *hit)
 {
-	t_color	color;
-//	t_color	color_ambient;
-	t_color	color_light;
+//	t_color	color_specular;
+	t_color	color_ambient;
+	t_color	color_difusse;
 	t_ray	shadow;
+	t_color	color;
 	double	dot;
 
-	color = apply_light(hit->color, scene->ambient_light->c, scene->ambient_light->ratio);
-//	color_ambient = get_color_light(scene->ambient_light->c, scene->ambient_light->ratio);
+	color_ambient = apply_light(hit->color, scene->ambient_light->c, scene->ambient_light->ratio);
 	if (is_in_shadow(scene, hit, &shadow) || is_at_back(hit, &dot, shadow))
-//	if (is_in_shadow(scene, hit, &shadow))
-	{
-//		color = apply_light(color_obj, scene->ambient_light->c, scene->ambient_light->ratio / 2);
-		return (color);
-	}
-	if (dot > 1)
-		printf("mayor que 1\n");
-//	dot = vec3_dot(shadow.direction, hit->normal);
-	color_light = apply_light(hit->color, scene->light->c, (scene->light->brightness * dot));
+		return (color_ambient);
+//	aply distance to light
+//	color_difusse = apply_light(hit->color, scene->light->c, ((scene->light->brightness / vec3_len(vec3_sub(scene->light->p, hit->point))) * dot));
+	color_difusse = apply_light(hit->color, scene->light->c, (scene->light->brightness  * dot));
 
-//	color_light = apply_light(color_obj, scene->light->c, (scene->light->brightness * dot / (vec3_len(shadow.direction) * vec3_len(vec3_negative(hit->normal)))));
-//	color_light = get_color_light(scene->light->c, (scene->light->brightness * dot));
-	color = color_sum(color, color_light);
+//	color_specular =
+	color = color_sum(color_ambient, color_difusse);
 	return (color);
 }
 
@@ -56,7 +40,8 @@ t_color	apply_light(t_color color_obj, t_color color_light, double intensity)
 	color.r = (color_obj.r + color_light.r) * intensity;
 	color.g = (color_obj.g + color_light.g) * intensity;
 	color.b = (color_obj.b + color_light.b) * intensity;
-	color = color_norm(color);
+//	color = color_norm(color);
+	color = clamp_colors(color);
 	return (color);
 }
 
@@ -98,7 +83,8 @@ t_color	color_sum(t_color color1, t_color color2)
 	color.r = color1.r + color2.r;
 	color.g = color1.g + color2.g;
 	color.b = color1.b + color2.b;
-	color = color_norm(color);
+//	color = color_norm(color);
+	color = clamp_colors(color);
 	return (color);
 }
 
