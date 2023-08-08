@@ -48,7 +48,7 @@ int	errors_cylinder(t_cylinder *cylinder, t_object *obj)
 	}
 	return (error);
 }
-/*
+
 void	hit_cylinder(t_cylinde *cyl, t_ray ray, t_object *obj)
 {
 	t_v3	oc;
@@ -56,4 +56,9 @@ void	hit_cylinder(t_cylinde *cyl, t_ray ray, t_object *obj)
 	double	b;
 	double	c;
 	double	discriminant;
-}*/
+
+	if (vec3_distance(ray.origin, cyl->p) >= hiy->dist)
+		return;
+	oc = vec3_sub(ray.origin, cyl->p);
+	a = 
+}
