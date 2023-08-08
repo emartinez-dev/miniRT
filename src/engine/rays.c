@@ -35,6 +35,8 @@ int	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
 			hit_sphere((t_sphere *)o->ptr, ray, hit, o);
 		else if (o->type == OBJ_PLANE)
 			hit_plane((t_plane *)o->ptr, ray, hit, o);
+		else if (o->type == OBJ_CYLINDER)
+			hit_cylinder((t_cylinder *)o->ptr, ray, hit, o);
 		objects = objects->next;
 	}
 	if (hit->object)
