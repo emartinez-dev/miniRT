@@ -67,13 +67,18 @@ void	hit_cylinder(t_cylinder *cyl, t_ray ray,t_hit *hit, t_object *obj)
 	oc = vec3_sub(ray.origin, cyl->p);
 	if (vec3_dot(ray.direction, oc) > 0)
 		return ;
-	a = vec3_sqlen(ray.direction) - vec3_len(vec3_multv(ray.direction, cyl->norm));
+/*	a = vec3_sqlen(ray.direction) - vec3_len(vec3_multv(ray.direction, cyl->norm));
 	half_b = vec3_dot(oc, ray.direction) - vec3_dot(ray.direction, cyl->norm) * vec3_dot(oc, cyl->norm);
 	c = vec3_sqlen(oc) - vec3_len(vec3_multv(oc, cyl->norm)) - cyl->diameter * cyl->diameter;
 	discriminant = half_b * half_b - a * c;
+*/
+	a = ray.direction.x * ray.direction.x + ray.direction.y * ray.direction.y;
+	half_b = oc.x * ray.direction.x + oc.y * ray.direction.y;
+	c = oc.x * oc.x + oc.y * oc.y - 1;
+	discriminant = half_b * half_b - a * c;
 	if (discriminant > 0.0)
 	{
-		if (inside_cylinder(cyl, ray, hit, (-half_b - sqrt(discriminant)) / a))
+		if (inside_cylinder(cyl, ray, hit, (half_b - sqrt(discriminant)) / a))
 			hit->object = obj;
 	}
 }
@@ -84,10 +89,16 @@ static int	inside_cylinder(t_cylinder *cyl, t_ray ray, t_hit *hit, double t)
 	t_v3	intersection;
 	double	projection;
 
-	point = vec3_sum(ray.origin, vec3_multk(ray.direction, t));
+//	point = vec3_sum(ray.origin, vec3_multk(ray.direction, t));
+	point.x = ray.origin.x + ray.direction.x * t;
+	point.y = ray.origin.y + ray.direction.y * t;
+	point.z = 0;
 	intersection = vec3_sub(point, cyl->p);
+	intersection.x = point.x - cyl->p.x;
+	intersection.y = point.y - cyl->p.y;
+	intersection.z = 0;
 	projection = vec3_dot(intersection, cyl->norm);
-	if (projection >= 0 && projection <= cyl->height)
+	if (projection >= 0)// && projection <= cyl->height)
 	{
 		hit->t = t;
 		hit->dist = vec3_distance(ray.origin, cyl->p);
