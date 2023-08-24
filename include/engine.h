@@ -3,6 +3,7 @@
 
 # define WIDTH 1400
 # define HEIGHT 1000
+# define EPSILON 0.000001
 
 # include "objects.h"
 # include "parser.h"
@@ -18,12 +19,26 @@ typedef struct s_hit
 {
 	t_v3		point;
 	t_v3		normal;
-	double		dist;
 	double		t;
 	t_object	*object;
 	t_color		color;
 }	t_hit;
 
+typedef struct s_quadratic {
+	double	a;
+	double	b;
+	double	half_b;
+	double	c;
+	double	t;
+	double	discriminant;
+	double	t1;
+	double	t2;
+	t_v3	oc;
+	double	delta;
+	double	y0;
+	double	y1;
+	t_v3	normal;
+}	t_quadratic;
 
 /* colors.c */
 unsigned int	rgb_to_hex(t_color color);
@@ -40,8 +55,8 @@ t_ray			raycast(double u, double v, t_scene *scene);
 t_color			raycolor(t_ray ray, t_hit *hit, t_scene *scene);
 t_v3			ray_at(t_ray *ray, double t);
 
-int				hit_objects(t_ray ray, t_hit *hit, t_scene *scene);
-void			hit_sphere(t_sphere *sp, t_ray ray, t_hit *hit, t_object *obj);
+t_hit			hit_objects(t_ray *ray, t_scene *scene);
+t_hit			hit_sphere(t_sphere *sp, t_ray ray, t_hit hit);
 void			hit_plane(t_plane *pl, t_ray ray, t_hit *hit, t_object *obj);
 t_color			color_sphere(t_sphere *sp, t_scene *scene, t_hit *hit);
 t_color			color_plane(t_plane *pl, t_scene *scene, t_hit *hit);
