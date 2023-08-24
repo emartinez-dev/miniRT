@@ -4,7 +4,7 @@
 #include "vec3.h"
 #include <float.h>
 
-static int	inside_cylinder(t_cylinder *cyl, t_ray ray, t_hit *hit, double t);
+//static int	inside_cylinder(t_cylinder *cyl, t_ray ray, t_hit *hit, double t);
 
 t_object	*parse_obj_cylinder(char *line)
 {
@@ -54,11 +54,37 @@ int	errors_cylinder(t_cylinder *cylinder, t_object *obj)
 	return (error);
 }
 
+/* I need one more function because in cylinders you have to check from which side
+ * they are intersected, I will update hit from here if needed
+ * */
+void	intersect_cylinder(t_cylinder *cyl, t_ray ray,t_hit *hit, t_object *obj, double a, double b, double discriminant)
+{
+	double	t;
+	double	r;
+	t_v3	oc;
+
+	oc = vec3_sub(ray.origin, cyl->p);
+	t = (-b - sqrt(discriminant) / (2 * a));
+	if (t > (-b + sqrt(discriminant) / (2 * a)))
+		t = -b + sqrt(discriminant) / (2 * a);
+	r = cyl->p.y + t * ray.direction.y;	
+	if (r >= oc.y && r <= oc.y + cyl->height)
+	{
+		hit->t = t;
+		hit->dist = vec3_distance(ray.origin, cyl->p);
+		hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
+		hit->normal = vec3_unit(vec3_sub(hit->point, vec3_multk(cyl->norm, vec3_dot(hit->point, cyl->norm))));
+		printf("Cylinder hit normal: x:%f y:%f z:%f\n", hit->normal.x, hit->normal.y, hit->normal.z);
+		hit->object = obj;
+		hit->color = cyl->c;
+	}
+}
+
 void	hit_cylinder(t_cylinder *cyl, t_ray ray,t_hit *hit, t_object *obj)
 {
 	t_v3	oc;
 	double	a;
-	double	half_b;
+	double	b;
 	double	c;
 	double	discriminant;
 
@@ -67,22 +93,17 @@ void	hit_cylinder(t_cylinder *cyl, t_ray ray,t_hit *hit, t_object *obj)
 	oc = vec3_sub(ray.origin, cyl->p);
 	if (vec3_dot(ray.direction, oc) > 0)
 		return ;
-/*	a = vec3_sqlen(ray.direction) - vec3_len(vec3_multv(ray.direction, cyl->norm));
-	half_b = vec3_dot(oc, ray.direction) - vec3_dot(ray.direction, cyl->norm) * vec3_dot(oc, cyl->norm);
-	c = vec3_sqlen(oc) - vec3_len(vec3_multv(oc, cyl->norm)) - cyl->diameter * cyl->diameter;
-	discriminant = half_b * half_b - a * c;
-*/
-	a = ray.direction.x * ray.direction.x + ray.direction.y * ray.direction.y;
-	half_b = oc.x * ray.direction.x + oc.y * ray.direction.y;
-	c = oc.x * oc.x + oc.y * oc.y - 1;
-	discriminant = half_b * half_b - a * c;
-	if (discriminant > 0.0)
-	{
-		if (inside_cylinder(cyl, ray, hit, (half_b - sqrt(discriminant)) / a))
-			hit->object = obj;
-	}
+	a = (ray.direction.x * ray.direction.x) + (ray.direction.z * ray.direction.z);
+	b = 2 * (ray.direction.x * oc.x + ray.direction.z * oc.z);
+	c = oc.x * oc.x + oc.z * oc.z - cyl->diameter / 2 * cyl->diameter / 2;
+	discriminant = b * b - 4 * (a * c);
+	if (fabs(discriminant) < 0.001 || discriminant < 0.0)
+		return ;
+	else
+		intersect_cylinder(cyl, ray, hit, obj, a, b, discriminant);
 }
 
+/*
 static int	inside_cylinder(t_cylinder *cyl, t_ray ray, t_hit *hit, double t)
 {
 	t_v3	point;
@@ -109,3 +130,4 @@ static int	inside_cylinder(t_cylinder *cyl, t_ray ray, t_hit *hit, double t)
 	}
 	return (0);
 }
+*/
