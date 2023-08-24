@@ -1,0 +1,1911 @@
+[
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/main.c",
+   "-o",
+   "obj/main.o"
+  ],
+  "file": "src/main.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/vec3/div.c",
+   "-o",
+   "obj/vec3/div.o"
+  ],
+  "file": "src/vec3/div.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/vec3/mult.c",
+   "-o",
+   "obj/vec3/mult.o"
+  ],
+  "file": "src/vec3/mult.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/vec3/sub.c",
+   "-o",
+   "obj/vec3/sub.o"
+  ],
+  "file": "src/vec3/sub.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/vec3/sum.c",
+   "-o",
+   "obj/vec3/sum.o"
+  ],
+  "file": "src/vec3/sum.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/vec3/utils.c",
+   "-o",
+   "obj/vec3/utils.o"
+  ],
+  "file": "src/vec3/utils.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/engine/rays.c",
+   "-o",
+   "obj/engine/rays.o"
+  ],
+  "file": "src/engine/rays.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/engine/camera_geometry.c",
+   "-o",
+   "obj/engine/camera_geometry.o"
+  ],
+  "file": "src/engine/camera_geometry.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/engine/colors.c",
+   "-o",
+   "obj/engine/colors.o"
+  ],
+  "file": "src/engine/colors.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/engine/phong.c",
+   "-o",
+   "obj/engine/phong.o"
+  ],
+  "file": "src/engine/phong.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/colors.c",
+   "-o",
+   "obj/parser/colors.o"
+  ],
+  "file": "src/parser/colors.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/coordinates.c",
+   "-o",
+   "obj/parser/coordinates.o"
+  ],
+  "file": "src/parser/coordinates.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/o_ambient_lights.c",
+   "-o",
+   "obj/parser/o_ambient_lights.o"
+  ],
+  "file": "src/parser/o_ambient_lights.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/o_camera.c",
+   "-o",
+   "obj/parser/o_camera.o"
+  ],
+  "file": "src/parser/o_camera.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/o_cylinder.c",
+   "-o",
+   "obj/parser/o_cylinder.o"
+  ],
+  "file": "src/parser/o_cylinder.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/o_sphere.c",
+   "-o",
+   "obj/parser/o_sphere.o"
+  ],
+  "file": "src/parser/o_sphere.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/o_plane.c",
+   "-o",
+   "obj/parser/o_plane.o"
+  ],
+  "file": "src/parser/o_plane.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/o_light.c",
+   "-o",
+   "obj/parser/o_light.o"
+  ],
+  "file": "src/parser/o_light.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/parser_errors.c",
+   "-o",
+   "obj/parser/parser_errors.o"
+  ],
+  "file": "src/parser/parser_errors.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/parser_utils.c",
+   "-o",
+   "obj/parser/parser_utils.o"
+  ],
+  "file": "src/parser/parser_utils.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/parser_frees.c",
+   "-o",
+   "obj/parser/parser_frees.o"
+  ],
+  "file": "src/parser/parser_frees.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/parser_scene.c",
+   "-o",
+   "obj/parser/parser_scene.o"
+  ],
+  "file": "src/parser/parser_scene.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT",
+  "arguments": [
+   "gcc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-I",
+   "./libft/include",
+   "-I",
+   "./MLX42/include/MLX42",
+   "-c",
+   "src/parser/pruebas.c",
+   "-o",
+   "obj/parser/pruebas.o"
+  ],
+  "file": "src/parser/pruebas.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_isalpha.o",
+   "-c",
+   "src/src_libft/ft_isalpha.c"
+  ],
+  "file": "src/src_libft/ft_isalpha.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_isdigit.o",
+   "-c",
+   "src/src_libft/ft_isdigit.c"
+  ],
+  "file": "src/src_libft/ft_isdigit.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_isalnum.o",
+   "-c",
+   "src/src_libft/ft_isalnum.c"
+  ],
+  "file": "src/src_libft/ft_isalnum.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_isascii.o",
+   "-c",
+   "src/src_libft/ft_isascii.c"
+  ],
+  "file": "src/src_libft/ft_isascii.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_isprint.o",
+   "-c",
+   "src/src_libft/ft_isprint.c"
+  ],
+  "file": "src/src_libft/ft_isprint.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strlen.o",
+   "-c",
+   "src/src_libft/ft_strlen.c"
+  ],
+  "file": "src/src_libft/ft_strlen.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_memset.o",
+   "-c",
+   "src/src_libft/ft_memset.c"
+  ],
+  "file": "src/src_libft/ft_memset.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_bzero.o",
+   "-c",
+   "src/src_libft/ft_bzero.c"
+  ],
+  "file": "src/src_libft/ft_bzero.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_memcpy.o",
+   "-c",
+   "src/src_libft/ft_memcpy.c"
+  ],
+  "file": "src/src_libft/ft_memcpy.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_memmove.o",
+   "-c",
+   "src/src_libft/ft_memmove.c"
+  ],
+  "file": "src/src_libft/ft_memmove.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strlcpy.o",
+   "-c",
+   "src/src_libft/ft_strlcpy.c"
+  ],
+  "file": "src/src_libft/ft_strlcpy.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strlcat.o",
+   "-c",
+   "src/src_libft/ft_strlcat.c"
+  ],
+  "file": "src/src_libft/ft_strlcat.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_toupper.o",
+   "-c",
+   "src/src_libft/ft_toupper.c"
+  ],
+  "file": "src/src_libft/ft_toupper.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_tolower.o",
+   "-c",
+   "src/src_libft/ft_tolower.c"
+  ],
+  "file": "src/src_libft/ft_tolower.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strchr.o",
+   "-c",
+   "src/src_libft/ft_strchr.c"
+  ],
+  "file": "src/src_libft/ft_strchr.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strrchr.o",
+   "-c",
+   "src/src_libft/ft_strrchr.c"
+  ],
+  "file": "src/src_libft/ft_strrchr.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strncmp.o",
+   "-c",
+   "src/src_libft/ft_strncmp.c"
+  ],
+  "file": "src/src_libft/ft_strncmp.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_memchr.o",
+   "-c",
+   "src/src_libft/ft_memchr.c"
+  ],
+  "file": "src/src_libft/ft_memchr.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_memcmp.o",
+   "-c",
+   "src/src_libft/ft_memcmp.c"
+  ],
+  "file": "src/src_libft/ft_memcmp.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strnstr.o",
+   "-c",
+   "src/src_libft/ft_strnstr.c"
+  ],
+  "file": "src/src_libft/ft_strnstr.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_atoi.o",
+   "-c",
+   "src/src_libft/ft_atoi.c"
+  ],
+  "file": "src/src_libft/ft_atoi.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_calloc.o",
+   "-c",
+   "src/src_libft/ft_calloc.c"
+  ],
+  "file": "src/src_libft/ft_calloc.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strdup.o",
+   "-c",
+   "src/src_libft/ft_strdup.c"
+  ],
+  "file": "src/src_libft/ft_strdup.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_substr.o",
+   "-c",
+   "src/src_libft/ft_substr.c"
+  ],
+  "file": "src/src_libft/ft_substr.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strjoin.o",
+   "-c",
+   "src/src_libft/ft_strjoin.c"
+  ],
+  "file": "src/src_libft/ft_strjoin.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strtrim.o",
+   "-c",
+   "src/src_libft/ft_strtrim.c"
+  ],
+  "file": "src/src_libft/ft_strtrim.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_split.o",
+   "-c",
+   "src/src_libft/ft_split.c"
+  ],
+  "file": "src/src_libft/ft_split.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_itoa.o",
+   "-c",
+   "src/src_libft/ft_itoa.c"
+  ],
+  "file": "src/src_libft/ft_itoa.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_strmapi.o",
+   "-c",
+   "src/src_libft/ft_strmapi.c"
+  ],
+  "file": "src/src_libft/ft_strmapi.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_striteri.o",
+   "-c",
+   "src/src_libft/ft_striteri.c"
+  ],
+  "file": "src/src_libft/ft_striteri.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_putchar_fd.o",
+   "-c",
+   "src/src_libft/ft_putchar_fd.c"
+  ],
+  "file": "src/src_libft/ft_putchar_fd.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_putstr_fd.o",
+   "-c",
+   "src/src_libft/ft_putstr_fd.c"
+  ],
+  "file": "src/src_libft/ft_putstr_fd.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_putendl_fd.o",
+   "-c",
+   "src/src_libft/ft_putendl_fd.c"
+  ],
+  "file": "src/src_libft/ft_putendl_fd.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_putnbr_fd.o",
+   "-c",
+   "src/src_libft/ft_putnbr_fd.c"
+  ],
+  "file": "src/src_libft/ft_putnbr_fd.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstnew.o",
+   "-c",
+   "src/src_libft/ft_lstnew.c"
+  ],
+  "file": "src/src_libft/ft_lstnew.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstadd_front.o",
+   "-c",
+   "src/src_libft/ft_lstadd_front.c"
+  ],
+  "file": "src/src_libft/ft_lstadd_front.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstsize.o",
+   "-c",
+   "src/src_libft/ft_lstsize.c"
+  ],
+  "file": "src/src_libft/ft_lstsize.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstlast.o",
+   "-c",
+   "src/src_libft/ft_lstlast.c"
+  ],
+  "file": "src/src_libft/ft_lstlast.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstadd_back.o",
+   "-c",
+   "src/src_libft/ft_lstadd_back.c"
+  ],
+  "file": "src/src_libft/ft_lstadd_back.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstdelone.o",
+   "-c",
+   "src/src_libft/ft_lstdelone.c"
+  ],
+  "file": "src/src_libft/ft_lstdelone.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstclear.o",
+   "-c",
+   "src/src_libft/ft_lstclear.c"
+  ],
+  "file": "src/src_libft/ft_lstclear.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstiter.o",
+   "-c",
+   "src/src_libft/ft_lstiter.c"
+  ],
+  "file": "src/src_libft/ft_lstiter.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_libft/ft_lstmap.o",
+   "-c",
+   "src/src_libft/ft_lstmap.c"
+  ],
+  "file": "src/src_libft/ft_lstmap.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_printf/ft_printf.o",
+   "-c",
+   "src/src_printf/ft_printf.c"
+  ],
+  "file": "src/src_printf/ft_printf.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_printf/ft_printf_utils.o",
+   "-c",
+   "src/src_printf/ft_printf_utils.c"
+  ],
+  "file": "src/src_printf/ft_printf_utils.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_get_next_line/get_next_line.o",
+   "-c",
+   "src/src_get_next_line/get_next_line.c"
+  ],
+  "file": "src/src_get_next_line/get_next_line.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_get_next_line/get_next_line_utils.o",
+   "-c",
+   "src/src_get_next_line/get_next_line_utils.c"
+  ],
+  "file": "src/src_get_next_line/get_next_line_utils.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_fractol/ft_chrjoin.o",
+   "-c",
+   "src/src_fractol/ft_chrjoin.c"
+  ],
+  "file": "src/src_fractol/ft_chrjoin.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_fractol/ft_ftoa.o",
+   "-c",
+   "src/src_fractol/ft_ftoa.c"
+  ],
+  "file": "src/src_fractol/ft_ftoa.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_fractol/ft_atof.o",
+   "-c",
+   "src/src_fractol/ft_atof.c"
+  ],
+  "file": "src/src_fractol/ft_atof.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_fractol/ft_strjoin_va.o",
+   "-c",
+   "src/src_fractol/ft_strjoin_va.c"
+  ],
+  "file": "src/src_fractol/ft_strjoin_va.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_fractol/ft_maths.o",
+   "-c",
+   "src/src_fractol/ft_maths.c"
+  ],
+  "file": "src/src_fractol/ft_maths.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_push_swap/ft_issign.o",
+   "-c",
+   "src/src_push_swap/ft_issign.c"
+  ],
+  "file": "src/src_push_swap/ft_issign.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_push_swap/ft_atoll.o",
+   "-c",
+   "src/src_push_swap/ft_atoll.c"
+  ],
+  "file": "src/src_push_swap/ft_atoll.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I",
+   "./include",
+   "-o",
+   "src/src_push_swap/ft_abs.o",
+   "-c",
+   "src/src_push_swap/ft_abs.c"
+  ],
+  "file": "src/src_push_swap/ft_abs.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "lib/glad/glad.o",
+   "-c",
+   "lib/glad/glad.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "lib/glad/glad.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "lib/png/lodepng.o",
+   "-c",
+   "lib/png/lodepng.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "lib/png/lodepng.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/font/mlx_font.o",
+   "-c",
+   "src/font/mlx_font.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/font/mlx_font.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_cursor.o",
+   "-c",
+   "src/mlx_cursor.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_cursor.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_exit.o",
+   "-c",
+   "src/mlx_exit.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_exit.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_frag_shader.o",
+   "-c",
+   "src/mlx_frag_shader.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_frag_shader.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_images.o",
+   "-c",
+   "src/mlx_images.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_images.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_init.o",
+   "-c",
+   "src/mlx_init.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_init.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_keys.o",
+   "-c",
+   "src/mlx_keys.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_keys.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_loop.o",
+   "-c",
+   "src/mlx_loop.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_loop.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_monitor.o",
+   "-c",
+   "src/mlx_monitor.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_monitor.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_mouse.o",
+   "-c",
+   "src/mlx_mouse.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_mouse.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_put_pixel.o",
+   "-c",
+   "src/mlx_put_pixel.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_put_pixel.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_vert_shader.o",
+   "-c",
+   "src/mlx_vert_shader.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_vert_shader.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/mlx_window.o",
+   "-c",
+   "src/mlx_window.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/mlx_window.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/textures/mlx_png.o",
+   "-c",
+   "src/textures/mlx_png.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/textures/mlx_png.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/textures/mlx_texture.o",
+   "-c",
+   "src/textures/mlx_texture.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/textures/mlx_texture.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/textures/mlx_xpm42.o",
+   "-c",
+   "src/textures/mlx_xpm42.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/textures/mlx_xpm42.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/utils/mlx_error.o",
+   "-c",
+   "src/utils/mlx_error.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/utils/mlx_error.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/utils/mlx_list.o",
+   "-c",
+   "src/utils/mlx_list.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/utils/mlx_list.c"
+ },
+ {
+  "directory": "/Users/franmart/miniRT/MLX42",
+  "arguments": [
+   "cc",
+   "-Wextra",
+   "-Wall",
+   "-Werror",
+   "-Wunreachable-code",
+   "-Wno-char-subscripts",
+   "-Wno-sign-compare",
+   "-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS",
+   "-DLODEPNG_NO_COMPILE_ENCODER",
+   "-Ofast",
+   "-D",
+   "NDEBUG",
+   "-o",
+   "src/utils/mlx_utils.o",
+   "-c",
+   "src/utils/mlx_utils.c",
+   "-I",
+   "include",
+   "-I",
+   "/System/Volumes/Data/sgoinfre/goinfre/Perso/franmart/homebrew/opt/glfw/include"
+  ],
+  "file": "src/utils/mlx_utils.c"
+ }
+]
