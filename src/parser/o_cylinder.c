@@ -74,7 +74,7 @@ void	intersect_cylinder(t_cylinder *cyl, t_ray ray,t_hit *hit, t_object *obj, do
 		hit->dist = vec3_distance(ray.origin, cyl->p);
 		hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
 		hit->normal = vec3_unit(vec3_sub(hit->point, vec3_multk(cyl->norm, vec3_dot(hit->point, cyl->norm))));
-		printf("Cylinder hit normal: x:%f y:%f z:%f\n", hit->normal.x, hit->normal.y, hit->normal.z);
+		//printf("Cylinder hit normal: x:%f y:%f z:%f\n", hit->normal.x, hit->normal.y, hit->normal.z);
 		hit->object = obj;
 		hit->color = cyl->c;
 	}
