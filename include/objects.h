@@ -67,6 +67,7 @@ typedef struct s_sphere
 	t_v3	p;
 	t_color	c;
 	double	diameter;
+	double	radius;
 }	t_sphere;
 
 typedef struct s_plane

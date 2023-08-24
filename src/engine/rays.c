@@ -13,33 +13,29 @@ t_ray	raycast(double u, double v, t_scene *scene)
 
 	cam = scene->camera;
 	cam_ray = camera_ray(cam, u, v);
-	world_hit.dist = DBL_MAX;
-	world_hit.object = NULL;
-	hit_objects(cam_ray, &world_hit, scene);
+	world_hit = hit_objects(&cam_ray, scene);
 	/* after hit_objects, world_hit.object is the closest object hit by the ray
 	or NULL if no object was hit */
 	cam_ray.color = raycolor(cam_ray, &world_hit, scene);
 	return (cam_ray);
 }
 
-int	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
+t_hit hit_objects(t_ray *ray, t_scene *scene)
 {
 	t_list		*objects;
 	t_object	*o;
+	t_hit		world;
 
 	objects = scene->objects;
+	world.t = -1.0;
 	while (objects)
 	{
 		o = (t_object *)objects->content;
 		if (o->type == OBJ_SPHERE)
-			hit_sphere((t_sphere *)o->ptr, ray, hit, o);
-		else if (o->type == OBJ_PLANE)
-			hit_plane((t_plane *)o->ptr, ray, hit, o);
+			world = hit_sphere((t_sphere *)o->ptr, *ray, world);
 		objects = objects->next;
 	}
-	if (hit->object)
-		return (1);
-	return (0);
+	return (world);
 }
 
 /* this function returns the color of the object it hit or the "sky" color */
@@ -61,11 +57,8 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 		return (phong_plane((t_plane *) hit->object->ptr, scene, hit));
 
 */	// Try same function for all objects
-	if (hit->object)
-	{
-//		cyl = (t_cylinder *) hit->object->ptr;
+	if (hit->t > EPSILON)
 		return (phong_light(scene, hit));
-	}		
 	// sky color part
 	unit_direction = vec3_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
