@@ -5,22 +5,19 @@
 #include <float.h>
 #include <math.h>
 
+int	solve_quadratic(t_quadratic *q);
+
 // intersection formula: https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html
 double intersect_sphere(t_ray *ray, t_sphere *sp)
 {
 	t_quadratic	q;
 
 	q.oc = vec3_sub(ray->origin, sp->p);
-	q.a = vec3_sqlen(ray->direction);
-	q.b = 2.0 * vec3_dot(q.oc, ray->direction);
-	q.half_b = q.b / 2;
-	q.c = vec3_sqlen(q.oc) - sp->diameter * sp->diameter;
-	q.discriminant = q.b * q.b - 4 * q.a * q.c;
-	if (q.discriminant < 0)
+	q.a = vec3_dot(ray->direction, ray->direction);
+	q.b = 2 * vec3_dot(ray->direction, q.oc);
+	q.c = vec3_dot(q.oc, q.oc) - sp->radius * sp->radius;
+	if (!solve_quadratic(&q))
 		return (-1.0);
-	q.t1 = (-q.b + sqrt(q.discriminant)) / (2 * q.a);
-	q.t2 = (-q.b - sqrt(q.discriminant)) / (2 * q.a);
-	// if both sqrts are negative, the point is behind the camera
 	if (q.t1 < 0 && q.t2 < 0)
 		return (-1);
 	// if t2 is closer than t1 and t2 is positive, return t2

@@ -89,3 +89,4 @@ t_ray	camera_ray(t_camera *c, int x, int y)
 	cam_ray.direction = vec3_unit(cam_ray.direction);
 	return (cam_ray);
 }
+

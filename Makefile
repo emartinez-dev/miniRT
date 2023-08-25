@@ -22,6 +22,7 @@ _SRC 		=	main.c\
 				engine/camera_geometry.c\
 				engine/colors.c\
 				engine/phong.c\
+				engine/maths.c\
 				parser/colors.c\
 				parser/coordinates.c\
 				parser/o_ambient_lights.c\

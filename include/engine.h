@@ -43,6 +43,8 @@ typedef struct s_quadratic {
 /* colors.c */
 unsigned int	rgb_to_hex(t_color color);
 t_color			clamp_colors(t_color color);
+t_color			color_sum(t_color color0, t_color color2);
+t_color			color_norm(t_color color1);
 
 /* camera_geometry.c */
 void			init_rotation_camera(t_camera *c, t_v3 right, t_v3 up);
@@ -62,7 +64,10 @@ t_color			color_sphere(t_sphere *sp, t_scene *scene, t_hit *hit);
 t_color			color_plane(t_plane *pl, t_scene *scene, t_hit *hit);
 
 /*	phong.c	*/
-
 t_color			phong_light(t_scene *scene, t_hit *hit);
+
+/* maths.c */
+int				solve_quadratic(t_quadratic *q);
+
 
 #endif

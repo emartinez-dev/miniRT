@@ -28,3 +28,36 @@ t_color	clamp_colors(t_color color)
 		color.b = 0;
 	return (color);
 }
+
+t_color	color_sum(t_color color1, t_color color2)
+{
+	t_color	color;
+
+	color.r = color1.r + color2.r;
+	color.g = color1.g + color2.g;
+	color.b = color1.b + color2.b;
+	color = clamp_colors(color);
+	return (color);
+}
+
+t_color color_norm(t_color color1)
+{
+	int	max;
+
+	if (color1.r >= color1.g && color1.r >= color1.b)
+		max = color1.r;
+	else if (color1.g >= color1.r && color1.g >= color1.b)
+		max = color1.g;
+	else
+		max = color1.b;
+	if (max >= 0 && max <= 255)
+		return (color1);
+	color1.r /= max;
+	color1.g /= max;
+	color1.b /= max;
+	color1.r *= 255;
+	color1.g *= 255;
+	color1.b *= 255;
+	return (color1);
+}
+
