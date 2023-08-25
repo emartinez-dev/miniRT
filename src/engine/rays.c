@@ -9,10 +9,8 @@ t_ray	raycast(double u, double v, t_scene *scene)
 {
 	t_ray		cam_ray;
 	t_hit		world_hit;
-	t_camera	*cam;
 
-	cam = scene->camera;
-	cam_ray = camera_ray(cam, u, v);
+	cam_ray = camera_ray(scene->camera, u, v);
 	world_hit = hit_objects(&cam_ray, scene);
 	cam_ray.color = raycolor(cam_ray, &world_hit, scene);
 	return (cam_ray);

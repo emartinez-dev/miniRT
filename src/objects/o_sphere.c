@@ -34,7 +34,7 @@ t_hit hit_sphere(t_sphere *sp, t_ray ray, t_hit hit)
 	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
 	{
 		temp.color = sp->c;
-		temp.point = vec3_sum(ray.origin, vec3_multk(ray.direction, temp.t));
+		temp.point = ray_at(&ray, temp.t);
 		temp.normal = vec3_unit(vec3_sub(temp.point, sp->p));
 		hit = temp;
 	}

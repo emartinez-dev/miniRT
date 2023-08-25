@@ -13,7 +13,6 @@ t_color	get_color_light(t_color color_l, double intensity);
 
 t_color	phong_light(t_scene *scene, t_hit *hit)
 {
-//	t_color	color_specular;
 	t_color	color_ambient;
 	t_color	color_difusse;
 	t_ray	shadow;
@@ -57,15 +56,15 @@ int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
 	shadow->origin = hit->point;
 	sh_hit = hit_objects(shadow, scene);
 	if (sh_hit.t > 0 && sh_hit.object && sh_hit.object != hit->object)
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
 int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
 {
 	*dot = vec3_dot(hit->normal, shadow.direction);
 	if (*dot <= 0)
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
