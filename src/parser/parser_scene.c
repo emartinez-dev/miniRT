@@ -1,3 +1,4 @@
+#include "objects.h"
 #include "parser.h"
 
 void	read_scene(t_scene *scene)
@@ -56,6 +57,12 @@ int	extract_objects(t_scene *scene)
 	if (scene->camera == NULL)
 	{
 		ft_printf("%s%s%s", ERROR_CAMERA, ERROR_PARTIAL, "No camera found\n");
+		scene->errors = 1;
+	}
+	if (!scene->light || !scene->ambient_light)
+	{
+		ft_printf("%s%s%s", ERROR_LIGHT, ERROR_PARTIAL, "No light or ambient light" \
+			" found\n");
 		scene->errors = 1;
 	}
 	return (scene->errors);
