@@ -18,8 +18,8 @@ double intersect_sphere(t_ray *ray, t_sphere *sp)
 	q.discriminant = q.b * q.b - 4 * q.a * q.c;
 	if (q.discriminant < 0)
 		return (-1.0);
-	q.t1 = -q.b + sqrt(q.discriminant) / (2 * q.a);
-	q.t2 = -q.b - sqrt(q.discriminant) / (2 * q.a);
+	q.t1 = (-q.b + sqrt(q.discriminant)) / (2 * q.a);
+	q.t2 = (-q.b - sqrt(q.discriminant)) / (2 * q.a);
 	// if both sqrts are negative, the point is behind the camera
 	if (q.t1 < 0 && q.t2 < 0)
 		return (-1);

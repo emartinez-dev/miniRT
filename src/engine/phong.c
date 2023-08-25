@@ -63,22 +63,21 @@ int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
 	shadow->direction = vec3_unit(vec3_sub(scene->light->p, hit->point));
 	shadow->origin = hit->point;
 	sh_hit = hit_objects(shadow, scene);
-	if (sh_hit.t > EPSILON && sh_hit.object != hit->object)
+	if (sh_hit.t > 0 && sh_hit.object && sh_hit.object != hit->object)
+	{
+		//printf("sombra here how: hit %p sh_hit %p\n", hit->object, sh_hit.object);
 		return 1;
-	printf("Not in shadow\n");
+	}
 	return 0;
 }
 
 int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
 {
 	// debug the is_at_back
-	*dot = vec3_dot(shadow.direction, hit->normal);
-	printf("shadow direction %f %f %f\n", shadow.direction.x, shadow.direction.y, shadow.direction.z);
-	printf("hit normal %f %f %f\n", hit->normal.x, hit->normal.y, hit->normal.z);
-	printf("dot: %f\n", *dot);
+	//
+	*dot = vec3_dot(hit->normal, shadow.direction);
 	if (*dot <= 0)
 		return 1;
-	printf("Not in back\n");
 	return 0;
 }
 
