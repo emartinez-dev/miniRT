@@ -59,7 +59,7 @@ t_v3			ray_at(t_ray *ray, double t);
 
 t_hit			hit_objects(t_ray *ray, t_scene *scene);
 t_hit			hit_sphere(t_sphere *sp, t_ray ray, t_hit hit);
-void			hit_plane(t_plane *pl, t_ray ray, t_hit *hit, t_object *obj);
+t_hit			hit_plane(t_plane *pl, t_ray ray, t_hit hit);
 t_color			color_sphere(t_sphere *sp, t_scene *scene, t_hit *hit);
 t_color			color_plane(t_plane *pl, t_scene *scene, t_hit *hit);
 
