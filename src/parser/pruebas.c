@@ -64,7 +64,12 @@ void	print_amb_light(void *ptr)
 {
 	t_amb_light	*amb_light;
 
+	printf("-------------------------------\n");
+	printf("-------  Ambient Light   ------\n");
+	printf("-------------------------------\n");
 	amb_light = ptr;
+	if (!amb_light)
+		return ;
 	print_color(amb_light->c);
 	printf("ratio: %f\n", amb_light->ratio);
 }
@@ -74,6 +79,11 @@ void	print_light(void *ptr)
 	t_light	*light;
 
 	light = ptr;
+	printf("-------------------------------\n");
+	printf("---------   Light   ----------\n");
+	printf("-------------------------------\n");
+	if (!light)
+		return ;
 	print_color(light->c);
 	print_point(light->p);
 	printf("brightness: %f\n", light->brightness);
