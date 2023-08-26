@@ -55,8 +55,11 @@ int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
 	shadow->direction = vec3_unit(vec3_sub(scene->light->p, hit->point));
 	shadow->origin = hit->point;
 	sh_hit = hit_objects(shadow, scene);
-	if (sh_hit.t > 0 && sh_hit.object && sh_hit.object != hit->object)
+	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != hit->object && sh_hit.t < vec3_distance(scene->light->p, hit->point))
+	{
+		//printf("estoy en la sombra\n");
 		return (1);
+	}
 	return (0);
 }
 
