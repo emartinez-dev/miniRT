@@ -1,9 +1,29 @@
 #include "engine.h"
+#include "MLX42.h"
 #include "vec3.h"
 #include "objects.h"
 #include "parser.h"
 #include <stdio.h>
 #include <float.h>
+
+void	render(mlx_t *mlx, mlx_image_t *img, t_scene *scene)
+{
+	int		h;
+	int		w;
+	t_ray	world_ray;
+
+	h = -1;
+	while (++h < HEIGHT)
+	{
+		w = -1;
+		while (++w < WIDTH)
+		{
+			world_ray = raycast(w, h, scene);
+			mlx_put_pixel(img, w, h, rgb_to_hex(world_ray.color));
+		}
+	}
+	mlx_image_to_window(mlx, img, 0, 0);
+}
 
 t_ray	raycast(double u, double v, t_scene *scene)
 {
@@ -11,18 +31,16 @@ t_ray	raycast(double u, double v, t_scene *scene)
 	t_hit		world_hit;
 
 	cam_ray = camera_ray(scene->camera, u, v);
-	world_hit = hit_objects(&cam_ray, scene);
+	world_hit = hit_objects(&cam_ray, scene->objects);
 	cam_ray.color = raycolor(cam_ray, &world_hit, scene);
 	return (cam_ray);
 }
 
-t_hit hit_objects(t_ray *ray, t_scene *scene)
+t_hit hit_objects(t_ray *ray, t_list *objects)
 {
-	t_list		*objects;
 	t_object	*o;
 	t_hit		world;
 
-	objects = scene->objects;
 	world.t = -1.0;
 	while (objects)
 	{
@@ -46,7 +64,7 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 
 	if (hit->t > EPSILON)
 		return (phong_light(scene, hit));
-	unit_direction = vec3_unit(ray.direction);
+	unit_direction = vec3_normalize(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
 	c = vec3_sum(vec3_multk((t_v3){1.0, 1.0, 1.0}, 1.0 - t), \
 		vec3_multk((t_v3){0.5, 0.7, 1.0}, t));

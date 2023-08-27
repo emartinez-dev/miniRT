@@ -5,7 +5,6 @@
 #include <float.h>
 #include <math.h>
 
-
 t_color	apply_light(t_color color_obj, t_color color_light, double intensity);
 int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow);
 int	is_at_back(t_hit *hit, double *dot, t_ray shadow);
@@ -27,6 +26,26 @@ t_color	phong_light(t_scene *scene, t_hit *hit)
 	return (color);
 }
 
+int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
+{
+	t_hit	sh_hit;
+
+	shadow->direction = vec3_normalize(vec3_sub(scene->light->p, hit->point));
+	shadow->origin = hit->point;
+	sh_hit = hit_objects(shadow, scene->objects);
+	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != hit->object && sh_hit.t < vec3_distance(scene->light->p, hit->point))
+		return (1);
+	return (0);
+}
+
+int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
+{
+	*dot = vec3_dot(hit->normal, shadow.direction);
+	if (*dot <= 0)
+		return (1);
+	return (0);
+}
+
 t_color	apply_light(t_color color_obj, t_color color_light, double intensity)
 {
 	t_color color;
@@ -46,28 +65,5 @@ t_color	get_color_light(t_color color_l, double intensity)
 	color.g = color_l.g * intensity;
 	color.b = color_l.b * intensity;
 	return (color);
-}
-
-int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
-{
-	t_hit	sh_hit;
-
-	shadow->direction = vec3_unit(vec3_sub(scene->light->p, hit->point));
-	shadow->origin = hit->point;
-	sh_hit = hit_objects(shadow, scene);
-	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != hit->object && sh_hit.t < vec3_distance(scene->light->p, hit->point))
-	{
-		//printf("estoy en la sombra\n");
-		return (1);
-	}
-	return (0);
-}
-
-int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
-{
-	*dot = vec3_dot(hit->normal, shadow.direction);
-	if (*dot <= 0)
-		return (1);
-	return (0);
 }
 

@@ -26,3 +26,22 @@ int	solve_quadratic(t_quadratic *q)
 	return (1);
 }
 
+int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+int	min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+double	to_radians(double degrees)
+{
+	return (degrees * (M_PI / 180.0));
+}
+

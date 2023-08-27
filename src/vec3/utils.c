@@ -26,7 +26,7 @@ double	vec3_len(t_v3 v)
 	return (result);
 }
 
-t_v3	vec3_unit(t_v3 v)
+t_v3	vec3_normalize(t_v3 v)
 {
 	t_v3	result;
 	double	len;

@@ -7,18 +7,16 @@
 t_hit hit_plane(t_plane *pl, t_ray ray, t_hit hit)
 {
 	t_hit	temp;
-	t_v3	oc;
-	double	d_point;
 	double	norm_dist;
 	double	norm_ray;
-
+	t_v3	oc;
+	
 	norm_ray = vec3_dot(ray.direction, pl->norm);
 	if (norm_ray >= 0)
 		return (hit);
 	oc = vec3_sub(pl->p, ray.origin);
 	norm_dist = vec3_dot(oc, pl->norm);
-	d_point = norm_dist / norm_ray;
-	temp.t = d_point;
+	temp.t = norm_dist / norm_ray;
 	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
 	{
 		temp.color = pl->c;
