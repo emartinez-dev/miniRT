@@ -2,14 +2,13 @@
 #include "engine.h"
 #include "objects.h"
 #include "vec3.h"
-#include <float.h>
 #include <math.h>
 
-double intersect_sphere(t_ray *ray, t_sphere *sp);
+double	intersect_sphere(t_ray *ray, t_sphere *sp);
 
-t_hit hit_sphere(t_sphere *sp, t_ray ray, t_hit hit)
+t_hit	hit_sphere(t_sphere *sp, t_ray ray, t_hit hit)
 {
-	t_hit temp;
+	t_hit		temp;
 
 	temp.t = intersect_sphere(&ray, sp);
 	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
@@ -22,8 +21,11 @@ t_hit hit_sphere(t_sphere *sp, t_ray ray, t_hit hit)
 	return (hit);
 }
 
-// intersection formula: https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html
-double intersect_sphere(t_ray *ray, t_sphere *sp)
+/* intersection formula: 
+ https://www.scratchapixel.com/lessons/3d-basic-rendering/
+ minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html */
+
+double	intersect_sphere(t_ray *ray, t_sphere *sp)
 {
 	t_quadratic	q;
 
@@ -35,9 +37,7 @@ double intersect_sphere(t_ray *ray, t_sphere *sp)
 		return (-1.0);
 	if (q.t1 < 0 && q.t2 < 0)
 		return (-1);
-	// if t2 is closer than t1 and t2 is positive, return t2
 	if (q.t1 > q.t2 && q.t2 > 0)
 		return (q.t2);
 	return (q.t1);
 }
-

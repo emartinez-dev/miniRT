@@ -35,7 +35,7 @@ t_color	color_sum(t_color color1, t_color color2)
 	return (color);
 }
 
-t_color color_norm(t_color color)
+t_color	color_norm(t_color color)
 {
 	int	max_color;
 
@@ -51,4 +51,3 @@ t_color color_norm(t_color color)
 	color.b *= 255;
 	return (color);
 }
-
