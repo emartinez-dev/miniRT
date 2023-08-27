@@ -84,4 +84,3 @@ void	init_rotation_camera(t_camera *c, t_v3 right, t_v3 up)
 	c->rotation.m[2][3] = c->p.z;
 	c->rotation.m[3][3] = 1;
 }
-

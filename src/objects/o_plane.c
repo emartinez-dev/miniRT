@@ -2,15 +2,14 @@
 #include "objects.h"
 #include "engine.h"
 #include "vec3.h"
-#include <float.h>
 
-t_hit hit_plane(t_plane *pl, t_ray ray, t_hit hit)
+t_hit	hit_plane(t_plane *pl, t_ray ray, t_hit hit)
 {
 	t_hit	temp;
 	double	norm_dist;
 	double	norm_ray;
 	t_v3	oc;
-	
+
 	norm_ray = vec3_dot(ray.direction, pl->norm);
 	if (norm_ray >= 0)
 		return (hit);
@@ -26,4 +25,3 @@ t_hit hit_plane(t_plane *pl, t_ray ray, t_hit hit)
 	}
 	return (hit);
 }
-
