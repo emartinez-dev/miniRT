@@ -5,7 +5,22 @@
 #include <float.h>
 #include <math.h>
 
-int	solve_quadratic(t_quadratic *q);
+double intersect_sphere(t_ray *ray, t_sphere *sp);
+
+t_hit hit_sphere(t_sphere *sp, t_ray ray, t_hit hit)
+{
+	t_hit temp;
+
+	temp.t = intersect_sphere(&ray, sp);
+	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
+	{
+		temp.color = sp->c;
+		temp.point = ray_at(&ray, temp.t);
+		temp.normal = vec3_normalize(vec3_sub(temp.point, sp->p));
+		hit = temp;
+	}
+	return (hit);
+}
 
 // intersection formula: https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html
 double intersect_sphere(t_ray *ray, t_sphere *sp)
@@ -24,20 +39,5 @@ double intersect_sphere(t_ray *ray, t_sphere *sp)
 	if (q.t1 > q.t2 && q.t2 > 0)
 		return (q.t2);
 	return (q.t1);
-}
-
-t_hit hit_sphere(t_sphere *sp, t_ray ray, t_hit hit)
-{
-	t_hit temp;
-
-	temp.t = intersect_sphere(&ray, sp);
-	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
-	{
-		temp.color = sp->c;
-		temp.point = ray_at(&ray, temp.t);
-		temp.normal = vec3_unit(vec3_sub(temp.point, sp->p));
-		hit = temp;
-	}
-	return (hit);
 }
 

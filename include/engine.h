@@ -7,6 +7,9 @@
 
 # include "objects.h"
 # include "parser.h"
+# include "libft.h"
+# include "MLX42.h"
+# include "vec3.h"
 # include <stdio.h>
 
 typedef struct s_ray {
@@ -53,21 +56,23 @@ t_v3			cam_direction(int x, int y, t_camera *c);
 t_ray			camera_ray(t_camera *c, int x, int y);
 
 /* rays.c */
+void			render(mlx_t *mlx, mlx_image_t *img, t_scene *scene);
 t_ray			raycast(double u, double v, t_scene *scene);
 t_color			raycolor(t_ray ray, t_hit *hit, t_scene *scene);
 t_v3			ray_at(t_ray *ray, double t);
 
-t_hit			hit_objects(t_ray *ray, t_scene *scene);
+/* object intersections */
+t_hit			hit_objects(t_ray *ray, t_list *objects);
 t_hit			hit_sphere(t_sphere *sp, t_ray ray, t_hit hit);
 t_hit			hit_plane(t_plane *pl, t_ray ray, t_hit hit);
-t_color			color_sphere(t_sphere *sp, t_scene *scene, t_hit *hit);
-t_color			color_plane(t_plane *pl, t_scene *scene, t_hit *hit);
 
 /*	phong.c	*/
 t_color			phong_light(t_scene *scene, t_hit *hit);
 
 /* maths.c */
 int				solve_quadratic(t_quadratic *q);
-
+int				max(int a, int b);
+int				min(int a, int b);
+double			to_radians(double degrees);
 
 #endif
