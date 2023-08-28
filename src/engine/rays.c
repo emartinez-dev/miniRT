@@ -1,45 +1,57 @@
 #include "engine.h"
+#include "MLX42.h"
 #include "vec3.h"
 #include "objects.h"
 #include "parser.h"
 #include <stdio.h>
 #include <float.h>
 
+void	render(mlx_t *mlx, mlx_image_t *img, t_scene *scene)
+{
+	int		h;
+	int		w;
+	t_ray	world_ray;
+
+	h = -1;
+	while (++h < HEIGHT)
+	{
+		w = -1;
+		while (++w < WIDTH)
+		{
+			world_ray = raycast(w, h, scene);
+			mlx_put_pixel(img, w, h, rgb_to_hex(world_ray.color));
+		}
+	}
+	mlx_image_to_window(mlx, img, 0, 0);
+}
+
 t_ray	raycast(double u, double v, t_scene *scene)
 {
 	t_ray		cam_ray;
 	t_hit		world_hit;
-	t_camera	*cam;
 
-	cam = scene->camera;
-	cam_ray = camera_ray(cam, u, v);
-	world_hit.dist = DBL_MAX;
-	world_hit.object = NULL;
-	hit_objects(cam_ray, &world_hit, scene);
-	/* after hit_objects, world_hit.object is the closest object hit by the ray
-	or NULL if no object was hit */
+	cam_ray = camera_ray(scene->camera, u, v);
+	world_hit = hit_objects(&cam_ray, scene->objects);
 	cam_ray.color = raycolor(cam_ray, &world_hit, scene);
 	return (cam_ray);
 }
 
-int	hit_objects(t_ray ray, t_hit *hit, t_scene *scene)
+t_hit hit_objects(t_ray *ray, t_list *objects)
 {
-	t_list		*objects;
 	t_object	*o;
+	t_hit		world;
 
-	objects = scene->objects;
+	world.t = -1.0;
 	while (objects)
 	{
 		o = (t_object *)objects->content;
 		if (o->type == OBJ_SPHERE)
-			hit_sphere((t_sphere *)o->ptr, ray, hit, o);
-		else if (o->type == OBJ_PLANE)
-			hit_plane((t_plane *)o->ptr, ray, hit, o);
+			world = hit_sphere((t_sphere *)o->ptr, *ray, world);
+		if (o->type == OBJ_PLANE)
+			world = hit_plane((t_plane *)o->ptr, *ray, world);
 		objects = objects->next;
 	}
-	if (hit->object)
-		return (1);
-	return (0);
+	return (world);
 }
 
 /* this function returns the color of the object it hit or the "sky" color */
@@ -50,24 +62,9 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 	t_color		color;
 	double		t;
 
-//	if (hit->object && hit->object->type == OBJ_SPHERE)
-//		return (color_sphere((t_sphere *)hit->object->ptr, scene, hit));
-//	if (hit->object && hit->object->type == OBJ_PLANE)
-//		return (color_plane((t_plane *) hit->object->ptr, scene, hit));
-/*
-	if (hit->object && hit->object->type == OBJ_SPHERE)
-		return (phong_sphere((t_sphere *)hit->object->ptr, scene, hit));
-	if (hit->object && hit->object->type == OBJ_PLANE)
-		return (phong_plane((t_plane *) hit->object->ptr, scene, hit));
-
-*/	// Try same function for all objects
-	if (hit->object)
-	{
-//		cyl = (t_cylinder *) hit->object->ptr;
+	if (hit->t > EPSILON)
 		return (phong_light(scene, hit));
-	}		
-	// sky color part
-	unit_direction = vec3_unit(ray.direction);
+	unit_direction = vec3_normalize(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
 	c = vec3_sum(vec3_multk((t_v3){1.0, 1.0, 1.0}, 1.0 - t), \
 		vec3_multk((t_v3){0.5, 0.7, 1.0}, t));
@@ -83,3 +80,4 @@ t_v3	ray_at(t_ray *ray, double t)
 	r = vec3_sum(ray->origin, vec3_multk(ray->direction, t));
 	return (r);
 }
+
