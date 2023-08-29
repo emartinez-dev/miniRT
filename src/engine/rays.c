@@ -6,23 +6,31 @@
 #include <stdio.h>
 #include <float.h>
 
-void	render(mlx_t *mlx, mlx_image_t *img, t_scene *scene)
+//void	render(mlx_t *mlx, mlx_image_t *img, t_scene *scene)
+void	render(t_window *win, t_scene *scene)
+
 {
 	int		h;
 	int		w;
 	t_ray	world_ray;
 
 	h = -1;
-	while (++h < HEIGHT)
+	while (++h < win->m_height)
 	{
 		w = -1;
-		while (++w < WIDTH)
+		while (++w < win->m_width)
 		{
 			world_ray = raycast(w, h, scene);
-			mlx_put_pixel(img, w, h, rgb_to_hex(world_ray.color));
+			mlx_put_pixel(win->origin_img, w, h, rgb_to_hex(world_ray.color));
 		}
 	}
-	mlx_image_to_window(mlx, img, 0, 0);
+	win->w_height = HEIGHT;
+	win->w_width = WIDTH;
+	win->render_img = NULL;
+	if (!resize_image(win, win->origin_img))
+		mlx_terminate(win->mlx);
+	if (win->render_img)
+		mlx_image_to_window(win->mlx, win->render_img, 0, 0);
 }
 
 t_ray	raycast(double u, double v, t_scene *scene)
@@ -36,7 +44,7 @@ t_ray	raycast(double u, double v, t_scene *scene)
 	return (cam_ray);
 }
 
-t_hit hit_objects(t_ray *ray, t_list *objects)
+t_hit	hit_objects(t_ray *ray, t_list *objects)
 {
 	t_object	*o;
 	t_hit		world;
@@ -80,4 +88,3 @@ t_v3	ray_at(t_ray *ray, double t)
 	r = vec3_sum(ray->origin, vec3_multk(ray->direction, t));
 	return (r);
 }
-
