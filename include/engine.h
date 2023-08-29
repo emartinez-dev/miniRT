@@ -75,4 +75,7 @@ int				max(int a, int b);
 int				min(int a, int b);
 double			to_radians(double degrees);
 
+/* hooks.c */
+void			key_hook(void *mlx);
+
 #endif
