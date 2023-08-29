@@ -46,6 +46,7 @@ static void manage_window(t_scene *scene)
 	camera_init(scene->camera);
 	print_todo(scene);
 	render(mlx, img, scene);
+	mlx_loop_hook(mlx, key_hook, &mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 }
