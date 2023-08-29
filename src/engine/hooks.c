@@ -47,3 +47,15 @@ static void	fill_pixels(t_window *win, uint32_t *src, uint32_t *dst)
 				* win->origin_img->width + (uint32_t)(w * win->w_step)];
 	}
 }
+
+void	resize_hook(int32_t width, int32_t height, void *window)
+{
+	t_window	**win;
+
+	win = (t_window **) window;
+	(*win)->w_width = width;
+	(*win)->w_height = height;
+	if (!resize_image((*win), (*win)->origin_img))
+		mlx_terminate((*win)->mlx);
+	mlx_image_to_window((*win)->mlx, (*win)->render_img, 0, 0);
+}

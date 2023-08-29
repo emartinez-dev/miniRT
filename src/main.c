@@ -52,6 +52,7 @@ static void	manage_window(t_scene *scene, t_window *w)
 	print_todo(scene);
 	render(w, scene);
 	mlx_loop_hook(w->mlx, key_hook, &(w->mlx));
+	mlx_resize_hook(w->mlx, &resize_hook, &w);
 	mlx_loop(w->mlx);
 	mlx_terminate(w->mlx);
 }
