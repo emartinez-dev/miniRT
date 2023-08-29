@@ -43,6 +43,19 @@ typedef struct s_quadratic {
 	t_v3	normal;
 }	t_quadratic;
 
+typedef	struct s_window
+{
+	mlx_t		*mlx;
+	mlx_image_t	*origin_img;
+	mlx_image_t	*render_img;
+	int			m_width;
+	int			m_height;
+	int			w_width;
+	int			w_height;
+	double		wstep;
+	double		hstep;
+}	t_window;
+
 /* colors.c */
 unsigned int	rgb_to_hex(t_color color);
 t_color			clamp_colors(t_color color);

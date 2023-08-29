@@ -12,12 +12,13 @@
 }
  */
 
-static void manage_window(t_scene *scene);
+static void manage_window(t_scene *scene, t_window *w);
 
 
 int	main(int argc, char **argv)
 {
 	t_scene		scene;
+	t_window	window;
 
 	//atexit(ft_leaks);
 	if (params_error(argc, argv, &scene))
@@ -29,24 +30,22 @@ int	main(int argc, char **argv)
 		free_scene(&scene);
 		return (1);
 	}
-	manage_window(&scene);
+	manage_window(&scene, &window);
 	free_scene(&scene);
 	return (0);
 }
 
-static void manage_window(t_scene *scene)
+static void manage_window(t_scene *scene, t_window *w)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-
-	mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
-	if (!mlx)
+	
+	w->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
+	if (!w->mlx)
 		return ;
-	img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	w->origin_img = mlx_new_image(w->mlx, WIDTH, HEIGHT);
 	camera_init(scene->camera);
 	print_todo(scene);
-	render(mlx, img, scene);
-	mlx_loop_hook(mlx, key_hook, &mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	render(w->mlx, w->origin_img, scene);
+	mlx_loop_hook(w->mlx, key_hook, &(w->mlx));
+	mlx_loop(w->mlx);
+	mlx_terminate(w->mlx);
 }
