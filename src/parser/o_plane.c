@@ -48,4 +48,3 @@ int	errors_plane(t_plane *plane, t_object *obj)
 	}
 	return (error);
 }
-

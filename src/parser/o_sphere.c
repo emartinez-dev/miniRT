@@ -48,4 +48,3 @@ int	errors_sphere(t_sphere *sphere, t_object *obj)
 	}
 	return (error);
 }
-

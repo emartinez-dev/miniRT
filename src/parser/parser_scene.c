@@ -41,8 +41,8 @@ int	extract_objects(t_scene *scene)
 	}
 	if (!scene->light || !scene->ambient_light)
 	{
-		ft_printf("%s%s%s", ERROR_LIGHT, ERROR_PARTIAL, "No light or ambient light" \
-			" found\n");
+		ft_printf("%s%s%s", ERROR_LIGHT, ERROR_PARTIAL,
+			"No light or ambient light found\n");
 		scene->errors = 1;
 	}
 	return (scene->errors);

@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	manage_window(&scene, &window);
+	mlx_terminate(window.mlx);
 	free_scene(&scene);
 	return (0);
 }
@@ -39,20 +40,21 @@ static void	manage_window(t_scene *scene, t_window *w)
 	mlx_get_monitor_size(1, &w->m_width, &w->m_height);
 	if (!w->m_width || !w->m_height)
 	{
-		printf("\nNo monitor detected\n");
-		w->m_width = WIDTH + 1;
-		w->m_height = HEIGHT + 1;
+		ft_printf("\nNo monitor detected\n");
+		w->m_width = WIDTH;
+		w->m_height = HEIGHT;
 	}
-	printf("W: %i, H: %i\n", w->m_width, w->m_height);
+	ft_printf("W: %i, H: %i\n", w->m_width, w->m_height);
 	w->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
 	if (!w->mlx)
 		return ;
 	w->origin_img = mlx_new_image(w->mlx, w->m_width, w->m_height);
+	if (!w->origin_img)
+		return ;
 	camera_init(scene->camera);
 	print_todo(scene);
 	render(w, scene);
 	mlx_loop_hook(w->mlx, key_hook, &(w->mlx));
 	mlx_resize_hook(w->mlx, &resize_hook, &w);
 	mlx_loop(w->mlx);
-	mlx_terminate(w->mlx);
 }

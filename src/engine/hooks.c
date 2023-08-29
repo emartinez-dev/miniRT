@@ -18,14 +18,13 @@ int	resize_image(t_window *w, mlx_image_t *src)
 	MLX_NONNULL(w->mlx);
 	if (w->render_img)
 		mlx_delete_image(w->mlx, w->render_img);
-	if (w->w_width != src->width || w->w_height != src->height)
-	{
-		w->render_img = mlx_new_image(w->mlx, w->w_width, w->w_height);
-		w->w_step = (double)src->width / w->w_width;
-		w->h_step = (double)src->height / w->w_height;
-		fill_pixels(w, (uint32_t *)src->pixels,
-			(uint32_t *)w->render_img->pixels);
-	}
+	w->render_img = mlx_new_image(w->mlx, w->w_width, w->w_height);
+	if (!w->render_img)
+		return (0);
+	w->w_step = (double)src->width / w->w_width;
+	w->h_step = (double)src->height / w->w_height;
+	fill_pixels(w, (uint32_t *)src->pixels,
+		(uint32_t *)w->render_img->pixels);
 	return (1);
 }
 

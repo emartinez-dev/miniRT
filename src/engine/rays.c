@@ -29,8 +29,7 @@ void	render(t_window *win, t_scene *scene)
 	win->render_img = NULL;
 	if (!resize_image(win, win->origin_img))
 		mlx_terminate(win->mlx);
-	if (win->render_img)
-		mlx_image_to_window(win->mlx, win->render_img, 0, 0);
+	mlx_image_to_window(win->mlx, win->render_img, 0, 0);
 }
 
 t_ray	raycast(double u, double v, t_scene *scene)
