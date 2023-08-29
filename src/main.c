@@ -12,12 +12,12 @@
 }
  */
 
-static void manage_window(t_scene *scene);
-
+static void	manage_window(t_scene *scene, t_window *w);
 
 int	main(int argc, char **argv)
 {
 	t_scene		scene;
+	t_window	window;
 
 	//atexit(ft_leaks);
 	if (params_error(argc, argv, &scene))
@@ -29,24 +29,32 @@ int	main(int argc, char **argv)
 		free_scene(&scene);
 		return (1);
 	}
-	manage_window(&scene);
+	manage_window(&scene, &window);
+	mlx_terminate(window.mlx);
 	free_scene(&scene);
 	return (0);
 }
 
-static void manage_window(t_scene *scene)
+static void	manage_window(t_scene *scene, t_window *w)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-
-	mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
-	if (!mlx)
+	mlx_get_monitor_size(1, &w->m_width, &w->m_height);
+	if (!w->m_width || !w->m_height)
+	{
+		ft_printf("\nNo monitor detected\n");
+		w->m_width = WIDTH;
+		w->m_height = HEIGHT;
+	}
+	ft_printf("W: %i, H: %i\n", w->m_width, w->m_height);
+	w->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
+	if (!w->mlx)
 		return ;
-	img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	w->origin_img = mlx_new_image(w->mlx, w->m_width, w->m_height);
+	if (!w->origin_img)
+		return ;
 	camera_init(scene->camera);
 	print_todo(scene);
-	render(mlx, img, scene);
-	mlx_loop_hook(mlx, key_hook, &mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	render(w, scene);
+	mlx_loop_hook(w->mlx, key_hook, &(w->mlx));
+	mlx_resize_hook(w->mlx, &resize_hook, &w);
+	mlx_loop(w->mlx);
 }

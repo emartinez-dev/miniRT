@@ -43,6 +43,19 @@ typedef struct s_quadratic {
 	t_v3	normal;
 }	t_quadratic;
 
+typedef struct s_window
+{
+	mlx_t		*mlx;
+	mlx_image_t	*origin_img;
+	mlx_image_t	*render_img;
+	int			m_width;
+	int			m_height;
+	uint32_t	w_width;
+	uint32_t	w_height;
+	double		w_step;
+	double		h_step;
+}	t_window;
+
 /* colors.c */
 unsigned int	rgb_to_hex(t_color color);
 t_color			clamp_colors(t_color color);
@@ -56,7 +69,8 @@ t_v3			cam_direction(int x, int y, t_camera *c);
 t_ray			camera_ray(t_camera *c, int x, int y);
 
 /* rays.c */
-void			render(mlx_t *mlx, mlx_image_t *img, t_scene *scene);
+//void			render(mlx_t *mlx, mlx_image_t *img, t_scene *scene);
+void			render(t_window *w, t_scene *scene);
 t_ray			raycast(double u, double v, t_scene *scene);
 t_color			raycolor(t_ray ray, t_hit *hit, t_scene *scene);
 t_v3			ray_at(t_ray *ray, double t);
@@ -77,5 +91,7 @@ double			to_radians(double degrees);
 
 /* hooks.c */
 void			key_hook(void *mlx);
+int				resize_image(t_window *w, mlx_image_t *src);
+void			resize_hook(int32_t width, int32_t height, void *window);
 
 #endif

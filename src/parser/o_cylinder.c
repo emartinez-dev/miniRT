@@ -48,4 +48,3 @@ int	errors_cylinder(t_cylinder *cylinder, t_object *obj)
 	}
 	return (error);
 }
-

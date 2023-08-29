@@ -8,6 +8,7 @@
 # include "ft_printf.h"
 # include "objects.h"
 # include <math.h>
+# include "MLX42.h"
 
 # define ERROR_ARGC "[ERROR] invalid input.\n\tUsage: ./miniRT [filename].rt\n"
 # define ERROR_EXT "[ERROR] invalid scene. File format must be .rt\n"
