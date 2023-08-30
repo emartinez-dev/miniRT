@@ -6,11 +6,10 @@
 #include <limits.h>
 #include "vec3.h"
 
-/* void	ft_leaks(void)
+/*void	ft_leaks(void)
 {
 	system("leaks -q miniRT");
-}
- */
+}*/
 
 static void	manage_window(t_scene *scene, t_window *w);
 
@@ -19,7 +18,7 @@ int	main(int argc, char **argv)
 	t_scene		scene;
 	t_window	window;
 
-	//atexit(ft_leaks);
+//	atexit(ft_leaks);
 	if (params_error(argc, argv, &scene))
 		return (1);
 	read_scene(&scene);
@@ -37,17 +36,16 @@ int	main(int argc, char **argv)
 
 static void	manage_window(t_scene *scene, t_window *w)
 {
-	mlx_get_monitor_size(1, &w->m_width, &w->m_height);
+	w->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
+	if (!w->mlx)
+		return ;
+	mlx_get_monitor_size(0, &w->m_width, &w->m_height);
 	if (!w->m_width || !w->m_height)
 	{
 		ft_printf("\nNo monitor detected\n");
 		w->m_width = WIDTH;
 		w->m_height = HEIGHT;
 	}
-	ft_printf("W: %i, H: %i\n", w->m_width, w->m_height);
-	w->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
-	if (!w->mlx)
-		return ;
 	w->origin_img = mlx_new_image(w->mlx, w->m_width, w->m_height);
 	if (!w->origin_img)
 		return ;

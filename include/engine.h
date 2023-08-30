@@ -52,8 +52,13 @@ typedef struct s_window
 	int			m_height;
 	uint32_t	w_width;
 	uint32_t	w_height;
+	uint32_t	n_width;
+	uint32_t	n_height;
 	double		w_step;
 	double		h_step;
+	double		step;
+	int			pos_x;
+	int			pos_y;
 }	t_window;
 
 /* colors.c */
