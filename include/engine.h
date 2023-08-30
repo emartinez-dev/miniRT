@@ -69,14 +69,14 @@ t_color			color_norm(t_color color1);
 
 /* camera_geometry.c */
 void			init_rotation_camera(t_camera *c, t_v3 right, t_v3 up);
-void			camera_init(t_camera *c);
-t_v3			cam_direction(int x, int y, t_camera *c);
-t_ray			camera_ray(t_camera *c, int x, int y);
+void			camera_init(t_camera *c, t_window *w);
+t_v3			cam_direction(int x, int y, t_camera *c, t_window *win);
+t_ray			camera_ray(t_camera *c, int x, int y, t_window *w);
 
 /* rays.c */
 //void			render(mlx_t *mlx, mlx_image_t *img, t_scene *scene);
 void			render(t_window *w, t_scene *scene);
-t_ray			raycast(double u, double v, t_scene *scene);
+t_ray			raycast(double u, double v, t_scene *scene, t_window *w);
 t_color			raycolor(t_ray ray, t_hit *hit, t_scene *scene);
 t_v3			ray_at(t_ray *ray, double t);
 

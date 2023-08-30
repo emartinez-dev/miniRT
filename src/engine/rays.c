@@ -20,7 +20,7 @@ void	render(t_window *win, t_scene *scene)
 		w = -1;
 		while (++w < win->m_width)
 		{
-			world_ray = raycast(w, h, scene);
+			world_ray = raycast(w, h, scene, win);
 			mlx_put_pixel(win->origin_img, w, h, rgb_to_hex(world_ray.color));
 		}
 	}
@@ -31,12 +31,12 @@ void	render(t_window *win, t_scene *scene)
 		mlx_terminate(win->mlx);
 }
 
-t_ray	raycast(double u, double v, t_scene *scene)
+t_ray	raycast(double u, double v, t_scene *scene, t_window *w)
 {
 	t_ray		cam_ray;
 	t_hit		world_hit;
 
-	cam_ray = camera_ray(scene->camera, u, v);
+	cam_ray = camera_ray(scene->camera, u, v, w);
 	world_hit = hit_objects(&cam_ray, scene->objects);
 	cam_ray.color = raycolor(cam_ray, &world_hit, scene);
 	return (cam_ray);

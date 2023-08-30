@@ -16,7 +16,7 @@ the camera works as the following:
 		camera, so it will always be perpendicular to the camera and the up
 		vector. (pointing to the front)
 */
-void	camera_init(t_camera *c)
+void	camera_init(t_camera *c, t_window *w)
 {
 	t_v3	look_at;
 	t_v3	right;
@@ -32,26 +32,26 @@ void	camera_init(t_camera *c)
 	right = vec3_cross(up, c->norm);
 	right = vec3_normalize(right);
 	init_rotation_camera(c, right, up);
-	c->aspect_ratio = WIDTH / (double)HEIGHT;
+	c->aspect_ratio = w->m_width / (double)w->m_height;
 	c->fov = tan(to_radians(c->h_fov) / 2.0);
 }
 
-t_v3	cam_direction(int x, int y, t_camera *c)
+t_v3	cam_direction(int x, int y, t_camera *c, t_window *win)
 {
 	double	w;
 	double	h;
 
-	w = (2 * ((x + 0.5) / WIDTH) - 1) * c->aspect_ratio * c->fov;
-	h = (1 - 2 * ((y + 0.5) / HEIGHT)) * c->fov;
+	w = (2 * ((x + 0.5) / win->m_width) - 1) * c->aspect_ratio * c->fov;
+	h = (1 - 2 * ((y + 0.5) / win->m_height)) * c->fov;
 	return ((t_v3){w, h, 1});
 }
 
-t_ray	camera_ray(t_camera *c, int x, int y)
+t_ray	camera_ray(t_camera *c, int x, int y, t_window *w)
 {
 	t_ray	cam_ray;
 
 	cam_ray.origin = c->p;
-	cam_ray.direction = cam_direction(x, y, c);
+	cam_ray.direction = cam_direction(x, y, c, w);
 	cam_ray.direction = vec3_mulm(cam_ray.direction, c->rotation);
 	cam_ray.direction = vec3_sub(cam_ray.direction, cam_ray.origin);
 	cam_ray.direction = vec3_normalize(cam_ray.direction);

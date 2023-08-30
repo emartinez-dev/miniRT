@@ -49,7 +49,7 @@ static void	manage_window(t_scene *scene, t_window *w)
 	w->origin_img = mlx_new_image(w->mlx, w->m_width, w->m_height);
 	if (!w->origin_img)
 		return ;
-	camera_init(scene->camera);
+	camera_init(scene->camera, w);
 	print_todo(scene);
 	render(w, scene);
 	mlx_loop_hook(w->mlx, key_hook, &(w->mlx));
