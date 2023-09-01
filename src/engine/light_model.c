@@ -4,68 +4,88 @@
 #include "engine.h"
 #include <math.h>
 
-t_color	apply_light(t_color color_obj, t_color color_light, double intensity);
-int		is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow);
-int		is_at_back(t_hit *hit, double *dot, t_ray shadow);
-t_color	get_color_light(t_color color_l, double intensity);
+static void	apply_diffuse(t_phong *ph, t_object *lights, t_scene *scene);
+static void	apply_ambient(t_phong *ph, t_object *lights);
+static void	apply_specular(t_phong *ph);
+static void	apply_light(t_phong *ph, double factor);
 
 t_color	phong_light(t_scene *scene, t_hit *hit)
 {
-	t_color	color_ambient;
-	t_color	color_difusse;
-	t_ray	shadow_ray;
-	t_color	color;
+	t_phong	ph;
+	t_list	*lights;
+
+	ph.hit = hit;
+	ph.color = (t_color){0, 0, 0};
+	lights = scene->lights;
+	while (lights)
+	{
+		if (((t_object *)lights->content)->type == OBJ_LIGHT)
+			apply_diffuse(&ph, (t_object *)lights->content, scene);
+		else if (((t_object *)lights->content)->type == OBJ_AMBIENT_LIGHT)
+			apply_ambient(&ph, (t_object *)lights->content);
+		lights = lights->next;
+	}
+	return (clamp_colors(ph.color));
+}
+
+static void	apply_diffuse(t_phong *ph, t_object *lights, t_scene *scene)
+{
+	ph->color_light = ((t_light *)lights->ptr)->c;
+	ph->intensity = ((t_light *)lights->ptr)->brightness;
+	ph->p = ((t_light *)lights->ptr)->p;
+	if (!is_in_shadow(scene, ph)
+		&& !is_at_back(ph))
+	{
+		apply_light(ph, ph->dot * DIFFUSE);
+		apply_specular(ph);
+	}
+}
+
+static void	apply_ambient(t_phong *ph, t_object *lights)
+{
+	ph->color_light = ((t_amb_light *)lights->ptr)->c;
+	ph->intensity = ((t_amb_light *)lights->ptr)->ratio;
+	apply_light(ph, AMBIENT);
+}
+
+// Don't affect color 0 //
+/*
+void	apply_light(t_phong *ph, double factor)
+{
+	ph->color.r += (ph->hit->color.r * ph->color_light.r / 255)
+		* ph->intensity * factor;
+	ph->color.g += (ph->hit->color.g * ph->color_light.g / 255)
+		* ph->intensity * factor;
+	ph->color.b += (ph->hit->color.b * ph->color_light.b / 255)
+		* ph->intensity * factor;
+	ph->color = clamp_colors(ph->color);
+}*/
+
+// Afect all chanels BEST APPROACH//
+static void	apply_light(t_phong *ph, double factor)
+{
+	ph->color.r += (ph->hit->color.r + ph->color_light.r / 2)
+		* ph->intensity * factor;
+	ph->color.g += (ph->hit->color.g + ph->color_light.g / 2)
+		* ph->intensity * factor;
+	ph->color.b += (ph->hit->color.b + ph->color_light.b / 2)
+		* ph->intensity * factor;
+	ph->color = clamp_colors(ph->color);
+}
+
+static void	apply_specular(t_phong *ph)
+{
+	t_v3	reflection;
+	t_v3	incident;
 	double	dot;
+	double	factor;
 
-	color_ambient = apply_light(hit->color, scene->ambient_light->c,
-			scene->ambient_light->ratio);
-	if (is_in_shadow(scene, hit, &shadow_ray)
-		|| is_at_back(hit, &dot, shadow_ray))
-		return (color_ambient);
-	color_difusse = apply_light(hit->color, scene->light->c,
-			(scene->light->brightness * dot));
-	color = color_sum(color_ambient, color_difusse);
-	return (color);
-}
-
-int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow)
-{
-	t_hit	sh_hit;
-
-	shadow->direction = vec3_normalize(vec3_sub(scene->light->p, hit->point));
-	shadow->origin = hit->point;
-	sh_hit = hit_objects(shadow, scene->objects);
-	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != hit->object
-		&& sh_hit.t < vec3_distance(scene->light->p, hit->point))
-		return (1);
-	return (0);
-}
-
-int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
-{
-	*dot = vec3_dot(hit->normal, shadow.direction);
-	if (*dot <= 0)
-		return (1);
-	return (0);
-}
-
-t_color	apply_light(t_color color_obj, t_color color_light, double intensity)
-{
-	t_color	color;
-
-	color.r = (color_obj.r + color_light.r) * intensity;
-	color.g = (color_obj.g + color_light.g) * intensity;
-	color.b = (color_obj.b + color_light.b) * intensity;
-	color = clamp_colors(color);
-	return (color);
-}
-
-t_color	get_color_light(t_color color_l, double intensity)
-{
-	t_color	color;
-
-	color.r = color_l.r * intensity;
-	color.g = color_l.g * intensity;
-	color.b = color_l.b * intensity;
-	return (color);
+	incident = vec3_negative(ph->shadow.direction);
+	reflection = vec3_reflection(incident, ph->hit->normal);
+	dot = vec3_dot(reflection, ph->hit->view);
+	if (dot <= EPSILON)
+		return ;
+	else
+	factor = pow(dot, SHININESS);
+	apply_light(ph, factor * SPECULAR);
 }

@@ -5,6 +5,28 @@
 # define HEIGHT 1000
 # define EPSILON 0.000001
 
+//	Materials	//
+
+# define AMBIENT 1.0
+# define DIFFUSE 1.0
+# define SPECULAR 1.0
+# define SHININESS 32.0
+
+/*	EXAMPLE METAL  */
+/*
+# define AMBIENT 0.2
+# define DIFFUSE 0.7
+# define SPECULAR 0.5
+# define SHININESS 32.0
+*/
+/*	EXAMPLE  PLASTIC */
+/*
+# define AMBIENT 0.1
+# define DIFFUSE 0.8
+# define SPECULAR 0.3
+# define SHININESS 16.0
+*/
+
 # include "objects.h"
 # include "parser.h"
 # include "libft.h"
@@ -25,6 +47,7 @@ typedef struct s_hit
 	double		t;
 	t_object	*object;
 	t_color		color;
+	t_v3		view;
 }	t_hit;
 
 typedef struct s_quadratic {
@@ -60,6 +83,17 @@ typedef struct s_window
 	int			pos_x;
 	int			pos_y;
 }	t_window;
+
+typedef struct s_phong
+{
+	t_hit	*hit;
+	t_ray	shadow;
+	t_color	color;
+	t_color	color_light;
+	double	dot;
+	double	intensity;
+	t_v3	p;
+}	t_phong;
 
 /* colors.c */
 unsigned int	rgb_to_hex(t_color color);
@@ -98,5 +132,10 @@ double			to_radians(double degrees);
 void			key_hook(void *mlx);
 int				resize_image(t_window *w, mlx_image_t *src);
 void			resize_hook(int32_t width, int32_t height, void *window);
+
+/* light_utils.c */
+void			normalize_intensity(t_list *lights);
+int				is_in_shadow(t_scene *scene, t_phong *ph);
+int				is_at_back(t_phong *ph);
 
 #endif

@@ -33,6 +33,9 @@ t_v3	vec3_divk(t_v3 v, double k);
 /* Subtract v2 to v1 */
 t_v3	vec3_sub(t_v3 v1, t_v3 v2);
 
+/* Substract k to v */
+t_v3	vec3_subk(t_v3 v, double k);
+
 /* sum.c */
 
 /* Sum v2 to v1 */
@@ -54,5 +57,10 @@ t_v3	vec3_normalize(t_v3 v);
 
 /* returns the distance between two vectors */
 double	vec3_distance(t_v3 v1, t_v3 v2);
+
+/*	refelctions */
+
+/*	returns the reflection direction */
+t_v3	vec3_reflection(t_v3 incident, t_v3 normal);
 
 #endif

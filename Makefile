@@ -15,6 +15,7 @@ OBJ_DIR		= obj/
 _SRC 		=	main.c\
 				vec3/div.c\
 				vec3/mult.c\
+				vec3/reflection.c\
 				vec3/sub.c\
 				vec3/sum.c\
 				vec3/utils.c\
@@ -22,6 +23,7 @@ _SRC 		=	main.c\
 				engine/camera_geometry.c\
 				engine/colors.c\
 				engine/light_model.c\
+				engine/light_utils.c\
 				engine/maths.c\
 				engine/hooks.c\
 				parser/colors.c\

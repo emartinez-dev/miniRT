@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 		free_scene(&scene);
 		return (1);
 	}
+	normalize_intensity(scene.lights);
 	manage_window(&scene, &window);
 	mlx_terminate(window.mlx);
 	free_scene(&scene);

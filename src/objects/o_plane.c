@@ -21,6 +21,7 @@ t_hit	hit_plane(t_plane *pl, t_ray ray, t_hit hit)
 		temp.color = pl->c;
 		temp.point = ray_at(&ray, temp.t);
 		temp.normal = pl->norm;
+		temp.view = ray.direction;
 		hit = temp;
 	}
 	return (hit);

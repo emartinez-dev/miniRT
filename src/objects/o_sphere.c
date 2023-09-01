@@ -16,6 +16,7 @@ t_hit	hit_sphere(t_sphere *sp, t_ray ray, t_hit hit)
 		temp.color = sp->c;
 		temp.point = ray_at(&ray, temp.t);
 		temp.normal = vec3_normalize(vec3_sub(temp.point, sp->p));
+		temp.view = ray.direction;
 		hit = temp;
 	}
 	return (hit);
