@@ -32,10 +32,15 @@ void	normalize_intensity(t_list *lights)
 int	is_in_shadow(t_scene *scene, t_phong *ph)
 {
 	t_hit	sh_hit;
+	t_ray	*shadow_ray;
 
-	ph->shadow.direction = vec3_normalize(vec3_sub(ph->p, ph->hit->point));
-	ph->shadow.origin = ph->hit->point;
-	sh_hit = hit_objects(&ph->shadow, scene->objects);
+	shadow_ray = ft_calloc(1, sizeof(t_ray));
+	shadow_ray->direction = vec3_normalize(vec3_sub(ph->p, ph->hit->point));
+	shadow_ray->origin = ph->hit->point;
+	//ph->shadow.direction = vec3_normalize(vec3_sub(ph->p, ph->hit->point));
+	//ph->shadow.origin = ph->hit->point;
+	ph->shadow = *shadow_ray;
+	sh_hit = hit_objects(shadow_ray, scene->objects);
 	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != ph->hit->object
 		&& sh_hit.t < vec3_distance(ph->p, ph->hit->point))
 		return (1);
