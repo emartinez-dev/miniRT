@@ -43,7 +43,11 @@ int	is_in_shadow(t_scene *scene, t_phong *ph)
 	sh_hit = hit_objects(shadow_ray, scene->objects);
 	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != ph->hit->object
 		&& sh_hit.t < vec3_distance(ph->p, ph->hit->point))
+	{
+		free(shadow_ray);
 		return (1);
+	}
+	free(shadow_ray);
 	return (0);
 }
 

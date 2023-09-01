@@ -1,6 +1,6 @@
 NAME 		= miniRT
 
-CC			= gcc -g
+CC			= gcc -Ofast
 FLAGS 		= -Wall -Wextra -Werror
 RM			= rm -rf
 
