@@ -29,23 +29,23 @@ void	normalize_intensity(t_list *lights)
 	}
 }
 
-int	is_in_shadow(t_scene *scene, t_phong *ph)
+int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow, t_light *light)
 {
 	t_hit	sh_hit;
 
-	ph->shadow.direction = vec3_normalize(vec3_sub(ph->p, ph->hit->point));
-	ph->shadow.origin = ph->hit->point;
-	sh_hit = hit_objects(&ph->shadow, scene->objects);
-	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != ph->hit->object
-		&& sh_hit.t < vec3_distance(ph->p, ph->hit->point))
+	shadow->direction = vec3_normalize(vec3_sub(light->p, hit->point));
+	shadow->origin = hit->point;
+	sh_hit = hit_objects(shadow, scene->objects);
+	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != hit->object
+		&& sh_hit.t < vec3_distance(light->p, hit->point))
 		return (1);
 	return (0);
 }
 
-int	is_at_back(t_phong *ph)
+int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
 {
-	ph->dot = vec3_dot(ph->hit->normal, ph->shadow.direction);
-	if (ph->dot <= EPSILON)
+	*dot = vec3_dot(hit->normal, shadow.direction);
+	if (*dot <= 0.0)
 		return (1);
 	return (0);
 }

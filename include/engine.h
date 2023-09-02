@@ -135,7 +135,9 @@ void			resize_hook(int32_t width, int32_t height, void *window);
 
 /* light_utils.c */
 void			normalize_intensity(t_list *lights);
-int				is_in_shadow(t_scene *scene, t_phong *ph);
+int				is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow, t_light *light);
+int				is_at_back(t_hit *hit, double *dot, t_ray shadow);
+/*int				is_in_shadow(t_scene *scene, t_phong *ph);
 int				is_at_back(t_phong *ph);
-
+*/
 #endif
