@@ -93,11 +93,14 @@ typedef struct s_camera
 	t_m4	rotation;
 }	t_camera;
 
+typedef struct s_light	t_light;
+
 typedef struct s_light
 {
 	t_v3	p;
 	double	brightness;
 	t_color	c;
+	t_light	*next;
 }	t_light;
 
 #endif
