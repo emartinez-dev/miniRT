@@ -18,6 +18,7 @@ t_object	*parse_obj_light(char *line)
 		get_xyz(split[1], &light->p, obj);
 		light->brightness = ft_atof(split[2]);
 		get_color(split[3], &light->c);
+		light->next = NULL;
 	}
 	else
 		obj->error = 1;
@@ -50,12 +51,25 @@ int	errors_light(t_light *light, t_object *obj)
 void	get_lights(t_scene *scene)
 {
 	t_list		*h;
+	t_light		*light;
 
 	h = scene->lights;
+	scene->light = NULL;
 	while (h)
 	{
 		if (((t_object *)h->content)->type == OBJ_LIGHT)
-			scene->light = (t_light *)((t_object *)h->content)->ptr;
+		{
+			if (!scene->light)
+			{
+				scene->light = (t_light *)((t_object *)h->content)->ptr;
+				light = scene->light;
+			}
+			else
+			{
+				light->next = (t_light *)((t_object *)h->content)->ptr;
+				light = light->next;
+			}
+		}
 		else if (((t_object *)h->content)->type == OBJ_AMBIENT_LIGHT)
 			scene->ambient_light = (t_amb_light *)((t_object *)h->content)->ptr;
 		h = h->next;
