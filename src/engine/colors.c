@@ -13,6 +13,17 @@ unsigned int	rgb_to_hex(t_color color)
 	return (result);
 }
 
+t_color	hex_to_rgb(int color)
+{
+	t_color	result;
+
+	result.r = (color >> 24) & 0xff;
+	result.g = (color >> 16) & 0xff;
+	result.b = (color >> 8) & 0xff;
+	result = clamp_colors(result);
+	return (result);
+}
+
 t_color	clamp_colors(t_color color)
 {
 	color.r = min(color.r, 255);
@@ -24,6 +35,15 @@ t_color	clamp_colors(t_color color)
 	return (color);
 }
 
+t_color	color_div(t_color color, int div)
+{
+	color.r = color.r / div;
+	color.g = color.g / div;
+	color.b = color.b / div;
+	color = clamp_colors(color);
+	return (color);
+}
+
 t_color	color_sum(t_color color1, t_color color2)
 {
 	t_color	color;
@@ -31,23 +51,6 @@ t_color	color_sum(t_color color1, t_color color2)
 	color.r = color1.r + color2.r;
 	color.g = color1.g + color2.g;
 	color.b = color1.b + color2.b;
-	color = clamp_colors(color);
-	return (color);
-}
-
-t_color	color_norm(t_color color)
-{
-	int	max_color;
-
-	max_color = max(color.r, color.g);
-	max_color = max(max_color, color.b);
-	if (max_color >= 0 && max_color <= 255)
-		return (color);
-	color.r /= max_color;
-	color.g /= max_color;
-	color.b /= max_color;
-	color.r *= 255;
-	color.g *= 255;
-	color.b *= 255;
+//	color = clamp_colors(color);
 	return (color);
 }

@@ -56,7 +56,7 @@ LIBS		= ${LIBFT_DIR}/libft.a ${MLX_DIR}/libmlx42.a -ldl -lglfw -pthread -lm
 LIBFT_DIR	= libft
 MLX_DIR		= MLX42
 
-INCLUDES	= -I ./include -I ./${LIBFT_DIR}/include -I ./${MLX_DIR}/include/MLX42
+INCLUDES	= -I ./include -I ./${LIBFT_DIR}/include -I ./${MLX_DIR}/include/ -I ./${MLX_DIR}/include/MLX42
 
 SYS	= $(shell uname -s)
 

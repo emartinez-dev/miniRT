@@ -26,6 +26,7 @@ void	render(t_window *win, t_scene *scene)
 	}
 	win->w_height = HEIGHT;
 	win->w_width = WIDTH;
+	win->smooth = 0;
 	win->render_img = NULL;
 	if (!resize_image(win, win->origin_img))
 		mlx_terminate(win->mlx);
