@@ -29,7 +29,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	manage_window(&scene, &window);
-	mlx_terminate(window.mlx);
+	if (window.mlx)
+		mlx_terminate(window.mlx);
 	free_scene(&scene);
 	return (0);
 }

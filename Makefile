@@ -1,6 +1,6 @@
 NAME 		= miniRT
 
-CC			= gcc -g
+CC			= gcc -g 
 FLAGS 		= -Wall -Wextra -Werror
 RM			= rm -rf
 
@@ -15,6 +15,7 @@ OBJ_DIR		= obj/
 _SRC 		=	main.c\
 				vec3/div.c\
 				vec3/mult.c\
+				vec3/reflection.c\
 				vec3/sub.c\
 				vec3/sum.c\
 				vec3/utils.c\

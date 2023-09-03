@@ -4,10 +4,12 @@
 #include "engine.h"
 #include <math.h>
 
-t_color	apply_light(t_color color_obj, t_color color_light, double intensity);
-int		is_at_back(t_hit *hit, double *dot, t_ray shadow);
-t_color	get_color_light(t_color color_l, double intensity);
-int		is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow, t_light *light);
+static t_color	apply_light(t_color color_obj, t_color color_light,
+					double intensity);
+static int		is_at_back(t_hit *hit, double *dot, t_ray *shadow);
+static int		is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow,
+					t_light *light);
+static int		specular(t_hit *hit, double *dot, t_ray *shadow);
 
 t_color	phong_light(t_scene *scene, t_hit *hit)
 {
@@ -17,24 +19,42 @@ t_color	phong_light(t_scene *scene, t_hit *hit)
 	t_light	*lights;
 
 	color = apply_light(hit->color, scene->ambient_light->c,
-			scene->ambient_light->ratio);
+			scene->ambient_light->ratio * AMBIENT);
 	lights = scene->light;
 	while (lights)
 	{
-		if (is_in_shadow(scene, hit, &shadow_ray, lights)
-			|| is_at_back(hit, &dot, shadow_ray))
-			;
-		else
+		if (!(is_in_shadow(scene, hit, &shadow_ray, lights)
+				|| is_at_back(hit, &dot, &shadow_ray)))
 		{
 			color = color_sum(color, apply_light(hit->color, lights->c,
-						(lights->brightness * dot)));
+						(lights->brightness * dot * DIFFUSE)));
+			if (specular(hit, &dot, &shadow_ray))
+				color = color_sum(color, apply_light(hit->color, lights->c,
+							(lights->brightness * dot * SPECULAR)));
 		}
 		lights = lights->next;
 	}
 	return (color);
 }
 
-int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow, t_light *light)
+static int	specular(t_hit *hit, double *dot, t_ray *shadow)
+{
+	t_v3	reflection;
+	t_v3	incident;
+
+	incident = vec3_negative(shadow->direction);
+	reflection = vec3_reflection(incident, hit->normal);
+	*dot = vec3_dot(reflection, hit->view);
+	if (*dot <= EPSILON)
+		return (0);
+	if (*dot > 1)
+		printf("DOT BIGGER\n");
+//	*dot = (double)pow(*dot, SHININESS);
+	return (1);
+}
+
+static int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow,
+				t_light *light)
 {
 	t_hit	sh_hit;
 
@@ -47,31 +67,22 @@ int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow, t_light *light)
 	return (0);
 }
 
-int	is_at_back(t_hit *hit, double *dot, t_ray shadow)
+static int	is_at_back(t_hit *hit, double *dot, t_ray *shadow)
 {
-	*dot = vec3_dot(hit->normal, shadow.direction);
-	if (*dot <= 0)
+	*dot = vec3_dot(hit->normal, shadow->direction);
+	if (*dot <= EPSILON)
 		return (1);
 	return (0);
 }
 
-t_color	apply_light(t_color color_obj, t_color color_light, double intensity)
+static t_color	apply_light(t_color color_obj, t_color color_light,
+					double intensity)
 {
 	t_color	color;
 
-	color.r = (color_obj.r + color_light.r) * intensity;
-	color.g = (color_obj.g + color_light.g) * intensity;
-	color.b = (color_obj.b + color_light.b) * intensity;
+	color.r = (color_obj.r + color_light.r) / 2 * intensity;
+	color.g = (color_obj.g + color_light.g) / 2 * intensity;
+	color.b = (color_obj.b + color_light.b) / 2 * intensity;
 	color = clamp_colors(color);
-	return (color);
-}
-
-t_color	get_color_light(t_color color_l, double intensity)
-{
-	t_color	color;
-
-	color.r = color_l.r * intensity;
-	color.g = color_l.g * intensity;
-	color.b = color_l.b * intensity;
 	return (color);
 }

@@ -5,6 +5,11 @@
 # define HEIGHT 1000
 # define EPSILON 0.000001
 
+# define AMBIENT 1.0
+# define DIFFUSE 1.0
+# define SPECULAR 1.0 
+//# define SHININESS 2.0
+
 # include "objects.h"
 # include "parser.h"
 # include "libft.h"
@@ -25,6 +30,7 @@ typedef struct s_hit
 	double		t;
 	t_object	*object;
 	t_color		color;
+	t_v3		view;
 }	t_hit;
 
 typedef struct s_quadratic {

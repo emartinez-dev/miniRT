@@ -10,6 +10,7 @@ t_hit	hit_sphere(t_sphere *sp, t_ray ray, t_hit hit)
 {
 	t_hit		temp;
 
+	temp.view = ray.direction;
 	temp.t = intersect_sphere(&ray, sp);
 	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
 	{
