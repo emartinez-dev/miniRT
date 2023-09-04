@@ -34,7 +34,7 @@ t_color	phong_light(t_scene *scene, t_hit *hit)
 		}
 		lights = lights->next;
 	}
-	return (color);
+	return (clamp_colors(color));
 }
 
 static int	specular(t_hit *hit, double *dot, t_ray *shadow)

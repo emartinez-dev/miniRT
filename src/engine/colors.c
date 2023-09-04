@@ -17,9 +17,9 @@ t_color	hex_to_rgb(int color)
 {
 	t_color	result;
 
-	result.r = (color >> 24) & 0xff;
-	result.g = (color >> 16) & 0xff;
-	result.b = (color >> 8) & 0xff;
+	result.b = (color >> 16) & 0xff;
+	result.g = (color >> 8) & 0xff;
+	result.r = color & 0xff;
 	result = clamp_colors(result);
 	return (result);
 }

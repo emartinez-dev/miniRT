@@ -25,6 +25,7 @@ _SRC 		=	main.c\
 				engine/light_model.c\
 				engine/maths.c\
 				engine/hooks.c\
+				engine/image.c\
 				parser/colors.c\
 				parser/coordinates.c\
 				parser/o_ambient_lights.c\

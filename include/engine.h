@@ -101,8 +101,10 @@ int				min(int a, int b);
 double			to_radians(double degrees);
 
 /* hooks.c */
-int				resize_image(t_window *w, mlx_image_t *src);
 void			resize_hook(int32_t width, int32_t height, void *window);
 void			key_hook(mlx_key_data_t keydata, void *mlx);
+
+/* image.c	*/
+int				resize_image(t_window *w, mlx_image_t *src);
 
 #endif
