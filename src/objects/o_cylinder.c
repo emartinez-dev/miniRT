@@ -10,8 +10,8 @@ t_v3	cylinder_normal(t_cylinder *cyl, t_hit *hit);
 
 t_hit	hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit)
 {
-	t_hit temp;
-	t_hit temp_cap;
+	t_hit	temp;
+	t_hit	temp_cap;
 
 	temp.view = ray.direction;
 	temp.t = intersect_cylinder(&ray, cyl);
@@ -33,8 +33,7 @@ t_hit	hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit)
 	return (hit);
 }
 
-
-t_v3  cylinder_normal(t_cylinder *cyl, t_hit *hit)
+t_v3	cylinder_normal(t_cylinder *cyl, t_hit *hit)
 {
 	t_v3	surface_n;
 	t_v3	body;
@@ -55,7 +54,7 @@ double	pick_cylinder_t(t_ray *ray, t_cylinder *cyl, t_quadratic *q)
 	hit2 = ray_at(ray, q->t2);
 	q->y0 = vec3_dot(vec3_sub(hit1, cyl->p), cyl->norm);
 	q->y1 = vec3_dot(vec3_sub(hit2, cyl->p), cyl->norm);
-	if (q->y0 >= -half_h && q->y0 <= half_h && q->y1 >= -half_h 
+	if (q->y0 >= -half_h && q->y0 <= half_h && q->y1 >= -half_h
 		&& q->y1 <= half_h)
 	{
 		if (q->t1 < q->t2)
@@ -69,9 +68,10 @@ double	pick_cylinder_t(t_ray *ray, t_cylinder *cyl, t_quadratic *q)
 	return (-1.0);
 }
 
-/* It's not necessary to rotate the cylinders in world coordinates, we just need to perform
- * the calculations as if it was rotated. I have trying applying matrix multiplication to
- * rotate the objects but its too costly */
+/* It's not necessary to rotate the cylinders in world coordinates, 
+ * we just need to perform the calculations as if it was rotated. 
+ * I have trying applying matrix multiplication to rotate the objects 
+ * but its too costly */
 double	intersect_cylinder(t_ray *ray, t_cylinder *cyl)
 {
 	t_quadratic	q;
@@ -80,7 +80,8 @@ double	intersect_cylinder(t_ray *ray, t_cylinder *cyl)
 	double		radius;
 
 	q.oc = vec3_sub(ray->origin, cyl->p);
-	q.a = vec3_dot(vec3_cross(cyl->norm, ray->direction), vec3_cross(cyl->norm, ray->direction));
+	q.a = vec3_dot(vec3_cross(cyl->norm, ray->direction),
+			vec3_cross(cyl->norm, ray->direction));
 	o_cross = vec3_cross(cyl->norm, q.oc);
 	radius = cyl->diameter / 2;
 	q.b = 2 * (vec3_dot(o_cross, vec3_cross(cyl->norm, ray->direction)));
@@ -109,4 +110,3 @@ double	intersect_cylinder_cap(t_ray *ray, t_cylinder *cyl)
 		return (-1.0);
 	return (temp.t);
 }
-
