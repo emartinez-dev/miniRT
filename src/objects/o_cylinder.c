@@ -20,13 +20,11 @@ t_v3	pick_cylinder_normal(t_cylinder *cyl, t_hit *hit)
 	t_v3	surface_n;
 	t_v3	body;
 	double	half_h;
+	double	projection;
 
 	half_h = cyl->height / 2;
-	if (fabs(hit->point.y - half_h) < EPSILON)
-		return (cyl->norm);
-	if (fabs(hit->point.y + half_h) < EPSILON)
-		return (vec3_negative(cyl->norm));
-	surface_n = vec3_sum(cyl->p, vec3_multk(cyl->norm, hit->point.y));
+	projection = vec3_dot(vec3_sub(hit->point, cyl->p), cyl->norm);
+	surface_n = vec3_sum(cyl->p, vec3_multv(cyl->norm, hit->point));
 	body = vec3_normalize(vec3_sub(hit->point, surface_n));
 	return (body);
 }
@@ -40,8 +38,8 @@ double	pick_cylinder_t(t_ray *ray, t_cylinder *cyl, t_quadratic *q)
 	half_h = cyl->height / 2;
 	hit1 = ray_at(ray, q->t1);
 	hit2 = ray_at(ray, q->t2);
-	q->y0 = hit1.y - cyl->p.y;
-	q->y1 = hit2.y - cyl->p.y;
+	q->y0 = vec3_dot(vec3_sub(hit1, cyl->p), cyl->norm);
+	q->y1 = vec3_dot(vec3_sub(hit2, cyl->p), cyl->norm);
 	if (q->y0 >= -half_h && q->y0 <= half_h && q->y1 >= -half_h && q->y1 <= half_h)
 	{
 		if (q->t1 < q->t2)
@@ -55,27 +53,42 @@ double	pick_cylinder_t(t_ray *ray, t_cylinder *cyl, t_quadratic *q)
     return (-1.0);
 }
 
-/* I need one more function because in cylinders you have to check from which side
- * they are intersected, I will update hit from here if needed
- * */
+double	intersect_caps(t_ray *ray, t_v3 *point, t_v3 *norm)
+{
+	t_hit	temp;
+	double	norm_dist;
+	double	norm_ray;
+
+	norm_ray = vec3_dot(ray->direction, *norm);
+	if (norm_ray >= 0)
+		return (0);
+	norm_dist = vec3_dot(vec3_sub(*point, ray->origin), *norm);
+	temp.t = norm_dist / norm_ray;
+	return (temp.t);
+}
+
+/* It's not necessary to rotate the cylinders in world coordinates, we just need to perform
+ * the calculations as if it was rotated. I have trying applying matrix multiplication to
+ * rotate the objects but its too costly */
 double	intersect_cylinder(t_ray *ray, t_cylinder *cyl)
 {
 	t_quadratic	q;
 	double		t;
+	t_v3		o_cross;
+	double		radius;
 
 	q.oc = vec3_sub(ray->origin, cyl->p);
-	q.a = ray->direction.x * ray->direction.x + ray->direction.z * ray->direction.z;
-	q.b = 2 * (ray->direction.x * q.oc.x + ray->direction.z * q.oc.z);
-	q.c = q.oc.x * q.oc.x + q.oc.z * q.oc.z - cyl->diameter / 2 * cyl->diameter / 2;
+	q.a = vec3_dot(vec3_cross(cyl->norm, ray->direction), vec3_cross(cyl->norm, ray->direction));
+	o_cross = vec3_cross(cyl->norm, q.oc);
+	radius = cyl->diameter / 2;
+	q.b = 2 * (vec3_dot(o_cross, vec3_cross(cyl->norm, ray->direction)));
+	q.c = vec3_dot(o_cross, o_cross) - (radius * radius);
 	if (!solve_quadratic(&q))
 		return (-1.0);
 	t = pick_cylinder_t(ray, cyl, &q);
 	return (t);
 }
 
-/* It's not necessary to rotate the cylinders in world coordinates, we just need to perform
- * the calculations as if it was rotated. I have trying applying matrix multiplication to
- * rotate the objects but its too costly */
 t_hit	hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit)
 {
 	t_hit temp;
