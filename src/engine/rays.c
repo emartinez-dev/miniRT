@@ -56,7 +56,7 @@ t_hit	hit_objects(t_ray *ray, t_list *objects)
 		if (o->type == OBJ_PLANE)
 			world = hit_plane((t_plane *)o->ptr, *ray, world);
 		if (o->type == OBJ_CYLINDER)
-			hit_cylinder((t_cylinder *)o->ptr, *ray, &world, o);
+			world = hit_cylinder((t_cylinder *)o->ptr, *ray, world);
 		objects = objects->next;
 	}
 	return (world);

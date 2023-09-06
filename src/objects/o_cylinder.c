@@ -2,6 +2,7 @@
 #include "objects.h"
 #include "engine.h"
 #include "vec3.h"
+#include <math.h>
 
 /*
 void	hit_cylinder(t_cylinde *cyl, t_ray ray, t_object *obj)
@@ -13,50 +14,82 @@ void	hit_cylinder(t_cylinde *cyl, t_ray ray, t_object *obj)
 	double	discriminant;
 }*/
 
+
+t_v3	pick_cylinder_normal(t_cylinder *cyl, t_hit *hit)
+{
+	t_v3	surface_n;
+	t_v3	body;
+	double	half_h;
+
+	half_h = cyl->height / 2;
+	if (fabs(hit->point.y - half_h) < EPSILON)
+		return (cyl->norm);
+	if (fabs(hit->point.y + half_h) < EPSILON)
+		return (vec3_negative(cyl->norm));
+	surface_n = vec3_sum(cyl->p, vec3_multk(cyl->norm, hit->point.y));
+	body = vec3_normalize(vec3_sub(hit->point, surface_n));
+	return (body);
+}
+
+double	pick_cylinder_t(t_ray *ray, t_cylinder *cyl, t_quadratic *q)
+{
+	t_v3	hit1;
+	t_v3	hit2;
+	double	half_h;
+
+	half_h = cyl->height / 2;
+	hit1 = ray_at(ray, q->t1);
+	hit2 = ray_at(ray, q->t2);
+	q->y0 = hit1.y - cyl->p.y;
+	q->y1 = hit2.y - cyl->p.y;
+	if (q->y0 >= -half_h && q->y0 <= half_h && q->y1 >= -half_h && q->y1 <= half_h)
+	{
+		if (q->t1 < q->t2)
+			return (q->t1);
+		return (q->t2);
+	}
+	if (q->y0 >= -half_h && q->y0 <= half_h)
+		return (q->t1);
+	if (q->y1 >= -half_h && q->y1 <= half_h)
+		return (q->t2);
+    return (-1.0);
+}
+
 /* I need one more function because in cylinders you have to check from which side
  * they are intersected, I will update hit from here if needed
  * */
-void	intersect_cylinder(t_cylinder *cyl, t_ray ray,t_hit *hit, t_object *obj, double a, double b, double discriminant)
+double	intersect_cylinder(t_ray *ray, t_cylinder *cyl)
 {
-	double	t;
-	double	r;
-	t_v3	oc;
+	t_quadratic	q;
+	double		t;
 
-	oc = vec3_sub(ray.origin, cyl->p);
-	t = (-b - sqrt(discriminant) / (2 * a));
-	if (t > (-b + sqrt(discriminant) / (2 * a)))
-		t = -b + sqrt(discriminant) / (2 * a);
-	r = cyl->p.y + t * ray.direction.y;	
-	if (r >= oc.y && r <= oc.y + cyl->height)
-	{
-		hit->t = t;
-		hit->point = vec3_sum(ray.origin, vec3_multk(ray.direction, hit->t));
-		hit->normal = vec3_normalize(vec3_sub(hit->point, vec3_multk(cyl->norm, vec3_dot(hit->point, cyl->norm))));
-		//printf("Cylinder hit normal: x:%f y:%f z:%f\n", hit->normal.x, hit->normal.y, hit->normal.z);
-		hit->object = obj;
-		hit->color = cyl->c;
-	}
+	q.oc = vec3_sub(ray->origin, cyl->p);
+	q.a = ray->direction.x * ray->direction.x + ray->direction.z * ray->direction.z;
+	q.b = 2 * (ray->direction.x * q.oc.x + ray->direction.z * q.oc.z);
+	q.c = q.oc.x * q.oc.x + q.oc.z * q.oc.z - cyl->diameter / 2 * cyl->diameter / 2;
+	if (!solve_quadratic(&q))
+		return (-1.0);
+	t = pick_cylinder_t(ray, cyl, &q);
+	return (t);
 }
 
-void	hit_cylinder(t_cylinder *cyl, t_ray ray,t_hit *hit, t_object *obj)
+/* It's not necessary to rotate the cylinders in world coordinates, we just need to perform
+ * the calculations as if it was rotated. I have trying applying matrix multiplication to
+ * rotate the objects but its too costly */
+t_hit	hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit)
 {
-	t_v3	oc;
-	double	a;
-	double	b;
-	double	c;
-	double	discriminant;
+	t_hit temp;
 
-	oc = vec3_sub(ray.origin, cyl->p);
-	if (vec3_dot(ray.direction, oc) > 0)
-		return ;
-	a = (ray.direction.x * ray.direction.x) + (ray.direction.z * ray.direction.z);
-	b = 2 * (ray.direction.x * oc.x + ray.direction.z * oc.z);
-	c = oc.x * oc.x + oc.z * oc.z - cyl->diameter / 2 * cyl->diameter / 2;
-	discriminant = b * b - 4 * (a * c);
-	if (fabs(discriminant) < 0.001 || discriminant < 0.0)
-		return ;
-	else
-		intersect_cylinder(cyl, ray, hit, obj, a, b, discriminant);
+	temp.view = ray.direction;
+	temp.t = intersect_cylinder(&ray, cyl);
+	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
+	{
+		temp.color = cyl->c;
+		temp.point = ray_at(&ray, temp.t);
+		temp.normal = pick_cylinder_normal(cyl, &temp);
+		hit = temp;
+	}
+	return (hit);
 }
 
 /*
