@@ -4,26 +4,41 @@
 #include "vec3.h"
 #include <math.h>
 
-/*
-void	hit_cylinder(t_cylinde *cyl, t_ray ray, t_object *obj)
+double	intersect_cylinder_cap(t_ray *ray, t_cylinder *cyl);
+double	intersect_cylinder(t_ray *ray, t_cylinder *cyl);
+t_v3	cylinder_normal(t_cylinder *cyl, t_hit *hit);
+
+t_hit	hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit)
 {
-	t_v3	oc;
-	double	a;
-	double	b;
-	double	c;
-	double	discriminant;
-}*/
+	t_hit temp;
+	t_hit temp_cap;
+
+	temp.view = ray.direction;
+	temp.t = intersect_cylinder(&ray, cyl);
+	temp_cap.t = intersect_cylinder_cap(&ray, cyl);
+	if ((hit.t > temp_cap.t || hit.t == -1.0) && temp_cap.t > EPSILON)
+	{
+		temp_cap.color = cyl->c;
+		temp_cap.point = ray_at(&ray, temp_cap.t);
+		temp_cap.normal = cyl->norm;
+		hit = temp_cap;
+	}
+	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
+	{
+		temp.color = cyl->c;
+		temp.point = ray_at(&ray, temp.t);
+		temp.normal = cylinder_normal(cyl, &temp);
+		hit = temp;
+	}
+	return (hit);
+}
 
 
-t_v3	pick_cylinder_normal(t_cylinder *cyl, t_hit *hit)
+t_v3  cylinder_normal(t_cylinder *cyl, t_hit *hit)
 {
 	t_v3	surface_n;
 	t_v3	body;
-	double	half_h;
-	double	projection;
 
-	half_h = cyl->height / 2;
-	projection = vec3_dot(vec3_sub(hit->point, cyl->p), cyl->norm);
 	surface_n = vec3_sum(cyl->p, vec3_multv(cyl->norm, hit->point));
 	body = vec3_normalize(vec3_sub(hit->point, surface_n));
 	return (body);
@@ -40,7 +55,8 @@ double	pick_cylinder_t(t_ray *ray, t_cylinder *cyl, t_quadratic *q)
 	hit2 = ray_at(ray, q->t2);
 	q->y0 = vec3_dot(vec3_sub(hit1, cyl->p), cyl->norm);
 	q->y1 = vec3_dot(vec3_sub(hit2, cyl->p), cyl->norm);
-	if (q->y0 >= -half_h && q->y0 <= half_h && q->y1 >= -half_h && q->y1 <= half_h)
+	if (q->y0 >= -half_h && q->y0 <= half_h && q->y1 >= -half_h 
+		&& q->y1 <= half_h)
 	{
 		if (q->t1 < q->t2)
 			return (q->t1);
@@ -50,21 +66,7 @@ double	pick_cylinder_t(t_ray *ray, t_cylinder *cyl, t_quadratic *q)
 		return (q->t1);
 	if (q->y1 >= -half_h && q->y1 <= half_h)
 		return (q->t2);
-    return (-1.0);
-}
-
-double	intersect_caps(t_ray *ray, t_v3 *point, t_v3 *norm)
-{
-	t_hit	temp;
-	double	norm_dist;
-	double	norm_ray;
-
-	norm_ray = vec3_dot(ray->direction, *norm);
-	if (norm_ray >= 0)
-		return (0);
-	norm_dist = vec3_dot(vec3_sub(*point, ray->origin), *norm);
-	temp.t = norm_dist / norm_ray;
-	return (temp.t);
+	return (-1.0);
 }
 
 /* It's not necessary to rotate the cylinders in world coordinates, we just need to perform
@@ -89,47 +91,22 @@ double	intersect_cylinder(t_ray *ray, t_cylinder *cyl)
 	return (t);
 }
 
-t_hit	hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit)
+double	intersect_cylinder_cap(t_ray *ray, t_cylinder *cyl)
 {
-	t_hit temp;
+	t_hit	temp;
+	double	norm_dist;
+	double	norm_ray;
+	t_v3	oc;
+	double	distance_to_center;
 
-	temp.view = ray.direction;
-	temp.t = intersect_cylinder(&ray, cyl);
-	if ((hit.t > temp.t || hit.t == -1.0) && temp.t > EPSILON)
-	{
-		temp.color = cyl->c;
-		temp.point = ray_at(&ray, temp.t);
-		temp.normal = pick_cylinder_normal(cyl, &temp);
-		hit = temp;
-	}
-	return (hit);
+	norm_ray = vec3_dot(ray->direction, cyl->norm);
+	oc = vec3_sub(cyl->p, ray->origin);
+	norm_dist = vec3_dot(oc, cyl->norm);
+	temp.t = norm_dist / norm_ray;
+	temp.point = ray_at(ray, temp.t);
+	distance_to_center = vec3_len(vec3_sub(temp.point, cyl->p));
+	if (distance_to_center > cyl->diameter / 2)
+		return (-1.0);
+	return (temp.t);
 }
 
-/*
-static int	inside_cylinder(t_cylinder *cyl, t_ray ray, t_hit *hit, double t)
-{
-	t_v3	point;
-	t_v3	intersection;
-	double	projection;
-
-//	point = vec3_sum(ray.origin, vec3_multk(ray.direction, t));
-	point.x = ray.origin.x + ray.direction.x * t;
-	point.y = ray.origin.y + ray.direction.y * t;
-	point.z = 0;
-	intersection = vec3_sub(point, cyl->p);
-	intersection.x = point.x - cyl->p.x;
-	intersection.y = point.y - cyl->p.y;
-	intersection.z = 0;
-	projection = vec3_dot(intersection, cyl->norm);
-	if (projection >= 0)// && projection <= cyl->height)
-	{
-		hit->t = t;
-		hit->dist = vec3_distance(ray.origin, cyl->p);
-		hit->point = point;
-		hit->normal = vec3_unit(vec3_sub(intersection, vec3_multk(cyl->norm, projection)));
-		hit->color = cyl->c;
-		return (1);
-	}
-	return (0);
-}
-*/
