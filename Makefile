@@ -1,6 +1,6 @@
 NAME 		= miniRT
 
-CC			= gcc -g
+CC			= gcc -g 
 FLAGS 		= -Wall -Wextra -Werror
 RM			= rm -rf
 
@@ -15,13 +15,16 @@ OBJ_DIR		= obj/
 _SRC 		=	main.c\
 				vec3/div.c\
 				vec3/mult.c\
+				vec3/reflection.c\
 				vec3/sub.c\
 				vec3/sum.c\
 				vec3/utils.c\
 				engine/rays.c\
 				engine/camera_geometry.c\
 				engine/colors.c\
-				engine/phong.c\
+				engine/light_model.c\
+				engine/maths.c\
+				engine/hooks.c\
 				parser/colors.c\
 				parser/coordinates.c\
 				parser/o_ambient_lights.c\
@@ -34,10 +37,14 @@ _SRC 		=	main.c\
 				parser/parser_utils.c\
 				parser/parser_frees.c\
 				parser/parser_scene.c\
-				parser/pruebas.c
+				parser/pruebas.c\
+				objects/o_cylinder.c\
+				objects/o_sphere.c\
+				objects/o_plane.c
 
 SRC_FOLDERS =	obj/parser\
 				obj/engine\
+				obj/objects\
 				obj/vec3
 
 

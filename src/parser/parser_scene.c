@@ -1,3 +1,4 @@
+#include "objects.h"
 #include "parser.h"
 
 void	read_scene(t_scene *scene)
@@ -21,6 +22,32 @@ void	read_scene(t_scene *scene)
 	free(buffer);
 }
 
+int	extract_objects(t_scene *scene)
+{
+	scene->errors = 0;
+	scene->lights = NULL;
+	scene->objects = NULL;
+	scene->lights = parse_all_lights(scene);
+	scene->objects = parse_all_objects(scene);
+	if (errors_in_objects(scene))
+		scene->errors = 1;
+	scene->camera = get_camera(scene->objects);
+	scene->objects = remove_camera_from_list(scene->objects);
+	get_lights(scene);
+	if (scene->camera == NULL)
+	{
+		ft_printf("%s%s%s", ERROR_CAMERA, ERROR_PARTIAL, "No camera found\n");
+		scene->errors = 1;
+	}
+	if (!scene->light || !scene->ambient_light)
+	{
+		ft_printf("%s%s%s", ERROR_LIGHT, ERROR_PARTIAL,
+			"No light or ambient light found\n");
+		scene->errors = 1;
+	}
+	return (scene->errors);
+}
+
 void	*parse_line(char *line, int lights)
 {
 	void	*ptr;
@@ -39,26 +66,6 @@ void	*parse_line(char *line, int lights)
 	else if (ft_strnstr(line, "cy", 3) && !lights)
 		ptr = (void *)parse_obj_cylinder(line);
 	return (ptr);
-}
-
-int	extract_objects(t_scene *scene)
-{
-	scene->errors = 0;
-	scene->lights = NULL;
-	scene->objects = NULL;
-	scene->lights = parse_all_lights(scene);
-	scene->objects = parse_all_objects(scene);
-	if (errors_in_objects(scene))
-		scene->errors = 1;
-	scene->camera = get_camera(scene->objects);
-	scene->objects = remove_camera_from_list(scene->objects);
-	get_lights(scene);
-	if (scene->camera == NULL)
-	{
-		ft_printf("%s%s%s", ERROR_CAMERA, ERROR_PARTIAL, "No camera found\n");
-		scene->errors = 1;
-	}
-	return (scene->errors);
 }
 
 t_list	*parse_all_lights(t_scene *scene)

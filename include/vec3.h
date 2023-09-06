@@ -50,9 +50,12 @@ double	vec3_sqlen(t_v3 v);
 double	vec3_len(t_v3 v);
 
 /* returns the unit vector of v */
-t_v3	vec3_unit(t_v3 v);
+t_v3	vec3_normalize(t_v3 v);
 
 /* returns the distance between two vectors */
 double	vec3_distance(t_v3 v1, t_v3 v2);
+
+/* REFLECION.C	*/
+t_v3	vec3_reflection(t_v3 incident, t_v3 normal);
 
 #endif
