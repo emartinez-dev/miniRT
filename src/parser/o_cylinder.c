@@ -1,5 +1,10 @@
 #include "parser.h"
 #include "objects.h"
+#include "engine.h"
+#include "vec3.h"
+#include <float.h>
+
+//static int	inside_cylinder(t_cylinder *cyl, t_ray ray, t_hit *hit, double t);
 
 t_object	*parse_obj_cylinder(char *line)
 {
@@ -48,3 +53,4 @@ int	errors_cylinder(t_cylinder *cylinder, t_object *obj)
 	}
 	return (error);
 }
+
