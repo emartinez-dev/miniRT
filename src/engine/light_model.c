@@ -47,9 +47,7 @@ static int	specular(t_hit *hit, double *dot, t_ray *shadow)
 	*dot = vec3_dot(reflection, hit->view);
 	if (*dot <= EPSILON)
 		return (0);
-	if (*dot > 1)
-		printf("DOT BIGGER\n");
-//	*dot = (double)pow(*dot, SHININESS);
+	*dot /= SHININESS;
 	return (1);
 }
 

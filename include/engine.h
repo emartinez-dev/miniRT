@@ -8,7 +8,7 @@
 # define AMBIENT 1.0
 # define DIFFUSE 1.0
 # define SPECULAR 1.0 
-//# define SHININESS 2.0
+# define SHININESS 8.0
 
 # include "objects.h"
 # include "parser.h"
