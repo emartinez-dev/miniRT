@@ -60,6 +60,7 @@ typedef struct s_cylinder
 	t_color	c;
 	double	diameter;
 	double	height;
+	t_v3	cap_norm;
 }	t_cylinder;
 
 typedef struct s_sphere
