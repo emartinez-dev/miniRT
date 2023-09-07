@@ -102,6 +102,7 @@ double	intersect_cylinder_cap(t_ray *ray, t_cylinder *cyl)
 	t_v3	top_cap;
 	t_v3	bot_cap;
 	double	t_top, t_bot;
+	// refactor this!!!!
 
 	top_cap = vec3_sum(cyl->p, vec3_multk(cyl->norm, cyl->height / 2));
 	bot_cap = vec3_sum(cyl->p, vec3_multk(cyl->norm, -cyl->height / 2));
