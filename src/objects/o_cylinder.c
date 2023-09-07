@@ -35,10 +35,14 @@ t_hit	hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit)
 
 t_v3	cylinder_normal(t_cylinder *cyl, t_hit *hit)
 {
+	t_v3	base_dist;
+	double	projection_len;
 	t_v3	surface_n;
 	t_v3	body;
 
-	surface_n = vec3_sum(cyl->p, vec3_multv(cyl->norm, hit->point));
+	base_dist = vec3_sub(hit->point, cyl->p);
+	projection_len = vec3_dot(base_dist, cyl->norm);
+	surface_n = vec3_sum(cyl->p, vec3_multk(cyl->norm, projection_len));
 	body = vec3_normalize(vec3_sub(hit->point, surface_n));
 	return (body);
 }
