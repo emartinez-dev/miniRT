@@ -91,6 +91,7 @@ t_hit			hit_objects(t_ray *ray, t_list *objects);
 t_hit			hit_sphere(t_sphere *sp, t_ray ray, t_hit hit);
 t_hit			hit_plane(t_plane *pl, t_ray ray, t_hit hit);
 t_hit			hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit);
+double			intersect_plane(t_ray ray, t_v3 norm, t_v3 p);
 
 /*	phong.c	*/
 t_color			phong_light(t_scene *scene, t_hit *hit);
