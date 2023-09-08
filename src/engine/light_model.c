@@ -78,9 +78,9 @@ static t_color	apply_light(t_color color_obj, t_color color_light,
 {
 	t_color	color;
 
-	color.r = (color_obj.r + color_light.r) / 2 * intensity;
-	color.g = (color_obj.g + color_light.g) / 2 * intensity;
-	color.b = (color_obj.b + color_light.b) / 2 * intensity;
+	color.r = color_obj.r * (color_light.r / 255) * intensity;
+	color.g = color_obj.g * (color_light.g / 255) * intensity;
+	color.b = color_obj.b * (color_light.b / 255) * intensity;
 	color = clamp_colors(color);
 	return (color);
 }
