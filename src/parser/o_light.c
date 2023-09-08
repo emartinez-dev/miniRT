@@ -18,6 +18,7 @@ t_object	*parse_obj_light(char *line)
 		get_xyz(split[1], &light->p, obj);
 		light->brightness = ft_atof(split[2]);
 		get_color(split[3], &light->c);
+		color_to_vec(&light->c, &light->v_c);
 		light->next = NULL;
 	}
 	else

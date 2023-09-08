@@ -19,3 +19,10 @@ void	get_color(char *str, t_color *color)
 	}
 	free_matrix(split);
 }
+
+void	color_to_vec(t_color *c, t_v3 *v_c)
+{
+	v_c->x = c->r;
+	v_c->y = c->g;
+	v_c->z = c->b;
+}

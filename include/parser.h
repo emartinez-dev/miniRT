@@ -54,6 +54,7 @@ void		get_xyz(char *str, t_v3 *point, t_object *obj);
 
 /* colors.c */
 void		get_color(char *str, t_color *color);
+void		color_to_vec(t_color *color, t_v3 *v_c);
 
 /* parser_utils.c */
 char		*replace_tabs(char *str);

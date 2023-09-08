@@ -12,6 +12,7 @@
 }*/
 
 static void	manage_window(t_scene *scene, t_window *w);
+static void	init_lights(t_scene *scene);
 
 int	main(int argc, char **argv)
 {
@@ -28,6 +29,7 @@ int	main(int argc, char **argv)
 		free_scene(&scene);
 		return (1);
 	}
+	init_lights(&scene);
 	manage_window(&scene, &window);
 	if (window.mlx)
 		mlx_terminate(window.mlx);
@@ -56,4 +58,20 @@ static void	manage_window(t_scene *scene, t_window *w)
 	mlx_loop_hook(w->mlx, key_hook, &(w->mlx));
 	mlx_resize_hook(w->mlx, &resize_hook, &w);
 	mlx_loop(w->mlx);
+}
+
+static void	init_lights(t_scene *scene)
+{
+	t_amb_light	*amb;
+	t_light		*light;
+
+
+	amb = scene->ambient_light;
+	light = scene->light;
+	amb->v_c = vec3_multk(amb->v_c, amb->ratio * AMBIENT);
+	while(light)
+	{
+		light->v_c = vec3_multk(light->v_c, light->brightness);
+		light = light->next;
+	}
 }
