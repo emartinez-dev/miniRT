@@ -26,3 +26,13 @@ void	color_to_vec(t_color *c, t_v3 *v_c)
 	v_c->y = c->g;
 	v_c->z = c->b;
 }
+
+t_color	vec_to_color(t_v3 v_c)
+{
+	t_color	c;
+
+	c.r = v_c.x;
+	c.g = v_c.y;
+	c.b = v_c.z;
+	return (c);
+}

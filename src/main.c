@@ -65,13 +65,12 @@ static void	init_lights(t_scene *scene)
 	t_amb_light	*amb;
 	t_light		*light;
 
-
 	amb = scene->ambient_light;
 	light = scene->light;
-	amb->v_c = vec3_multk(amb->v_c, amb->ratio * AMBIENT);
-	while(light)
+	amb->v_c = vec3_multk(vec3_divk(amb->v_c, 255), amb->ratio * AMBIENT);
+	while (light)
 	{
-		light->v_c = vec3_multk(light->v_c, light->brightness);
+		light->v_c = vec3_multk(vec3_divk(light->v_c, 255), light->brightness);
 		light = light->next;
 	}
 }
