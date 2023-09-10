@@ -27,6 +27,7 @@ int	extract_objects(t_scene *scene)
 	scene->errors = 0;
 	scene->lights = NULL;
 	scene->objects = NULL;
+	scene->ambient_light = NULL;
 	scene->lights = parse_all_lights(scene);
 	scene->objects = parse_all_objects(scene);
 	if (errors_in_objects(scene))
