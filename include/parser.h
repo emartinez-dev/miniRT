@@ -1,6 +1,10 @@
 #ifndef PARSER_H
 # define PARSER_H
 
+# ifndef BONUS
+#  define BONUS 0
+# endif
+
 # include "libft.h"
 # include <fcntl.h>
 # include "get_next_line.h"

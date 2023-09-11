@@ -12,7 +12,8 @@
 }*/
 
 static void	manage_window(t_scene *scene, t_window *w);
-static void	init_lights(t_scene *scene);
+static int	init_lights(t_scene *scene);
+static int	check_lights(t_scene *scene);
 
 int	main(int argc, char **argv)
 {
@@ -29,7 +30,13 @@ int	main(int argc, char **argv)
 		free_scene(&scene);
 		return (1);
 	}
-	init_lights(&scene);
+	if (!init_lights(&scene))
+	{
+		ft_printf("%s%s%s", ERROR_LIGHT, ERROR_PARTIAL,
+			"More than one light or ambient light\n\n");
+		free_scene(&scene);
+		return (1);
+	}
 	manage_window(&scene, &window);
 	if (window.mlx)
 		mlx_terminate(window.mlx);
@@ -60,7 +67,7 @@ static void	manage_window(t_scene *scene, t_window *w)
 	mlx_loop(w->mlx);
 }
 
-static void	init_lights(t_scene *scene)
+static int	init_lights(t_scene *scene)
 {
 	t_amb_light	*amb;
 	t_light		*light;
@@ -70,7 +77,31 @@ static void	init_lights(t_scene *scene)
 	amb->v_c = vec3_multk(vec3_divk(amb->v_c, 255), amb->ratio * AMBIENT);
 	while (light)
 	{
-		light->v_c = vec3_multk(vec3_divk(light->v_c, 255), light->brightness);
+		if (BONUS)
+			light->v_c = vec3_multk(vec3_divk(light->v_c, 255),
+					light->brightness);
+		else
+			light->v_c = vec3_multk((t_v3){255, 255, 255}, light->brightness);
 		light = light->next;
 	}
+	if (!BONUS)
+		return (check_lights(scene));
+	return (1);
+}
+
+static int	check_lights(t_scene *scene)
+{
+	t_list	*lights;
+	int		count;
+
+	lights = scene->lights;
+	count = 0;
+	while (lights)
+	{
+		count++;
+		lights = lights->next;
+	}
+	if (count != 2)
+		return (0);
+	return (1);
 }

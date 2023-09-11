@@ -30,7 +30,7 @@ t_color	phong_light(t_scene *scene, t_hit *hit, t_color ambient)
 		{
 			color = color_sum(color, apply_light(hit->color, lights->v_c,
 						(dot * DIFFUSE)));
-			if (specular(hit, &dot_sp, &shadow_ray, lights))
+			if (BONUS && specular(hit, &dot_sp, &shadow_ray, lights))
 				color = color_sum(color, vec_to_color(vec3_multk(lights->v_c,
 								dot_sp * 255)));
 		}

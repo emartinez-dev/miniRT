@@ -1,5 +1,7 @@
 NAME 		= miniRT
 
+NAME_BONUS 	= miniRT_bonus
+
 CC			= gcc 
 FLAGS 		= -Wall -Wextra -Werror
 RM			= rm -rf
@@ -57,9 +59,7 @@ ifeq ($(SYS), Darwin)
 	LIBS	+= -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 endif
 
-${NAME}:	minirt
-
-minirt:		
+${NAME}:	$(SRC)
 			@echo "Compiling $(NAME)..."
 			@echo "Compiling dependencies..."
 			@$(MAKE) -s all -C $(LIBFT_DIR)
@@ -67,11 +67,15 @@ minirt:
 			@$(CC) $(INCLUDES) $(SRC) -o $(NAME) $(LIBS)
 			@echo "$(NAME) compiled!"
 
-change:
-			$(eval CC += -D BONUS=1)
-			$(eval NAME=$(NAME)_bonus)
+$(NAME_BONUS): $(SRC)
+			@echo "Compiling $(NAME_BONUS)..."
+			@echo "Compiling dependencies..."
+			@$(MAKE) -s all -C $(LIBFT_DIR)
+			@$(MAKE) -s all -C $(MLX_DIR)
+			@$(CC) -D BONUS=1 $(INCLUDES) $(SRC) -o $(NAME_BONUS) $(LIBS)
+			@echo "$(NAME) compiled!"
 
-bonus: 		change all
+bonus: 		$(NAME_BONUS) $(LIBFT) $(MLX)
 
 all:		${NAME} ${LIBFT} ${MLX}
 

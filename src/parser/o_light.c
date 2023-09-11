@@ -55,7 +55,6 @@ void	get_lights(t_scene *scene)
 	t_light		*light;
 
 	h = scene->lights;
-	scene->light = NULL;
 	while (h)
 	{
 		if (((t_object *)h->content)->type == OBJ_LIGHT)
