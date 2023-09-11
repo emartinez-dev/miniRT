@@ -30,9 +30,9 @@ t_color	phong_light(t_scene *scene, t_hit *hit, t_color ambient)
 		{
 			color = color_sum(color, apply_light(hit->color, lights->v_c,
 						(dot * DIFFUSE)));
-			specular(hit, &dot_sp, &shadow_ray, lights);
-			color = color_sum(color, vec_to_color(vec3_multk(lights->v_c,
-							dot_sp * 255)));
+			if (specular(hit, &dot_sp, &shadow_ray, lights))
+				color = color_sum(color, vec_to_color(vec3_multk(lights->v_c,
+								dot_sp * 255)));
 		}
 		lights = lights->next;
 	}
@@ -48,6 +48,8 @@ static int	specular(t_hit *hit, double *dot, t_ray *shadow, t_light *light)
 	incident = vec3_negative(shadow->direction);
 	reflection = vec3_reflection(incident, hit->normal);
 	*dot = vec3_dot(reflection, hit->view);
+	if (*dot > 0)
+		return (0);
 	*dot = (pow(*dot, SHININESS) * SPECULAR);
 	return (1);
 }
