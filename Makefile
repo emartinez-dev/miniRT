@@ -1,6 +1,6 @@
 NAME 		= miniRT
 
-CC			= gcc -g 
+CC			= gcc 
 FLAGS 		= -Wall -Wextra -Werror
 RM			= rm -rf
 
@@ -9,8 +9,6 @@ ifdef DEBUG
 endif
 
 SRC_DIR 	= src/
-
-OBJ_DIR		= obj/
 
 _SRC 		=	main.c\
 				vec3/div.c\
@@ -42,14 +40,7 @@ _SRC 		=	main.c\
 				objects/o_sphere.c\
 				objects/o_plane.c
 
-SRC_FOLDERS =	obj/parser\
-				obj/engine\
-				obj/objects\
-				obj/vec3
-
-
 SRC 		= ${addprefix ${SRC_DIR}, ${_SRC}}
-OBJ			= ${patsubst ${SRC_DIR}%.c, ${OBJ_DIR}%.o, ${SRC}}
 
 LIBS		= ${LIBFT_DIR}/libft.a ${MLX_DIR}/libmlx42.a -ldl -lglfw -pthread -lm
 
@@ -66,19 +57,21 @@ ifeq ($(SYS), Darwin)
 	LIBS	+= -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 endif
 
-${NAME}:	 ${OBJ}
+${NAME}:	minirt
+
+minirt:		
 			@echo "Compiling $(NAME)..."
 			@echo "Compiling dependencies..."
 			@$(MAKE) -s all -C $(LIBFT_DIR)
 			@$(MAKE) -s all -C $(MLX_DIR)
-			@$(CC) $(INCLUDES) $(OBJ) -o $(NAME) $(LIBS)
+			@$(CC) $(INCLUDES) $(SRC) -o $(NAME) $(LIBS)
 			@echo "$(NAME) compiled!"
 
-${OBJ_DIR}%.o: ${SRC_DIR}%.c
-			@git submodule update --init
-			@mkdir -p ${OBJ_DIR}
-			@mkdir -p ${SRC_FOLDERS}
-			@${CC} ${FLAGS} ${INCLUDES} -c $^ -o $@
+change:
+			$(eval CC += -D BONUS=1)
+			$(eval NAME=$(NAME)_bonus)
+
+bonus: 		change all
 
 all:		${NAME} ${LIBFT} ${MLX}
 
@@ -87,10 +80,9 @@ clean:
 			@echo "Removing dependencies..."
 			@$(MAKE) -s clean -C $(LIBFT_DIR)
 			@$(MAKE) -s clean -C $(MLX_DIR)
-			@${RM} ${OBJ}
 
 fclean: 	clean
-			@${RM} ${NAME}
+			@${RM} ${NAME} ${NAME}_bonus
 			@$(MAKE) -s fclean -C  $(LIBFT_DIR)
 			@$(MAKE) -s fclean -C $(MLX_DIR)
 

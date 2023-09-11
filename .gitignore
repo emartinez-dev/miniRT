@@ -2,6 +2,7 @@
 .cache/
 *.swp
 miniRT
+miniRT_bonus
 
 # Prerequisites
 *.d
