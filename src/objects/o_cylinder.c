@@ -15,6 +15,7 @@ t_hit	hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit)
 	t_hit	temp_cap;
 
 	temp.view = ray.direction;
+	temp_cap.view = ray.direction;
 	temp.t = intersect_cylinder(&ray, cyl);
 	temp_cap.t = intersect_cylinder_cap(&ray, cyl);
 	if ((hit.t > temp_cap.t || hit.t == -1.0) && temp_cap.t > EPSILON)
@@ -99,46 +100,21 @@ double	intersect_cylinder(t_ray *ray, t_cylinder *cyl)
 
 double	intersect_cylinder_cap(t_ray *ray, t_cylinder *cyl)
 {
-	t_v3	top_cap;
-	t_v3	bot_cap;
-	double	t_top, t_bot;
-	// refactor this!!!!
-
-	top_cap = vec3_sum(cyl->p, vec3_multk(cyl->norm, cyl->height / 2));
-	bot_cap = vec3_sum(cyl->p, vec3_multk(cyl->norm, -cyl->height / 2));
-	t_top = intersect_plane(*ray, cyl->norm, top_cap);
-	t_bot = intersect_plane(*ray, cyl->norm, bot_cap);
+	cyl->top.intersected = intersect_circle(ray, &cyl->top);
+	cyl->bottom.intersected = intersect_circle(ray, &cyl->bottom);
 	cyl->cap_norm = cyl->norm;
-	if (radius_check(t_top, top_cap, ray, cyl->diameter) && 
-		!radius_check(t_bot, bot_cap, ray, cyl->diameter))
-		return (t_top);
-	if (!radius_check(t_top, top_cap, ray, cyl->diameter) &&
-		radius_check(t_bot, bot_cap, ray, cyl->diameter))
+	if (cyl->top.intersected && !cyl->bottom.intersected)
+		return (cyl->top.t);
+	if (!cyl->top.intersected && cyl->bottom.intersected)
 	{
 		cyl->cap_norm = vec3_negative(cyl->norm);
-		return (t_bot);
+		return (cyl->bottom.t);
 	}
-	if (radius_check(t_top, top_cap, ray, cyl->diameter) &&
-		radius_check(t_bot, bot_cap, ray, cyl->diameter))
+	if (cyl->top.intersected && cyl->bottom.intersected)
 	{
-		if (t_bot < t_top)
+		if (cyl->bottom.t < cyl->top.t)
 			cyl->cap_norm = vec3_negative(cyl->norm);
-		return (fmin(t_bot, t_top));
+		return (fmin(cyl->top.t, cyl->bottom.t));
 	}
 	return (-1.0);
 }
-
-int	radius_check(double t, t_v3 face, t_ray *ray, double diameter)
-{
-	double	radius_dist;
-	t_v3	temp_point;
-
-	if (t == -1.0)
-		return (0);
-	temp_point = ray_at(ray, t);
-	radius_dist = vec3_len(vec3_sub(temp_point, face));
-	if (radius_dist > diameter / 2)
-		return (0);
-	return (1);
-}
-

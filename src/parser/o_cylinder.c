@@ -4,6 +4,8 @@
 #include "vec3.h"
 #include <float.h>
 
+static void	init_caps(t_cylinder *cyl);
+
 t_object	*parse_obj_cylinder(char *line)
 {
 	t_object	*obj;
@@ -23,6 +25,7 @@ t_object	*parse_obj_cylinder(char *line)
 		cylinder->diameter = ft_atof(split[3]);
 		cylinder->height = ft_atof(split[4]);
 		get_color(split[5], &cylinder->c);
+		init_caps(cylinder);
 	}
 	else
 		obj->error = 1;
@@ -50,4 +53,14 @@ int	errors_cylinder(t_cylinder *cylinder, t_object *obj)
 		error = 2;
 	}
 	return (error);
+}
+
+static void	init_caps(t_cylinder *cyl)
+{
+	cyl->top.norm = cyl->norm;
+	cyl->bottom.norm = cyl->norm;
+	cyl->top.diameter = cyl->diameter;
+	cyl->bottom.diameter = cyl->diameter;
+	cyl->top.p = vec3_sum(cyl->p, vec3_multk(cyl->norm, cyl->height / 2));
+	cyl->bottom.p = vec3_sum(cyl->p, vec3_multk(cyl->norm, -cyl->height / 2));
 }
