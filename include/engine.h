@@ -8,7 +8,7 @@
 # define AMBIENT 1.0
 # define DIFFUSE 1.0
 # define SPECULAR 1.0 
-# define SHININESS 8.0
+# define SHININESS 50.0
 
 # include "objects.h"
 # include "parser.h"
@@ -94,7 +94,9 @@ t_hit			hit_cylinder(t_cylinder *cyl, t_ray ray, t_hit hit);
 double			intersect_plane(t_ray ray, t_v3 norm, t_v3 p);
 
 /*	phong.c	*/
-t_color			phong_light(t_scene *scene, t_hit *hit);
+t_color			phong_light(t_scene *scene, t_hit *hit, t_color ambient);
+t_color			apply_light(t_color color_obj, t_v3 color_light,
+					double intensity);
 
 /* maths.c */
 int				solve_quadratic(t_quadratic *q);

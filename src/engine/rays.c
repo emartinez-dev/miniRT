@@ -70,8 +70,9 @@ t_color	raycolor(t_ray ray, t_hit *hit, t_scene *scene)
 	t_color		color;
 	double		t;
 
+	color = apply_light(hit->color, scene->ambient_light->v_c, 1);
 	if (hit->t > EPSILON)
-		return (phong_light(scene, hit));
+		return (phong_light(scene, hit, color));
 	unit_direction = vec3_normalize(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
 	c = vec3_sum(vec3_multk((t_v3){1.0, 1.0, 1.0}, 1.0 - t), \

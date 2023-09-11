@@ -17,6 +17,7 @@ t_object	*parse_obj_ambient_light(char *line)
 	{
 		light->ratio = ft_atof(split[1]);
 		get_color(split[2], &light->c);
+		color_to_vec(&light->c, &light->v_c);
 	}
 	else
 		obj->error = 1;

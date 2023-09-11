@@ -82,6 +82,7 @@ typedef struct s_amb_light
 {
 	double	ratio;
 	t_color	c;
+	t_v3	v_c;
 }	t_amb_light;
 
 typedef struct s_camera
@@ -101,6 +102,7 @@ typedef struct s_light
 	t_v3	p;
 	double	brightness;
 	t_color	c;
+	t_v3	v_c;
 	t_light	*next;
 }	t_light;
 

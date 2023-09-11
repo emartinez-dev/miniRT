@@ -27,6 +27,7 @@ int	extract_objects(t_scene *scene)
 	scene->errors = 0;
 	scene->lights = NULL;
 	scene->objects = NULL;
+	scene->ambient_light = NULL;
 	scene->lights = parse_all_lights(scene);
 	scene->objects = parse_all_objects(scene);
 	if (errors_in_objects(scene))
@@ -57,13 +58,13 @@ void	*parse_line(char *line, int lights)
 		ptr = (void *)parse_obj_ambient_light(line);
 	else if (ft_strnstr(line, "C ", 2) && !lights)
 		ptr = (void *)parse_obj_camera(line);
-	else if (ft_strnstr(line, "L", 2) && lights)
+	else if (ft_strnstr(line, "L ", 2) && lights)
 		ptr = (void *)parse_obj_light(line);
-	else if (ft_strnstr(line, "sp", 3) && !lights)
+	else if (ft_strnstr(line, "sp ", 3) && !lights)
 		ptr = (void *)parse_obj_sphere(line);
-	else if (ft_strnstr(line, "pl", 3) && !lights)
+	else if (ft_strnstr(line, "pl ", 3) && !lights)
 		ptr = (void *)parse_obj_plane(line);
-	else if (ft_strnstr(line, "cy", 3) && !lights)
+	else if (ft_strnstr(line, "cy ", 3) && !lights)
 		ptr = (void *)parse_obj_cylinder(line);
 	return (ptr);
 }
