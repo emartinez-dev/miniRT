@@ -81,7 +81,7 @@ static int	init_lights(t_scene *scene)
 			light->v_c = vec3_multk(vec3_divk(light->v_c, 255),
 					light->brightness);
 		else
-			light->v_c = vec3_multk((t_v3){255, 255, 255}, light->brightness);
+			light->v_c = vec3_multk((t_v3){1, 1, 1}, light->brightness);
 		light = light->next;
 	}
 	if (!BONUS)
