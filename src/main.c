@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	read_scene(&scene);
 	if (extract_objects(&scene) != 0)
 	{
-		ft_printf("\nThe provided scene: %s is bad formed\n\n", argv[1]);
+		ft_printf("Error\nThe provided scene: %s is bad formed\n\n", argv[1]);
 		free_scene(&scene);
 		return (1);
 	}

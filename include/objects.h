@@ -10,12 +10,12 @@
 # define ERR_RANGE "Values out of range\n"
 # define ERR_MISSING_PARAMS "Insufficient parameters\n"
 
-# define ERROR_AMBIENT_L "[AMBIENT_LIGHT_"
-# define ERROR_CAMERA "[CAMERA_"
-# define ERROR_LIGHT "[LIGHT_"
-# define ERROR_SPHERE "[SPHERE_"
-# define ERROR_PLANE "[PLANE_"
-# define ERROR_CYLINDER "[CYLINDER_"
+# define ERROR_AMBIENT_L "Error\n[AMBIENT_LIGHT_"
+# define ERROR_CAMERA "Error\n[CAMERA_"
+# define ERROR_LIGHT "Error\n[LIGHT_"
+# define ERROR_SPHERE "Error\n[SPHERE_"
+# define ERROR_PLANE "Error\n[PLANE_"
+# define ERROR_CYLINDER "Error\n[CYLINDER_"
 # define ERROR_PARTIAL "ERROR]\n"
 
 enum e_objects {
