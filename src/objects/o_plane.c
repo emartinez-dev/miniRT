@@ -32,3 +32,18 @@ double	intersect_plane(t_ray ray, t_v3 norm, t_v3 p)
 	norm_dist = vec3_dot(oc, norm);
 	return ((double)(norm_dist / norm_ray));
 }
+
+int	intersect_circle(t_ray *ray, t_circle *circle)
+{
+	double	radius_dist;
+	t_v3	temp_point;
+
+	circle->t = intersect_plane(*ray, circle->norm, circle->p);
+	if (circle->t == -1)
+		return (0);
+	temp_point = ray_at(ray, circle->t);
+	radius_dist = vec3_len(vec3_sub(temp_point, circle->p));
+	if (radius_dist > circle->diameter / 2)
+		return (0);
+	return (1);
+}
