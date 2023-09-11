@@ -53,14 +53,25 @@ typedef struct s_object
 	void	*ptr;
 }	t_object;
 
-typedef struct s_cylinder
+typedef struct s_circle
 {
 	t_v3	p;
 	t_v3	norm;
-	t_color	c;
+	double	t;
 	double	diameter;
-	double	height;
-	t_v3	cap_norm;
+	int		intersected;
+}	t_circle;
+
+typedef struct s_cylinder
+{
+	t_v3		p;
+	t_v3		norm;
+	t_color		c;
+	double		diameter;
+	double		height;
+	t_v3		cap_norm;
+	t_circle	top;
+	t_circle	bottom;	
 }	t_cylinder;
 
 typedef struct s_sphere
