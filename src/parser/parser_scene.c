@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:33:31 by franmart          #+#    #+#             */
-/*   Updated: 2023/09/12 13:33:32 by franmart         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:08:53 by juan-aga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	read_scene(t_scene *scene)
 	char	*tmp;
 
 	buffer = ft_calloc(1, sizeof(char));
+	if (!buffer)
+	{
+		ft_printf("Error\nFailed allocated memory.\n");
+		exit(1);
+	}
 	buffer[0] = '\0';
 	line = get_next_line(scene->fd);
 	while (line)
