@@ -75,6 +75,7 @@ int			params_error(int argc, char **argv, t_scene *scene);
 int			errors_normalized_vector(t_v3 *norm);
 int			errors_colors(t_color *color);
 int			errors_in_objects(t_scene *scene);
+int			invalid_line(t_scene *scene);
 
 /* parser_scene.c */
 void		read_scene(t_scene *scene);

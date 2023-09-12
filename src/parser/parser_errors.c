@@ -81,3 +81,22 @@ int	errors_in_objects(t_scene *scene)
 	}
 	return (0);
 }
+
+int	invalid_line(t_scene *scene)
+{
+	void	*obj;
+	void	*light;
+	int		i;
+
+	i = -1;
+	while (scene->scene_str[++i])
+	{
+		obj = parse_line(scene->scene_str[i], 0);
+		light = parse_line(scene->scene_str[i], 1);
+		if (!obj && !light && !ft_strnstr(scene->scene_str[i], "#", 1))
+			return (1);
+		free_objects(obj);
+		free_objects(light);
+	}
+	return (0);
+}
