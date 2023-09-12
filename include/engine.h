@@ -16,6 +16,8 @@
 # include "MLX42.h"
 # include "vec3.h"
 # include <stdio.h>
+# include <float.h>
+# include <math.h>
 
 typedef struct s_ray {
 	t_v3	origin;

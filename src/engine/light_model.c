@@ -1,8 +1,4 @@
-#include "objects.h"
-#include "vec3.h"
-#include "parser.h"
 #include "engine.h"
-#include <math.h>
 
 static int		is_at_back(t_hit *hit, double *dot, t_ray *shadow,
 					t_light *light);

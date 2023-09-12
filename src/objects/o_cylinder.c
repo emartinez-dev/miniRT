@@ -1,8 +1,4 @@
-#include "parser.h"
-#include "objects.h"
 #include "engine.h"
-#include "vec3.h"
-#include <math.h>
 
 double	intersect_cylinder_cap(t_ray *ray, t_cylinder *cyl);
 double	intersect_cylinder(t_ray *ray, t_cylinder *cyl);

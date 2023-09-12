@@ -1,6 +1,5 @@
 #include "objects.h"
 #include "parser.h"
-#include <stdio.h>
 
 void	read_scene(t_scene *scene)
 {

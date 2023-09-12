@@ -1,8 +1,4 @@
-#include "parser.h"
 #include "engine.h"
-#include "objects.h"
-#include "vec3.h"
-#include <math.h>
 
 double	intersect_sphere(t_ray *ray, t_sphere *sp);
 

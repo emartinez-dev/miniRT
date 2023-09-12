@@ -1,7 +1,4 @@
-#include "parser.h"
 #include "engine.h"
-#include "objects.h"
-#include "vec3.h"
 
 t_object	*parse_obj_sphere(char *line)
 {

@@ -1,4 +1,3 @@
-#include "MLX42.h"
 #include "engine.h"
 
 static void	fill_pixels(t_window *win, uint32_t *src, uint32_t *dst);

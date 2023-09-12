@@ -1,8 +1,4 @@
-#include "parser.h"
-#include "objects.h"
 #include "engine.h"
-#include "vec3.h"
-#include <float.h>
 
 static void	init_caps(t_cylinder *cyl);
 

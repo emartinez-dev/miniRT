@@ -1,6 +1,5 @@
 #include "parser.h"
 #include "vec3.h"
-#include <stdio.h>
 
 /* If ft_strlen(ft_strnstr(filename, rt)) returns other than 3, then the file is
 not a valid ".rt" (3 chars) file */
@@ -43,7 +42,7 @@ int	errors_normalized_vector(t_v3 *norm)
 		return (1);
 	if (vec3_len(*norm) <= 0.99 || vec3_len(*norm) >= 1.01)
 	{
-		printf("[DEBUG] normalized vector length should be 1.0. Value: %f\n", \
+		ft_printf("[DEBUG] normalized vector length should be 1.0. Value: %f\n", \
 			vec3_len(*norm));
 		return (1);
 	}

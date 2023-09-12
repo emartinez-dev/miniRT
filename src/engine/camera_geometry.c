@@ -1,6 +1,4 @@
-#include "vec3.h"
 #include "engine.h"
-#include <stdio.h>
 
 /* the look_at variable is the initial arbitrary position we give to our camera,
 in this case I put it looking towards positive Z. As cross between the normal of
