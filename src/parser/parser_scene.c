@@ -1,5 +1,6 @@
 #include "objects.h"
 #include "parser.h"
+#include <stdio.h>
 
 void	read_scene(t_scene *scene)
 {
@@ -106,6 +107,9 @@ t_list	*parse_all_objects(t_scene *scene)
 	{
 		scene->scene_str[i] = replace_tabs(scene->scene_str[i]);
 		obj_ptr = parse_line(scene->scene_str[i], 0);
+		if (!obj_ptr && !parse_line(scene->scene_str[i], 1)
+			&& !ft_strnstr(scene->scene_str[i], "#", 1))
+			scene->errors = 1;
 		new = ft_lstnew(obj_ptr);
 		if (obj_ptr && (((t_object *)obj_ptr)->type != OBJ_AMBIENT_LIGHT && \
 			((t_object *)obj_ptr)->type != OBJ_LIGHT))
