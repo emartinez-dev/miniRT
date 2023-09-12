@@ -62,9 +62,6 @@ static int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow,
 	shadow->direction = vec3_normalize(vec3_sub(light->p, hit->point));
 	shadow->origin = hit->point;
 	sh_hit = hit_objects(shadow, scene->objects);
-/*	DON't WORK WELL
-	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != hit->object
-		&& sh_hit.t < vec3_distance(light->p, hit->point))*/
 	if (sh_hit.t > EPSILON && sh_hit.t < vec3_distance(light->p, hit->point))
 		return (1);
 	return (0);

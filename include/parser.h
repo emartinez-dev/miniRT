@@ -14,7 +14,8 @@
 # include <math.h>
 # include "MLX42.h"
 
-# define ERROR_ARGC "Error\n[ERROR] invalid input.\n\tUsage: ./miniRT [filename].rt\n"
+# define ERROR_ARGC "Error\n[ERROR] invalid input.\n\tUsage:\
+./miniRT [filename].rt\n"
 # define ERROR_EXT "Error\n[ERROR] invalid scene. File format must be .rt\n"
 # define ERROR_FILE "Error\n[ERROR] invalid file. Please check that file exists\n"
 

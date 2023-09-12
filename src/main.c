@@ -6,11 +6,6 @@
 #include <limits.h>
 #include "vec3.h"
 
-/*void	ft_leaks(void)
-{
-	system("leaks -q miniRT");
-}*/
-
 static void	manage_window(t_scene *scene, t_window *w);
 static int	init_lights(t_scene *scene);
 static int	check_lights(t_scene *scene);
@@ -20,7 +15,6 @@ int	main(int argc, char **argv)
 	t_scene		scene;
 	t_window	window;
 
-//	atexit(ft_leaks);
 	if (params_error(argc, argv, &scene))
 		return (1);
 	read_scene(&scene);
@@ -60,7 +54,6 @@ static void	manage_window(t_scene *scene, t_window *w)
 	if (!w->origin_img)
 		return ;
 	camera_init(scene->camera, w);
-	print_todo(scene);
 	render(w, scene);
 	mlx_loop_hook(w->mlx, key_hook, &(w->mlx));
 	mlx_resize_hook(w->mlx, &resize_hook, &w);
