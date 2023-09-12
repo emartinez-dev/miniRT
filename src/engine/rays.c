@@ -1,12 +1,5 @@
 #include "engine.h"
-#include "MLX42.h"
-#include "vec3.h"
-#include "objects.h"
-#include "parser.h"
-#include <stdio.h>
-#include <float.h>
 
-//void	render(mlx_t *mlx, mlx_image_t *img, t_scene *scene)
 void	render(t_window *win, t_scene *scene)
 
 {

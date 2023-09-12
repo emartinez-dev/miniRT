@@ -1,6 +1,4 @@
-#include "parser.h"
 #include "engine.h"
-#include "objects.h"
 
 int	solve_quadratic(t_quadratic *q)
 {

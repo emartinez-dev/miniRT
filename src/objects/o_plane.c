@@ -1,7 +1,4 @@
-#include "parser.h"
-#include "objects.h"
 #include "engine.h"
-#include "vec3.h"
 
 t_hit	hit_plane(t_plane *pl, t_ray ray, t_hit hit)
 {

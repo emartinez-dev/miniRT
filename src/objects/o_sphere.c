@@ -1,8 +1,16 @@
-#include "parser.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   o_sphere.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 13:31:14 by franmart          #+#    #+#             */
+/*   Updated: 2023/09/12 13:31:16 by franmart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "engine.h"
-#include "objects.h"
-#include "vec3.h"
-#include <math.h>
 
 double	intersect_sphere(t_ray *ray, t_sphere *sp);
 

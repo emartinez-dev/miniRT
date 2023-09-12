@@ -1,8 +1,16 @@
-#include "parser.h"
-#include "objects.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   o_plane.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 13:33:13 by franmart          #+#    #+#             */
+/*   Updated: 2023/09/12 13:33:14 by franmart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "engine.h"
-#include "vec3.h"
-#include <float.h>
 
 t_object	*parse_obj_plane(char *line)
 {
