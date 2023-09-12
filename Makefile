@@ -45,6 +45,11 @@ SRC 		= ${addprefix ${SRC_DIR}, ${_SRC}}
 
 LIBS		= ${LIBFT_DIR}/libft.a ${MLX_DIR}/libmlx42.a -ldl -lglfw -pthread -lm
 
+HEADERS		= ./include/engine.h\
+			  ./include/objects.h\
+			  ./include/parser.h\
+			  ./include/vec3.h
+
 LIBFT_DIR	= libft
 MLX_DIR		= MLX42
 
@@ -58,7 +63,7 @@ ifeq ($(SYS), Darwin)
 	LIBS	+= -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 endif
 
-${NAME}:	$(SRC)
+${NAME}:	$(SRC) $(HEADERS)
 			@echo "Compiling $(NAME)..."
 			@echo "Compiling dependencies..."
 			@$(MAKE) -s all -C $(LIBFT_DIR)
@@ -66,7 +71,7 @@ ${NAME}:	$(SRC)
 			@$(CC) $(INCLUDES) $(SRC) -o $(NAME) $(LIBS)
 			@echo "$(NAME) compiled!"
 
-$(NAME_BONUS): $(SRC)
+$(NAME_BONUS): $(SRC) $(HEADERS)
 			@echo "Compiling $(NAME_BONUS)..."
 			@echo "Compiling dependencies..."
 			@$(MAKE) -s all -C $(LIBFT_DIR)
