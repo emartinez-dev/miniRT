@@ -1,8 +1,16 @@
-#include "parser.h"
-#include "objects.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   o_cylinder.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 13:32:24 by franmart          #+#    #+#             */
+/*   Updated: 2023/09/12 13:32:25 by franmart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "engine.h"
-#include "vec3.h"
-#include <float.h>
 
 static void	init_caps(t_cylinder *cyl);
 

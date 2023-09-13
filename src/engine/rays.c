@@ -1,12 +1,17 @@
-#include "engine.h"
-#include "MLX42.h"
-#include "vec3.h"
-#include "objects.h"
-#include "parser.h"
-#include <stdio.h>
-#include <float.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rays.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan-aga <juan_aga@student.42malaga.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 14:48:09 by juan-aga          #+#    #+#             */
+/*   Updated: 2023/09/12 14:48:12 by juan-aga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//void	render(mlx_t *mlx, mlx_image_t *img, t_scene *scene)
+#include "engine.h"
+
 void	render(t_window *win, t_scene *scene)
 
 {

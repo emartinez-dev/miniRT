@@ -1,8 +1,16 @@
-#include "objects.h"
-#include "vec3.h"
-#include "parser.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light_model.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 14:47:35 by juan-aga          #+#    #+#             */
+/*   Updated: 2023/09/13 13:48:21 by franmart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "engine.h"
-#include <math.h>
 
 static int		is_at_back(t_hit *hit, double *dot, t_ray *shadow,
 					t_light *light);
@@ -62,9 +70,6 @@ static int	is_in_shadow(t_scene *scene, t_hit *hit, t_ray *shadow,
 	shadow->direction = vec3_normalize(vec3_sub(light->p, hit->point));
 	shadow->origin = hit->point;
 	sh_hit = hit_objects(shadow, scene->objects);
-/*	DON't WORK WELL
-	if (sh_hit.t > EPSILON && sh_hit.object && sh_hit.object != hit->object
-		&& sh_hit.t < vec3_distance(light->p, hit->point))*/
 	if (sh_hit.t > EPSILON && sh_hit.t < vec3_distance(light->p, hit->point))
 		return (1);
 	return (0);

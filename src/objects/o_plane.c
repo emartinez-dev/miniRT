@@ -1,7 +1,16 @@
-#include "parser.h"
-#include "objects.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   o_plane.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan-aga <juan_aga@student.42malaga.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 14:48:42 by juan-aga          #+#    #+#             */
+/*   Updated: 2023/09/12 14:48:45 by juan-aga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "engine.h"
-#include "vec3.h"
 
 t_hit	hit_plane(t_plane *pl, t_ray ray, t_hit hit)
 {

@@ -1,8 +1,16 @@
-#include "parser.h"
-#include "objects.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   o_cylinder.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan-aga <juan_aga@student.42malaga.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 14:48:31 by juan-aga          #+#    #+#             */
+/*   Updated: 2023/09/12 14:48:33 by juan-aga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "engine.h"
-#include "vec3.h"
-#include <math.h>
 
 double	intersect_cylinder_cap(t_ray *ray, t_cylinder *cyl);
 double	intersect_cylinder(t_ray *ray, t_cylinder *cyl);

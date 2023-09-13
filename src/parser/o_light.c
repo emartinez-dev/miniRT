@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   o_light.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 13:32:53 by franmart          #+#    #+#             */
+/*   Updated: 2023/09/12 13:32:54 by franmart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 #include "objects.h"
 
@@ -55,7 +67,6 @@ void	get_lights(t_scene *scene)
 	t_light		*light;
 
 	h = scene->lights;
-	scene->light = NULL;
 	while (h)
 	{
 		if (((t_object *)h->content)->type == OBJ_LIGHT)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_errors.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 13:33:20 by franmart          #+#    #+#             */
+/*   Updated: 2023/09/13 14:01:43 by franmart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 #include "vec3.h"
 #include <stdio.h>
@@ -78,6 +90,25 @@ int	errors_in_objects(t_scene *scene)
 		if (obj->error)
 			return (1);
 		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	invalid_line(t_scene *scene)
+{
+	void	*obj;
+	void	*light;
+	int		i;
+
+	i = -1;
+	while (scene->scene_str[++i])
+	{
+		obj = parse_line(scene->scene_str[i], 0);
+		light = parse_line(scene->scene_str[i], 1);
+		if (!obj && !light && !ft_strnstr(scene->scene_str[i], "#", 1))
+			return (1);
+		free_objects(obj);
+		free_objects(light);
 	}
 	return (0);
 }

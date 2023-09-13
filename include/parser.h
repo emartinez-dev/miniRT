@@ -1,5 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 13:34:41 by franmart          #+#    #+#             */
+/*   Updated: 2023/09/13 13:45:36 by franmart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSER_H
 # define PARSER_H
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 # include "libft.h"
 # include <fcntl.h>
@@ -71,6 +87,7 @@ int			params_error(int argc, char **argv, t_scene *scene);
 int			errors_normalized_vector(t_v3 *norm);
 int			errors_colors(t_color *color);
 int			errors_in_objects(t_scene *scene);
+int			invalid_line(t_scene *scene);
 
 /* parser_scene.c */
 void		read_scene(t_scene *scene);

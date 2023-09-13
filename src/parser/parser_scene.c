@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_scene.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 13:33:31 by franmart          #+#    #+#             */
+/*   Updated: 2023/09/12 14:08:53 by juan-aga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "objects.h"
 #include "parser.h"
 
@@ -8,6 +20,11 @@ void	read_scene(t_scene *scene)
 	char	*tmp;
 
 	buffer = ft_calloc(1, sizeof(char));
+	if (!buffer)
+	{
+		ft_printf("Error\nFailed allocated memory.\n");
+		exit(1);
+	}
 	buffer[0] = '\0';
 	line = get_next_line(scene->fd);
 	while (line)
@@ -30,7 +47,7 @@ int	extract_objects(t_scene *scene)
 	scene->ambient_light = NULL;
 	scene->lights = parse_all_lights(scene);
 	scene->objects = parse_all_objects(scene);
-	if (errors_in_objects(scene))
+	if (errors_in_objects(scene) || invalid_line(scene))
 		scene->errors = 1;
 	scene->camera = get_camera(scene->objects);
 	scene->objects = remove_camera_from_list(scene->objects);

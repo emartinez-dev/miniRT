@@ -37,7 +37,6 @@ _SRC 		=	main.c\
 				parser/parser_utils.c\
 				parser/parser_frees.c\
 				parser/parser_scene.c\
-				parser/pruebas.c\
 				objects/o_cylinder.c\
 				objects/o_sphere.c\
 				objects/o_plane.c

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   engine.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan-aga <juan_aga@student.42malaga.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 14:49:14 by juan-aga          #+#    #+#             */
+/*   Updated: 2023/09/12 14:49:39 by juan-aga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ENGINE_H
 # define ENGINE_H
 
@@ -16,6 +28,8 @@
 # include "MLX42.h"
 # include "vec3.h"
 # include <stdio.h>
+# include <float.h>
+# include <math.h>
 
 typedef struct s_ray {
 	t_v3	origin;
@@ -80,7 +94,6 @@ t_v3			cam_direction(int x, int y, t_camera *c, t_window *win);
 t_ray			camera_ray(t_camera *c, int x, int y, t_window *w);
 
 /* rays.c */
-//void			render(mlx_t *mlx, mlx_image_t *img, t_scene *scene);
 void			render(t_window *w, t_scene *scene);
 t_ray			raycast(double u, double v, t_scene *scene, t_window *w);
 t_color			raycolor(t_ray ray, t_hit *hit, t_scene *scene);

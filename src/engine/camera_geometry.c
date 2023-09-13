@@ -1,6 +1,16 @@
-#include "vec3.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_geometry.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan-aga <juan_aga@student.42malaga.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 14:46:56 by juan-aga          #+#    #+#             */
+/*   Updated: 2023/09/12 14:46:57 by juan-aga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "engine.h"
-#include <stdio.h>
 
 /* the look_at variable is the initial arbitrary position we give to our camera,
 in this case I put it looking towards positive Z. As cross between the normal of
