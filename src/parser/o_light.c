@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:32:53 by franmart          #+#    #+#             */
-/*   Updated: 2023/09/12 13:32:54 by franmart         ###   ########.fr       */
+/*   Updated: 2023/10/09 22:16:00 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	get_lights(t_scene *scene)
 	t_light		*light;
 
 	h = scene->lights;
+	scene->light = NULL;
 	while (h)
 	{
 		if (((t_object *)h->content)->type == OBJ_LIGHT)
